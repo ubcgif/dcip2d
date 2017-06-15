@@ -31,7 +31,7 @@ the electrical conductivity, :math:`\sigma`, by:
    \label{eq:genFwd}
    \phi_\sigma = \mathcal{F}_{dc}[\sigma],
 
- where the forward mapping operator :math:`\mathcal{F}_{dc}` is defined
+where the forward mapping operator :math:`\mathcal{F}_{dc}` is defined
 by the equation
 
 .. math::
