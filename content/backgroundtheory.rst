@@ -27,29 +27,27 @@ current is turned on. In mathematical terms this potential is related to
 the electrical conductivity, :math:`\sigma`, by:
 
 .. math::
-
-   \label{eq:genFwd}
-   \phi_\sigma = \mathcal{F}_{dc}[\sigma],
+   \phi_\sigma = \mathcal{F}_{dc}[\sigma] \\
+   :label: genFwd
 
 where the forward mapping operator :math:`\mathcal{F}_{dc}` is defined
 by the equation
 
 .. math::
+   \nabla \cdot (\sigma\nabla\phi_\sigma) = - \mathbf{I}\delta(r-r_s) \\
+   :label: dcForward
 
-   \nabla \cdot (\sigma\nabla\phi_\sigma) = - \mathbf{I}\delta(r-r_s),
-   \label{eq:dcForward}
-
- and also by appropriate boundary conditions. In equation
-[eq:dcForward], :math:`\sigma` is the electrical conductivity in
+and also by appropriate boundary conditions. In equation
+:eq:`dcForward`, :math:`\sigma` is the electrical conductivity in
 Siemens/meter (S/m), :math:`\nabla` is the gradient operator,
 :math:`\mathbf{I}` is the strength of the input current in Amperes, and
 :math:`r_s` is the location of the current source. For typical earth
 structures, :math:`\sigma`, while positive, can vary over many orders of
-magnitude. The potential :math:`\phi_\sigma` in equation [eq:dcForward]
+magnitude. The potential :math:`\phi_\sigma` in equation :eq:`dcForward`
 is the potential due to a single current. This is the value that would
 be measured in a pole-pole experiment. If potentials from pole-dipole or
 dipole-dipole surveys are to be generated then they can be obtained by
-using equation [eq:dcForward] and the principle of superposition.
+using equation :eq:`dcForward` and the principle of superposition.
 
 When the earth material is chargeable the measured voltage will change
 with time and reach a limit value which is denoted by :math:`\phi_\eta`
@@ -67,39 +65,35 @@ confined to the region [0,1).
    Definition of the three potentials associated with DC/IP experiments.
 
 To carry out forward modelling to compute :math:`\phi_\eta` we adopt the
-formulation of :raw-latex:`\citet{Siegel59}`, which says that the effect
+formulation of :ref:`Siegel59`, which says that the effect
 of a chargeable ground is modelled by using the dc resistivity forward
 mapping, :math:`\mathcal{F}_{dc}`, but with the conductivity replaced by
 :math:`\sigma = \sigma(1-\eta)`. Thus:
 
 .. math::
+   \phi_\eta = \mathcal{F}_{dc}[\sigma(1-\eta)]
+   :label: phiEta
 
-   \label{eq:phiEta}
-   \phi_\eta = \mathcal{F}_{dc}[\sigma(1-\eta)],
-
- or
+or
 
 .. math::
+   \nabla \cdot (\sigma(1-\eta)\nabla\phi_\sigma) = - \mathbf{I}\delta(r-r_s)
+   :label: ipForward
 
-   \label{eq:ipForward}
-   \nabla \cdot (\sigma(1-\eta)\nabla\phi_\sigma) = - \mathbf{I}\delta(r-r_s).
-
- The IP datum, which we refer to as “apparent chargeability” is defined
+The IP datum, which we refer to as “apparent chargeability” is defined
 by
 
 .. math::
+   \eta_a = \frac{\phi_s}{\phi_\eta} = \frac{\phi_\eta - \phi_\sigma}{\phi_\eta}
+   :label: genApCharge
 
-   \eta_a = \frac{\phi_s}{\phi_\eta} = \frac{\phi_\eta - \phi_\sigma}{\phi_\eta},
-   \label{eq:genApCharge}
-
- or
+or
 
 .. math::
+   \eta_a = \frac{\mathcal{F}_{dc}[\sigma(1-\eta)] - \mathcal{F}_{dc}[\sigma]}{\mathcal{F}_{dc}[\sigma(1-\eta)]} \\
+   :label:genApChargeDC
 
-   \eta_a = \frac{\mathcal{F}_{dc}[\sigma(1-\eta)] - \mathcal{F}_{dc}[\sigma]}{\mathcal{F}_{dc}[\sigma(1-\eta)]}.
-   \label{eq:genApChargeDC}
-
- Equation [eq:genApChargeDC] shows that the apparent chargeability can
+Equation :eq:`genApChargeDC` shows that the apparent chargeability can
 be computed by carrying out two DC resistivity forward modelling
 routines with conductivities :math:`\sigma` and :math:`\sigma(1-\eta)`.
 Note that in this definition apparent chargeability is dimensionless
@@ -127,7 +121,7 @@ Forward modelling
 
 The forward modelling for the DC potentials and IP apparent
 chargeabilities and secondary potentials is accomplished using a finite
-difference technique to solve equation [eq:dcForward]. The program which
+difference technique to solve equation :eq:`dcForward`. The program which
 performs this calculation is . In Version  we include the option to
 calculate IP data by multiplying the sensitivity matrix
 :math:`\mathbf{J}` by the chargeability provided by user. That is, we
@@ -135,18 +129,18 @@ forward model with the linear equations that will be used for the
 inversion. The chargeability in this case can have arbitrary units. The
 forward modelled data are calculated as
 
-.. math:: \bvec{d}_{ip} = \bvec{J}_{ip}\eta,
+.. math:: 
+   \boldsymbol{\vec{d}_{ip}} = \boldsymbol{\vec{J}_{ip}}\eta,
 
- where :math:`\bvec{d}_{ip}` is the IP data and :math:`\bvec{J}_{ip}` is
+where :math:`\boldsymbol{\vec{d}_{ip}}` is the IP data and :math:`\boldsymbol{\vec{J}_{ip}}` is
 the sensitivity matrix for the IP problem:
 
 .. math::
+   \boldsymbol{\vec{J}_{ip}} = -\frac{\partial \ln\phi_\eta}{\partial \ln\sigma} = -\frac{1}{\sigma_\eta}\frac{\partial\phi_\eta}{\partial \ln\sigma} = -\frac{1}{\boldsymbol{\vec{d}_{dc}}}\boldsymbol{\vec{J}_{dc}}
+   :label: sensIP
 
-   \bvec{J}_{ip} = -\frac{\partial \ln\phi_\eta}{\partial \ln\sigma} = -\frac{1}{\sigma_\eta}\frac{\partial\phi_\eta}{\partial \ln\sigma} = -\frac{1}{\bvec{d}_{dc}}\bvec{J}_{dc},
-   \label{eq:sensIP}
-
- given DC data, :math:`\bvec{d}_{dc}`. Forward modeling using equation
-[eq:sensIP] is further explained in the section [invIPdataSection].
+given DC data, :math:`\boldsymbol{\vec{d}_{dc}}`. Forward modeling using equation
+:eq:`sensIP` is further explained in the section :ref:`Inversion of IP data<invIPdata>`.
 
 General inversion methodology
 -----------------------------
@@ -418,6 +412,8 @@ generated by
 
  where :math:`\gamma \in (0,1]` limits the step size and is chosen to
 ensure that the total objective function is reduced.
+
+.. _invIPdata:
 
 Inversion of IP data
 --------------------
