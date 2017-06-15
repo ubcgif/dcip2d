@@ -1,10 +1,4 @@
-.. role:: math(raw)
-   :format: html latex
-..
-
-.. role:: raw-latex(raw)
-   :format: latex
-..
+.. _backgroundtheory:
 
 Background theory
 =================
@@ -66,7 +60,7 @@ macroscopic parameter called “chargeability”. We denote chargeability by
 the symbol :math:`\eta`. Chargeability is dimensionless, positive, and
 confined to the region [0,1).
 
-.. figure:: eta
+.. figure:: ../images/eta.png
    :alt: Definition of the three potentials associated with DC/IP
    experiments.
 

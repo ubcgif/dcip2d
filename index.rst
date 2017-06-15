@@ -1,8 +1,16 @@
 DCIP2D package
 ==================
 
-DCIP2D is a program library for carrying out forward modelling and inversion of DC resistivity and IP data in 2D. The contents of this manual are as follows:
+DCIP2D is a program library for carrying out forward modelling and inversion of surface and borehole DC resistivity and IP data in 2.5D. The contents of this manual are as follows:
 
-need a toctree here. see other examples.
+.. toctree::
+        :numbered:
+        :maxdepth: 2
 
-
+        Package overview <content/overview>
+        Theoretical background <content/backgroundtheory>
+        Elements <content/elements>
+        Running the programs <content/runnningtheprograms>
+        Workflow<content/dc2dWorkflow>
+        Examples <content/examples>
+        References <references>
