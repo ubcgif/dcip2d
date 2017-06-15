@@ -1,2 +1,2 @@
-# mag3d
-MAG3D documentation
+# dcip2d
+DCIP2D documentation
