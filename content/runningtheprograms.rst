@@ -5,11 +5,11 @@ Running the programs
 
 The software package  uses five general codes:
 
--  : performs 2D forward modelling for DC and IP data
+- **DCIPF2D**: performs 2D forward modelling for DC and IP data
 
--  : inverts DC potentials to recover a 2D conductivity model
+- **DCINV2D**: inverts DC potentials to recover a 2D conductivity model
 
--  : inverts IP data to recover a 2D chargeability model
+- **IPINV2D**: inverts IP data to recover a 2D chargeability model
 
 This section discusses the use of these codes individually.
 
@@ -30,13 +30,13 @@ The command format and the control, or input, file format on a single
 machine are described below. Within the command prompt or terminal, any
 of the programs can be called using:
 
-program arg\ :math:`_1` [arg:math:`_2` :math:`\cdots` arg\ :math:`_i`]
+program :math:`arg_1` [:math:`arg_2` :math:`\cdots` :math:`arg_i`]
 
 where:
 
--  is the name of the executable
+-  *program* is the name of the executable
 
--  is a command line argument, which can be a name of corresponding
+-  :math:`arg_i` is a command line argument, which can be a name of corresponding
    required or optional file. Optional command line arguments are
    specified by brackets: . **NOTE:** Typing as the control file, serves
    as a help function and returns all of the keyword combinations
