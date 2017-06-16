@@ -90,8 +90,8 @@ by
 or
 
 .. math::
-   \eta_a = \frac{\mathcal{F}_{dc}[\sigma(1-\eta)] - \mathcal{F}_{dc}[\sigma]}{\mathcal{F}_{dc}[\sigma(1-\eta)]} \\
-   :label:genApChargeDC
+   \eta_a = \frac{\mathcal{F}_{dc}[\sigma(1-\eta)]-\mathcal{F}_{dc}[\sigma]}{\mathcal{F}_{dc}[\sigma(1-\eta)]}
+   :label: genApChargeDC
 
 Equation :eq:`genApChargeDC` shows that the apparent chargeability can
 be computed by carrying out two DC resistivity forward modelling
@@ -152,14 +152,14 @@ non-linear inverse problem that requires linearization of the data
 equations and subsequent iteration steps. Next, we invert IP data to
 recover the chargeability :math:`\eta(x,z)`. Because chargeabilities are
 usually small quantities :math:`(\eta < 0.3)` it is possible to
-linearize equation [eq:genApChargeDC] and derive a linear system of
+linearize equation :eq:`genApChargeDC and derive a linear system of
 equations to be solved. Irrespective of which data set is being inverted
 however, we basically use the same methodology to carry out the
 inversions.
 
 To outline our methodology it is convenient to introduce a single
 notation for the and for the . We let
-:math:`\bvec{d} = (d_1,d_2,\ldots,d_n)^T` denote the data so that
+:math:`\boldsymbol{\vec{d}} = (d_1,d_2,\ldots,d_n)^T` denote the data so that
 :math:`d_i` is the i\ :math:`^{th}` potential in a DC resistivity data
 set or the i\ :math:`^{th}` apparent chargeability in an IP survey. Let
 the physical property of interest be denoted by the symbol :math:`m`.
@@ -169,9 +169,9 @@ for the j\ :math:`^{th}` cell. For the inversion we choose
 :math:`m_j = \eta_j` when reconstructing the chargeability section.
 
 The goal of the inversion is to recover a model vector
-:math:`\bvec{m} = (m_1,m_2,\ldots,m_m)^T`, which acceptably reproduces
+:math:`\boldsymbol{\vec{m}} = (m_1,m_2,\ldots,m_m)^T`, which acceptably reproduces
 the :math:`n` observations
-:math:`\bvec{d}^{obs} = (d_1^{obs},d_2^{obs},...,d_n^{obs})^T`.
+:math:`\boldsymbol{\vec{d}^{obs}} = (d_1^{obs},d_2^{obs},...,d_n^{obs})^T`.
 Importantly, the data are noise contaminated, therefore we don’t want to
 fit them precisely. A perfect fit in our case would be indicative, that
 incorrect earth model is recovered, as some features observed in the
@@ -185,16 +185,15 @@ an amount that is justified by the estimated uncertainty in the data. To
 accomplish this we introduce a global misfit criterion:
 
 .. math::
+   \psi_d = \left\| \mathbf{W}_d(\mathbf{G}\mathbf{m}-\mathbf{d})\right\|^2
+   :label: phid
 
-   \label{eq:phid}
-   \psi_d = \left\| \mathbf{W}_d(\mathbf{G}\mathbf{m}-\mathbf{d})\right\|^2.
-
- where :math:`\bvec{W}_d` is a data weighting matrix. In this work, we
+where :math:`\boldsymbol{\vec{W}_d}` is a data weighting matrix. In this work, we
 shall assume that the noise contaminating the i\ :math:`^{th}`
 observation is an uncorrelated Gaussian random variable having zero mean
 and standard deviation :math:`\epsilon_i`. As such, an appropriate form
 for the :math:`N \times N` matrix is
-:math:`\bvec{W}_d = diag\left\{1/\epsilon_1,\ldots,1/\epsilon_n\right\}`.
+:math:`\boldsymbol{\vec{W}_d} = diag\left\{1/\epsilon_1,\ldots,1/\epsilon_n\right\}`.
 With this choice, :math:`\psi_d` is the random variable distributed as
 chi-squared with :math:`N` degrees of freedom. Its expected value is
 approximately equal to :math:`N` and accordingly, :math:`\psi_d^*`, the
@@ -202,33 +201,31 @@ target misfit for the inversion, should be approximately equal to this
 value.
 
 It is common to use an :math:`l_2` norm measure of data fit as shown in
-equation [eq:phid]. However, the Huber norm
-:raw-latex:`\cite[]{Huber64}` has been incorporated to handle outliers
+equation :eq:`phid`. However, the Huber norm
+:ref:`Huber64` has been incorporated to handle outliers
 in the data. The general form of the Huber norm is
 
 .. math::
-
-   \label{eq:Huber}
    \tau(y) = \begin{cases}
    y^2 & |y| \leq c \\
    2c|y| - c^2 & |y| > c.
    \end{cases}
+   :label: Huber
 
- From equation [eq:Huber], let
+From equation :eq:`Huber`, let
 :math:`y=\textbf{W}_d(\textbf{G}\mathbf{m}-\textbf{d})` and the data
 misfit function then becomes
 
 .. math::
-
-   \label{eq:Huber_phid}
    \Phi_d = \sum_{i=1}^n \begin{cases}
    \left[ {\textbf{W}_d}^i(\textbf{G}_i\mathbf{m}-{d_i}) \right] ^2 & |y_i| \leq c \\
    2c|{\textbf{W}_d}^i(\textbf{G}_i\mathbf{m}-{d_i})|-c^2 & |y_i| > c.
    \end{cases}
+   :label: Huber_phid
 
- where :math:`c` is a constant that separates the elements of vector
+where :math:`c` is a constant that separates the elements of vector
 :math:`y` into those considered large and those that are considered
-small :raw-latex:`\cite[]{FarquharsonOldenburg98}`.
+small :ref:`FarquharsonOldenburg98`.
 
 Earth conductivity distributions are complex. To allow maximum
 flexibility to produce a model of arbitrary shape it is important that
@@ -272,145 +269,140 @@ is close to a reference model :math:`m_o`. To accomplish this, we
 minimize a discretized approximation to
 
 .. math::
-
    \begin{aligned}
    \psi_m(m,m_o) = &\alpha_s \int\int w_s(x,z)(m-m_o)^2 dxdz + \nonumber \\
    &\int \int \left\{ \alpha_x w_x(x,z) \left( \frac{\partial(m-m_o)}{\partial x} \right)^2 + \alpha_z w_z(x,z)\left( \frac{\partial(m-m_o)}{\partial z} \right)^2 \right\} dxdz
-   \label{eq:intMOF}\end{aligned}
+   \end{aligned}
+   :label: intMOF
 
- In equation [eq:intMOF], the functions :math:`w_s,w_x,w_z` are
+In equation :eq:intMOF`, the functions :math:`w_s,w_x,w_z` are
 specified by the user and the constant :math:`\alpha_s` controls the
 importance of closeness of the constructed model to the reference model
 :math:`m_o` and :math:`\alpha_x,\alpha_z` controls the smoothness of the
 model in the two directions. Varying the ratio :math:`\alpha_x/\alpha_z`
 allows the construction of models that are smoother, thus more
 elongated, in either :math:`x-` or :math:`z-`\ direction. The discrete
-form of [eq:intMOF] is the following:
+form of :eq:`intMOF` is the following:
 
 .. math::
+   \psi_m &&= (\boldsymbol{\vec{m}}-\boldsymbol{\vec{m}}_o)^T\left\{ \alpha_s \mathbf{W}_s^T\mathbf{W}_s+\alpha_x \mathbf{W}_x^T\mathbf{W}_x+\alpha_z \mathbf{W}_z^T\mathbf{W}_z \right\} (\boldsymbol{\vec{m}}-\boldsymbol{\vec{m}}_o), \nonumber \\
+   &&\equiv (\boldsymbol{\vec{m}}-\boldsymbol{\vec{m}}_o)^T\mathbf{W}_m^T\mathbf{W}_m(\boldsymbol{\vec{m}}-\boldsymbol{\vec{m}}_o)^T \\
+   :label: shortMOF
 
-   \begin{aligned}
-   \psi_m &&= (\bvec{m}-\bvec{m}_o)^T\left\{ \alpha_s \mathbf{W}_s^T\mathbf{W}_s+\alpha_x \mathbf{W}_x^T\mathbf{W}_x+\alpha_z \mathbf{W}_z^T\mathbf{W}_z \right\} (\bvec{m}-\bvec{m}_o), \nonumber \\
-   &&\equiv (\bvec{m}-\bvec{m}_o)^T\mathbf{W}_m^T\mathbf{W}_m(\bvec{m}-\bvec{m}_o)^T, \\
-   \label{eq:shortMOF}
-   &&= \norm{\mathbf{W}_m(\bvec{m}-\bvec{m}_o)}^2.
-   \label{eq:disMOF}\end{aligned}
+.. math::
+   \psi_m = ||\mathbf{W}_m(\boldsymbol{\vec{m}}-\boldsymbol{\vec{m}}_o)||^2.
+   :label: disMOF
 
- If :math:`w_s, w_x,` and :math:`w_z` are set equal to unity, then
-:math:`\bvec{W}_s` is a diagonal matrix with elements
+If :math:`w_s, w_x,` and :math:`w_z` are set equal to unity, then
+:math:`\boldsymbol{\vec{W}}_s` is a diagonal matrix with elements
 :math:`\sqrt{\Delta x \Delta z}`, where :math:`\Delta x` is the length
-of the cell and :math:`\Delta z` is its thickness, :math:`\bvec{W}_x`
+of the cell and :math:`\Delta z` is its thickness, :math:`\boldsymbol{\vec{W}}_x`
 has elements :math:`\sqrt{\Delta z / dx}` where :math:`dx` is the
 distance between the centres of horizontally adjacent cells, and
-:math:`\bvec{W}_z` has elements :math:`\sqrt{\Delta x / dz}` where
+:math:`\boldsymbol{\vec{W}}_z` has elements :math:`\sqrt{\Delta x / dz}` where
 :math:`dz` is the distance between the centres of vertically adjacent
 cells.
 
 For blockier models, we have incorporated the measure proposed by Ekblom
-(:raw-latex:`\citeyear{Ekblom73,Ekblom87}`) that has been found to be
+(:ref:`Ekblom73,Ekblom87`) that has been found to be
 useful. The generalized version is given as
 
 .. math::
+   \tau(y) = (y^2 + \epsilon^2)^{\frac{\rho}{2}}   
+   :label: Ekblom
 
-   \label{eq:Ekblom}
-   \tau(y) = (y^2 + \epsilon^2)^{\frac{\rho}{2}},
-
- where :math:`\epsilon` is some positive number. The smaller
+where :math:`\epsilon` is some positive number. The smaller
 :math:`\epsilon` becomes, the measure tends towards the :math:`l_\rho`
 norm. Large values of :math:`\epsilon` tend the measure to behave like a
 scaled sum-of-squares. For the model objective function in equation
-[eq:shortMOF], :math:`y = \bvec{W}_m(\bvec{m} - \bvec{m}_o)` and the
+:eq:`shortMOF`, :math:`y = \boldsymbol{\vec{W}}_m(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o)` and the
 system of equations is solved with the projected gradients through a
 chi-factor regularization. The resulting model objective function is
 
 .. math::
+   \psi_m &&= \left[(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o)^T\alpha_s\boldsymbol{\vec{W}}^T_s\boldsymbol{\vec{W}}_s(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o) + \epsilon^2\right]^{\frac{\rho}{2}} + \left[(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o)^T\alpha_x\boldsymbol{\vec{W}}^T_x\boldsymbol{\vec{W}}_x(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o) + \epsilon^2 \right]^{\frac{\rho}{2}} \nonumber \\
+   &&+ \left[(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o)^T\alpha_z\boldsymbol{\vec{W}}^T_z\boldsymbol{\vec{W}}_z(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o) + \epsilon^2 \right]^{\frac{\rho}{2}}\\
+   :label: ekblom
 
-   \begin{aligned}
-   \psi_m &&= \left[(\bvec{m} - \bvec{m}_o)^T\alpha_s\bvec{W}^T_s\bvec{W}_s(\bvec{m} - \bvec{m}_o) + \epsilon^2\right]^{\frac{\rho}{2}} + \left[(\bvec{m} - \bvec{m}_o)^T\alpha_x\bvec{W}^T_x\bvec{W}_x(\bvec{m} - \bvec{m}_o) + \epsilon^2 \right]^{\frac{\rho}{2}} \nonumber \\
-   &&+ \left[(\bvec{m} - \bvec{m}_o)^T\alpha_z\bvec{W}^T_z\bvec{W}_z(\bvec{m} - \bvec{m}_o) + \epsilon^2 \right]^{\frac{\rho}{2}}.
-   \label{eq:ekblom}\end{aligned}
+Details of the Eklom norm within the context of geophysical inversion
+can be found in :ref:`FarquharsonOldenburg98`.
 
- Details of the Eklom norm within the context of geophysical inversion
-can be found in :raw-latex:`\cite{FarquharsonOldenburg98}`.
-
-It should be noted that in equation [eq:disMOF], the reference model can
+It should be noted that in equation :eq:`disMOF`, the reference model can
 be removed from the spatial (:math:`x` and :math:`z`) components. The
 effect is that the reference model places emphasis on the magnitude of
 the model, but its spatial variations do not influence the spatial
 derivatives. The model objective function becomes
 
 .. math::
+   \psi_m = (\boldsymbol{\vec{m}}-\boldsymbol{\vec{m}}_o)^T\left(\alpha_s \mathbf{W}_s^T\mathbf{W}_s\right)(\boldsymbol{\vec{m}}-\boldsymbol{\vec{m}}_o) + \boldsymbol{\vec{m}}^T\left\{\alpha_x \mathbf{W}_x^T\mathbf{W}_x+\alpha_z \mathbf{W}_z^T\mathbf{W}_z \right\}\boldsymbol{\vec{m}}
+   :label: mofNOref
 
-   \psi_m = (\bvec{m}-\bvec{m}_o)^T\left(\alpha_s \mathbf{W}_s^T\mathbf{W}_s\right)(\bvec{m}-\bvec{m}_o) + \bvec{m}^T\left\{\alpha_x \mathbf{W}_x^T\mathbf{W}_x+\alpha_z \mathbf{W}_z^T\mathbf{W}_z \right\}\bvec{m}
-   \label{eq:mofNOref}
-
- and for the Ekblom norm
+and for the Ekblom norm
 
 .. math::
 
    \begin{aligned}
-   \psi_m &&= \left[(\bvec{m} - \bvec{m}_o)^T(\alpha_s\bvec{W}^T_s\bvec{W}_s)(\bvec{m} - \bvec{m}_o) + \epsilon^2 \right]^{\frac{\rho}{2}} \nonumber \\
-   &&+ \left[\bvec{m}^T(\alpha_x\bvec{W}^T_x\bvec{W}_x)\bvec{m} + \epsilon^2 \right]^{\frac{\rho}{2}} + \left[\bvec{m}^T(\alpha_z\bvec{W}^T_z\bvec{W}_z)\bvec{m} + \epsilon^2 \right]^{\frac{\rho}{2}}.\end{aligned}
+   \psi_m &&= \left[(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o)^T(\alpha_s\boldsymbol{\vec{W}}^T_s\boldsymbol{\vec{W}}_s)(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o) + \epsilon^2 \right]^{\frac{\rho}{2}} \nonumber \\
+   &&+ \left[\boldsymbol{\vec{m}}^T(\alpha_x\boldsymbol{\vec{W}}^T_x\boldsymbol{\vec{W}}_x)\boldsymbol{\vec{m}} + \epsilon^2 \right]^{\frac{\rho}{2}} + \left[\boldsymbol{\vec{m}}^T(\alpha_z\boldsymbol{\vec{W}}^T_z\boldsymbol{\vec{W}}_z)\boldsymbol{\vec{m}} + \epsilon^2 \right]^{\frac{\rho}{2}}.
+   \end{aligned}
 
- This is a new feature in and gives the user greater flexibility. The
+This is a new feature in and gives the user greater flexibility. The
 inverse problem is now properly formulated as an optimization problem:
 
 .. math::
+   & \mbox{minimize } \psi_m(\boldsymbol{\vec{m}},\boldsymbol{\vec{m}}_o)&=||\mathbf{W}_m(\boldsymbol{\vec{m}}-\boldsymbol{\vec{m}}_o)||^2 \\ \nonumber
+   & \mbox{subject to } \psi_d(\boldsymbol{\vec{d}},\boldsymbol{\vec{d}}^{obs})&=||\mathbf{W}_d(\boldsymbol{\vec{d}}-\boldsymbol{\vec{d}}^{obs})||^2 =\psi_d^*
+   :label: inverseProblem
 
-   \begin{aligned}
-   \label{eq:inverseProblem}
-   & \mbox{minimize } \psi_m(\bvec{m},\bvec{m}_o)&=\norm{\mathbf{W}_m(\bvec{m}-\bvec{m}_o)}^2 \\ \nonumber
-   & \mbox{subject to } \psi_d(\bvec{d},\bvec{d}^{obs})&=\norm{\mathbf{W}_d(\bvec{d}-\bvec{d}^{obs})}^2 =\psi_d^*.\end{aligned}
-
-In equation [eq:inverseProblem], :math:`\bvec{m}_o` is a starting model
-and :math:`\bvec{W}_m` is a general weighting matrix which is designed
+In equation :eq:`inverseProblem`, :math:`\boldsymbol{\vec{m}}_o` is a starting model
+and :math:`\boldsymbol{\vec{W}}_m` is a general weighting matrix which is designed
 so that a model with specific characteristics is produced. The
 minimization of :math:`\psi_m` yields a model that is close to
-:math:`\bvec{m}_o` with the metric defined by :math:`\bvec{W}_m` and so
+:math:`\boldsymbol{\vec{m}}_o` with the metric defined by :math:`\boldsymbol{\vec{W}}_m` and so
 the characteristics of the recovered model are directly controlled by
 these two quantities. If the data errors are Gaussian and their standard
 deviations have been adequately estimated then the target misfit should
 be :math:`\psi_d^* = N`. The data misfit function can take the form of
 the :math:`l_2` norm as shown above or the Huber norm from equation
-[eq:Huber\_phid].
+:eq:`Huber\_phid`
 
 Inversion of DC data
 --------------------
 
 The inversion of the apparent resistivity data is carried out using the
 program . The inversion of DC resistivity data formulated as the
-minimization in equation [eq:inverseProblem] is nonlinear since the data
+minimization in equation :eq:`inverseProblem` is nonlinear since the data
 do not depend linearly upon the conductivity model. We tackle this
 problem using a Gauss-Newton approach in which the objective function is
 linearized about a current model, :math:`m(n)`, and a model perturbation
 is solved for and used to update the current model. Substituting
 :math:`m(n+1) = m(n)+m` into the objective function in equation
-[eq:inverseProblem]
+:eq:`inverseProblem`
 
-.. math:: \psi(\bvec{m} + \delta \bvec{m}) =  \left\| \mathbf{W}_d\left( \mathcal{F}_{dc}[\bvec{m}^{(n)}] + \bvec{J}\delta\bvec{m} - \mathbf{d}\right)\right\|^2 + \beta \left\| \bvec{W}_m\left(\bvec{m} + \delta\bvec{m} - \bvec{m}_o\right) \right\|^2 + H.O.T.,
+.. math:: \psi(\boldsymbol{\vec{m}} + \delta \boldsymbol{\vec{m}}) =  \left\| \mathbf{W}_d\left( \mathcal{F}_{dc}[\boldsymbol{\vec{m}}^{(n)}] + \boldsymbol{\vec{J}}\delta\boldsymbol{\vec{m}} - \mathbf{d}\right)\right\|^2 + \beta \left\| \boldsymbol{\vec{W}}_m\left(\boldsymbol{\vec{m}} + \delta\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o\right) \right\|^2 + H.O.T.,
 
- where :math:`\bvec{J}` is the sensitivity matrix and the element
+where :math:`\boldsymbol{\vec{J}}` is the sensitivity matrix and the element
 :math:`J_{ij}` quantifies the influence of the model change in jth cell
 on the ith datum such that
 
-.. math:: \bvec{J} = \frac{\partial d_i}{\partial m_j} = \frac{\partial \phi_i}{\ln \sigma_j}.
+.. math:: \boldsymbol{\vec{J}} = \frac{\partial d_i}{\partial m_j} = \frac{\partial \phi_i}{\ln \sigma_j}.
 
 Neglecting the higher order terms and setting to zero the derivative
 with respect to :math:`\delta m` yields
 
 .. math::
+   \left( \boldsymbol{\vec{J}}^T\boldsymbol{\vec{J}} + \beta \boldsymbol{\vec{W}}_m^T\boldsymbol{\vec{W}}_m \right) \delta \boldsymbol{\vec{m}} = -\boldsymbol{\vec{J}}^T \left( \mathcal{F}_{dc}[\boldsymbol{\vec{m}}^{(n)}] - \boldsymbol{\vec{d}} \right) - \beta\boldsymbol{\vec{W}}_m^T\boldsymbol{\vec{W}}_m \left(\boldsymbol{\vec{m}}^{n} - \boldsymbol{\vec{m}}_o \right)
+   :label: GN
 
-   \label{eq:GN}
-   \left( \bvec{J}^T\bvec{J} + \beta \bvec{W}_m^T\bvec{W}_m \right) \delta \bvec{m} = -\bvec{J}^T \left( \mathcal{F}_{dc}[\bvec{m}^{(n)}] - \bvec{d} \right) - \beta\bvec{W}_m^T\bvec{W}_m \left(\bvec{m}^{n} - \bvec{m}_o \right).
-
- Here we assume that the matrix :math:`\bvec{W}_d` has been absorbed
+Here we assume that the matrix :math:`\boldsymbol{\vec{W}}_d` has been absorbed
 into the sensitivity matrix and data vectors. This is the basic equation
 that is solved to obtain the model perturbation. The new model is then
 generated by
 
-.. math:: \bvec{m}^{(n+1)} = \bvec{m}^{(n)} + \gamma\delta\bvec{m},
+.. math:: 
+   \boldsymbol{\vec{m}}^{(n+1)} = \boldsymbol{\vec{m}}^{(n)} + \gamma\delta\boldsymbol{\vec{m}},
 
- where :math:`\gamma \in (0,1]` limits the step size and is chosen to
+where :math:`\gamma \in (0,1]` limits the step size and is chosen to
 ensure that the total objective function is reduced.
 
 .. _invIPdata:
@@ -418,51 +410,49 @@ ensure that the total objective function is reduced.
 Inversion of IP data
 --------------------
 
-To invert IP data, we first linearize equation [eq:genApCharge]. Let
+To invert IP data, we first linearize equation :eq:`genApCharge`. Let
 :math:`\eta_j` and :math:`\sigma_j` denote the respective chargeability
 and electrical conductivity of the j\ :math:`^{th}` cell. Linearizing
 the potential :math:`\phi_\eta` about the conductivity model
 :math:`\sigma` yields:
 
-.. math:: \phi_\eta = \phi(\sigma - \eta\sigma)=\phi(\sigma) - \sum\limits_{j=1}^M\frac{\partial\phi}{\partial\sigma_j}\eta_j\sigma_j + H.O.T.
+.. math:: 
+   \phi_\eta = \phi(\sigma - \eta\sigma)=\phi(\sigma) - \sum\limits_{j=1}^M\frac{\partial\phi}{\partial\sigma_j}\eta_j\sigma_j + H.O.T.
 
- The above equation is then substituted into equation [eq:genApCharge]:
+The above equation is then substituted into equation :eq:`genApCharge`:
 
-.. math:: d = \frac{\phi_\eta-\phi_\sigma}{\phi_\eta} = \frac{-\sum\limits_{j=1}^M\frac{\partial\phi}{\partial\sigma_j}\eta_j\sigma_j}{\phi(\sigma)- \sum\limits_{j=1}^M\frac{\partial\phi}{\partial\sigma_j}\eta_j\sigma_j}.
+.. math:: 
+   d = \frac{\phi_\eta-\phi_\sigma}{\phi_\eta} = \frac{-\sum\limits_{j=1}^M\frac{\partial\phi}{\partial\sigma_j}\eta_j\sigma_j}{\phi(\sigma)- \sum\limits_{j=1}^M\frac{\partial\phi}{\partial\sigma_j}\eta_j\sigma_j}.
 
- This can be approximately written as
+This can be approximately written as
 
 .. math:: d = -\sum\limits_{j=1}^M\frac{\sigma_j}{\phi}\frac{\partial\phi}{\partial\sigma_j}\eta_j = -\sum\limits_{j=1}^M\frac{\partial \ln\phi}{\partial\ln\sigma_j}\eta_j,
 
- and therefore the i\ :math:`^{th}` datum is
+and therefore the i\ :math:`^{th}` datum is
 
 .. math::
+   d_i = \sum\limits_{j=1}^M\boldsymbol{\vec{J}}_{ij}\eta_j
+   :label: ithIPdat
 
-   d_i = \sum\limits_{j=1}^M\bvec{J}_{ij}\eta_j,
-   \label{eq:ithIPdat}
-
- where
-
-.. math::
-
-   \bvec{J}_{ij} = -\frac{\partial\ln\phi_i[\sigma]}{\partial\ln\sigma_j}
-   \label{eq:IPJij}
-
- is the sensitivity matrix. Our inversion problem is formulated as
+where
 
 .. math::
+   \boldsymbol{\vec{J}}_{ij} = -\frac{\partial\ln\phi_i[\sigma]}{\partial\ln\sigma_j}\\
+   :label: IPJij
 
-   \begin{aligned}
-   \mbox{minimize } &\psi_m = \norm{\bvec{W}_m(\eta-\eta_o)}^2 \nonumber \\
-   \mbox{subject to } &\psi_d=\norm{\bvec{W}_d(\bvec{J}\eta-\bvec{d}^{obs})}^2,
-   \label{eq:IPphi}\end{aligned}
+is the sensitivity matrix. Our inversion problem is formulated as
 
- where :math:`\psi_d^*` is a target misfit. In reality the true
+.. math::
+   \mbox{minimize } \psi_m &= ||{\boldsymbol{\vec{W}}_m(\eta-\eta_o)||^2 \\ \nonumber
+   \mbox{subject to } \psi_d &=||\boldsymbol{\vec{W}}_d(\boldsymbol{\vec{J}}\eta-\boldsymbol{\vec{d}}^{obs})||^2
+   :label: IPphi
+
+where :math:`\psi_d^*` is a target misfit. In reality the true
 conductivity :math:`\sigma` is unknown and so we use the conductivity
 recovered from the inversion of the DC resistivity data to construct the
-sensitivity matrix elements in equation [eq:IPJij].
+sensitivity matrix elements in equation :eq:`IPJij`.
 
-The functional in equation [eq:IPphi] can be minimized directly but we
+The functional in equation :eq:`IPphi` can be minimized directly but we
 need to ensure that the recovered chargeability is positive. In the
 inversion of the DC potentials to recover the conductivity we ensured
 positivity by working with :math:`\ln(\sigma)` as the model in the
@@ -476,4 +466,4 @@ number (e.g., 0.01). Working with logarithmic values however, puts undue
 emphasis on these small values. An efficient method by which to solve
 the linear inverse problem with positivity constraints is through a
 non-linear mapping of variables. More details of the IP inversion
-algorithm can be found in :raw-latex:`\cite{OldenburgLi94}`.
+algorithm can be found in :ref:`OldenburgLi94`.
