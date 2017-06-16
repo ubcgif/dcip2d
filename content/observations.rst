@@ -64,7 +64,7 @@ Each location has :math:`x` and :math:`z` coordinates. An example of the
 format file structure is as follows:
 
 .. figure:: ../images/obsfile_generalformat.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: obsfile_generalformat
 
@@ -125,7 +125,7 @@ Example of general format
 The following is an example of DC data (e.g., no IPTYPE):
 
 .. figure:: ../images/obsfile_generalformat_example.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: obsfile_generalformat_example
 
@@ -150,7 +150,7 @@ potential electrode locations associated with it. An example of the
 format file structure is as follows:
 
 .. figure:: ../images/obsfile_surfaceformat.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: obsfile_surfaceformat
 
@@ -205,7 +205,7 @@ The following is an example of IP data in units of apparent
 chargeability:
 
 .. figure:: ../images/obsfile_surfaceformat_example.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: obsfile_surfaceformat_example
 
@@ -231,7 +231,7 @@ with the current electrode pair location and potential electrode
 location pair. An example of the format file structure is as follows:
 
 .. figure:: ../images/obsfile_simpleformat.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: obsfile_simpleformat
 
@@ -265,6 +265,6 @@ as given in the surface format example; IP data in units of apparent
 chargeability:
 
 .. figure:: ../images/obsfile_simpleformat_example.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: obsfile_simpleformat_example

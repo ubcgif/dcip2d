@@ -25,24 +25,21 @@ General files for  programs
 
 There are six general files which are used in . These are:
 
-#. : specifies the observed measurements and the associated electrode
+#. **observations file**: specifies the observed measurements and the associated electrode
    locations
 
-#. : contains the electrode locations for forward modelling
+#. **electrodes file**: contains the electrode locations for forward modelling
 
-#. : contains the finite difference mesh for the 2D modelling and
-   inversions
+#. **mesh2D file**: contains the finite difference mesh for the 2D modelling and
+   inversions. A special type of model file specifies the active cells.
 
-#. : contains the topographic data
+#. **topo2D file**: contains the topographic data
 
-#. : structure to hold cell values for models: conductivity,
+#. **model2D file**: structure to hold cell values for models: conductivity,
    chargeability or active
 
-#. : file that contains special weightings which alter the type of model
+#. **weights2D file**: file that contains special weightings which alter the type of model
    produced in the inversions
-
-#. : a special type of model file specifying the active cells
-
 
 .. toctree::
         :maxdepth: 1
@@ -53,4 +50,3 @@ There are six general files which are used in . These are:
         Topo2D file<topo2d>
         Model2D file<model2d>
         Weights2D file<weights2d>
-        ActiveModel2D file<activeModel2d>

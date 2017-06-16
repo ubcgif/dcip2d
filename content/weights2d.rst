@@ -14,75 +14,56 @@ weights or a file for each weight.
 
 An example of the file structure *containing all weights* is as follows:
 
-| \|cccc\|
-| Ws\ :math:`_{1,1}` & Ws\ :math:`_{2,1}` & :math:`\hdots` &
-  Ws\ :math:`_{N_x,1}`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots`
-| Ws\ :math:`_{1,N_z}` & Ws\ :math:`_{2,N_z}` & :math:`\hdots` &
-  Ws\ :math:`_{N_x,N_z}`
-| Wx\ :math:`_{1,1}` & Wx\ :math:`_{2,1}` & :math:`\hdots` &
-  Wx\ :math:`_{N_x-1,1}`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots`
-| Wx\ :math:`_{1,N_z}` & Wx\ :math:`_{2,N_z}` & :math:`\hdots` &
-  Wx\ :math:`_{N_x-1,N_z}`
-| Wz\ :math:`_{1,1}` & Wx\ :math:`_{2,1}` & :math:`\hdots` &
-  Wx\ :math:`_{N_x,1}`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots`
-| Wz\ :math:`_{1,N_z-1}` & Wz\ :math:`_{2,N_z-1}` & :math:`\hdots` &
-  Wz\ :math:`_{N_x,N_z-1}`
+.. figure:: ../images/weightsfile_format.png
+   :figwidth: 50%
+   :align: center
+   :name: weightsfile_format
 
-#. Number of cells in the horizontal direction. This number is the same
+#. :math:`N_x`: Number of cells in the horizontal direction. This number is the same
    as found in and files.
 
-#. Number of cells in the vertical direction. This number is the same as
+#. :math:`N_z`: Number of cells in the vertical direction. This number is the same as
    found in and files.
 
-#. Weight given to the smallest model component. has size of
+#. :math:`Ws_{i,k}`: Weight given to the smallest model component. has size of
    :math:`N_x \times N_z`. The values of :math:`i` and :math:`k` count
    consistent with the format.
 
-#. Weight given across the faces of cells in the :math:`x`-direction.
+#. :math:`Wx_{i,k}`: Weight given across the faces of cells in the :math:`x`-direction.
    has size of :math:`N_x-1 \times N_z`. The values of :math:`i` and
    :math:`k` count consistent with the format.
 
-#. Weight given across the faces of cells in the :math:`z`-direction.
+#. :math:`Wy_{i,k}`: Weight given across the faces of cells in the :math:`z`-direction.
    has size of :math:`N_x \times N_z-1`. The values of :math:`i` and
    :math:`k` count consistent with the format.
 
 An example of a file structure *containing only one weight* is as
 follows:
 
-| \|cccc\|
-| W\ :math:`_{1,1}` & W\ :math:`_{2,1}` & :math:`\hdots` &
-  W\ :math:`_{N^W_x,1}`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots`
-| W\ :math:`_{1,N^W_z}` & W\ :math:`_{2,N^W_z}` & :math:`\hdots` &
-  W\ :math:`_{N^W_x,N^W_z}`
+.. figure:: ../images/weightsfile_OneWeightformat.png
+   :figwidth: 50%
+   :align: center
+   :name: weightsfile_OneWeightformat
 
-#. Number of cells in the horizontal direction for that weight
+#. :math:`N^W_x`: Number of cells in the horizontal direction for that weight
    (:math:`N_x` for W\ :math:`_s` and W\ :math:`_z` and :math:`N_x-1`
    for W\ :math:`_x`).
 
-#. Number of cells in the vertical direction for that weight
+#. :math:N^W_z`: Number of cells in the vertical direction for that weight
    (:math:`N_z` for W\ :math:`_s` and W\ :math:`_x` and :math:`N_z-1`
    for W\ :math:`_z`).
 
-#. Weight value
+#. :math:`W_{i,k}`: Weight value
 
 Example of a weight file
 ------------------------
 
 The following is an example of a weight file *with all of the weights*:
 
-| \|ccccc\|
-| 1 & 1 & 1 & 1 & 1
-| 1 & 1 & 1 & 1 & 1
-| 1 & 1 & 1 & 1 & 1
-| 1 & 100 & 100 & 1 &
-| 1 & 100 & 100 & 1 &
-| 1 & 100 & 100 & 1 &
-| 1 & 0.01 & 0.01 & 0.01 & 1
-| 1 & 0.01 & 0.01 & 0.01 & 1
+.. figure:: ../images/weightsfile_format_example.png
+   :figwidth: 50%
+   :align: center
+   :name: weightsfile_format_example
 
 In the above example, there are 5 horizontal cells and 3 vertical cell
 associated with the mesh. Therefore, W\ :math:`_s` is

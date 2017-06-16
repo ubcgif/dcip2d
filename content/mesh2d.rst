@@ -18,7 +18,7 @@ fraction of the station spacing (or dipole length of the array).
 An example of the file structure is as follows:
 
 .. figure:: ../images/meshfile_format.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: meshfile_format
 
@@ -51,7 +51,7 @@ Example of general format
 The following is an example of a 2D mesh:
 
 .. figure:: ../images/meshfile_format_example.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: meshfile_format_example
 

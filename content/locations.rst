@@ -28,7 +28,7 @@ associated with it. Each location has :math:`x` and :math:`z`
 coordinates. An example of the format file structure is as follows:
 
 .. figure:: ../images/electrodefile_generalformat.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: electrodefile_generalformat
 
@@ -72,7 +72,7 @@ Example of general format
 The following is an example of locations for DC data (e.g., no IPTYPE):
 
 .. figure:: ../images/electrodefile_generalformat_example.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: electrodefile_generalformat_example
 
@@ -97,7 +97,7 @@ potential electrode locations associated with it. An example of the
 format file structure is as follows:
 
 .. figure:: ../images/electrodefile_surfaceformat.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: electrodefile_surfaceformat
 
@@ -132,7 +132,7 @@ The following is an example of IP data in units of apparent
 chargeability:
 
 .. figure:: ../images/electrodefile_surfaceformat_example.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: electrodefile_surfaceformat_example
 
@@ -158,7 +158,7 @@ with the current electrode pair location and potential electrode
 location pair. An example of the format file structure is as follows:
 
 .. figure:: ../images/electrodefile_simpleformat.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: electrodefile_simpleformat
 
@@ -192,6 +192,6 @@ as given in the surface format example; IP data in units of apparent
 chargeability:
 
 .. figure:: ../images/electrodefile_simpleformat_example.png
-   :figwidth: 75%
+   :figwidth: 50%
    :align: center
    :name: electrodefile_simpleformat_example
