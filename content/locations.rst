@@ -27,54 +27,43 @@ current electrode location and number of potential electrode locations
 associated with it. Each location has :math:`x` and :math:`z`
 coordinates. An example of the format file structure is as follows:
 
-| \|ccccc\|
-| :math:`A_1^x` & :math:`A_1^z` & :math:`B_1^x` & :math:`B_1^z` &
-  :math:`n_1`
-| :math:`M_1^x` & :math:`M_1^z` & :math:`N_1^x` & :math:`N_1^z` &
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots` &
-| :math:`M_{n_1}^x` & :math:`M_{n_1}^z` & :math:`N_{n_1}^x` &
-  :math:`N_{n_1}^z` &
-| :math:`A_2^x` & :math:`A_2^z` & :math:`B_2^x` & :math:`B_2^z` &
-  :math:`n_2`
-| :math:`M_1^x` & :math:`M_1^z` & :math:`N_1^x` & :math:`N_1^z` &
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots` &
-| :math:`M_{n_2}^x` & :math:`M_{n_2}^z` & :math:`N_{n_2}^x` &
-  :math:`N_{n_2}^z` &
-| :math:`A_3^x` & :math:`A_3^z` & :math:`B_3^x` & :math:`B_3^z` &
-  :math:`n_3`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots` &
+.. figure:: ../images/electrodefile_generalformat.png
+   :figwidth: 75%
+   :align: center
+   :name: electrodefile_generalformat
 
-#. Any comments can go here. This line is ignored by
+#. :math:`\text{COMMON_CURRENT}`: This flag is given prior to to let the code know that it is a general
+   format file
 
-#. This flag must go prior to in order to let the code know the file is
-   of general format
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+   preceding “!”
 
-#. | Only used for IP inversion and not required if only using DC
-     inversion. NOTE: If omitted from IP inversion, the program will
-     choose .
-   | , Type of IP data is apparent chargeability
-   | , Type of IP data is secondary potentials
+#. :math:`\text{'number of sources'}`: integer number giving the totla number of sources in the file.
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   A
+#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
+   inversion. NOTE: If omitted from IP inversion, the program will
+   choose :math:`IPTYPE=1`.
+     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
-#. i\ :math:`^{th}` elevation of current electrode A
+#. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   B
+#. :math:`A^z_i`: i\ :math:`^{th}` elevation of current electrode A
 
-#. i\ :math:`^{th}` elevation of current electrode B
+#. :math:`B^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode B
 
-#. j\ :math:`^{th}` horizontal position along line of potential
+#. :math:`B^z_i`: i\ :math:`^{th}` elevation of current electrode B
+
+#. :math:`M^x_j`: j\ :math:`^{th}` horizontal position along line of potential
    electrode M associated with the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` elevation of potential electrode M associated with
+#. :math:`M^z_j`: j\ :math:`^{th}` elevation of potential electrode M associated with
    the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` horizontal position along line of potential
+#. :math:`N^x_j`: j\ :math:`^{th}` horizontal position along line of potential
    electrode N associated with the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` elevation of potential electrode N associated with
+#. :math:`N^z_j`: j\ :math:`^{th}` elevation of potential electrode N associated with
    the i\ :math:`^{th}` current pair
 
 Example of general format
@@ -82,17 +71,10 @@ Example of general format
 
 The following is an example of locations for DC data (e.g., no IPTYPE):
 
-| \|ccccc\|
-| 221 & -45 & 221 & -45 & 6
-| 50 & 250 & 100 & 25 &
-| 100 & 250 & 150 & 50 &
-| 150 & 500 & 200 & 75 &
-| 200 & 75 & 250 & 100 &
-| 250 & 100 & 300 & 125 &
-| 300 & 125 & 350 & 150 &
-| 221 & -45 & 600 & -55 & 2
-| 100 & 25 & 150 & 500 &
-| 150 & 500 & 200 & 75.0 &
+.. figure:: ../images/electrodefile_generalformat_example.png
+   :figwidth: 75%
+   :align: center
+   :name: electrodefile_generalformat_example
 
 In the above example, there are two current electrode locations, the
 first with six potential electrodes and the second with two potential
@@ -114,39 +96,33 @@ consists of a line with the current electrode location and number of
 potential electrode locations associated with it. An example of the
 format file structure is as follows:
 
-| \|ccc\|
-| :math:`A_1^x` & :math:`B_1^x` & :math:`n_1`
-| :math:`M_1^x` & :math:`N_1^x` &
-| :math:`\vdots` & :math:`\vdots` &
-| :math:`M_{n_1}^x` & :math:`N_{n_1}^x` &
-| :math:`A_2^x` & :math:`B_2^x` & :math:`n_2`
-| :math:`M_1^x` & :math:`N_1^x` &
-| :math:`\vdots` & :math:`\vdots` &
-| :math:`M_{n_2}^x` & :math:`N_{n_2}^x` &
-| :math:`A_3^x` & :math:`B_3^x` & :math:`n_3`
-| :math:`\vdots` & :math:`\vdots` &
+.. figure:: ../images/electrodefile_surfaceformat.png
+   :figwidth: 75%
+   :align: center
+   :name: electrodefile_surfaceformat
 
 The following are detailed summaries of components of the surface-format
 observations file:
 
-#. Any comments can go here. This line is ignored by
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+   preceding “!”
 
-#. | Only used for IP inversion and not required if only using DC
-     inversion. NOTE: If omitted from IP inversion, the program will
-     choose .
-   | , Type of IP data is apparent chargeability
-   | , Type of IP data is secondary potentials
+#. :math:`\text{'number of sources'}`: integer number giving the totla number of sources in the file.
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   A
+#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
+   inversion. NOTE: If omitted from IP inversion, the program will
+   choose :math:`IPTYPE=1`.
+     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   B
+#. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
-#. j\ :math:`^{th}` horizontal position along line of potential
+#. :math:`B^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode B
+
+#. :math:`M^x_j`: j\ :math:`^{th}` horizontal position along line of potential
    electrode M associated with the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` horizontal position along line of potential
+#. :math:`N^x_j`: j\ :math:`^{th}` horizontal position along line of potential
    electrode N associated with the i\ :math:`^{th}` current pair
 
 Example of surface format
@@ -155,15 +131,10 @@ Example of surface format
 The following is an example of IP data in units of apparent
 chargeability:
 
-| \|ccc\|
-| 221 & -45 & 4
-| 50 & 25 &
-| 100 & 50 &
-| 250 & 125 &
-| 300 & 150 &
-| 221 & -55 & 2
-| 100 & 150 &
-| 150 & 200 &
+.. figure:: ../images/electrodefile_surfaceformat_example.png
+   :figwidth: 75%
+   :align: center
+   :name: electrodefile_surfaceformat_example
 
 In the above example, there are two current electrode locations, the
 first with four potential electrodes and the second with two potential
@@ -186,34 +157,32 @@ the negative electrode being at infinity. The format consists of a line
 with the current electrode pair location and potential electrode
 location pair. An example of the format file structure is as follows:
 
-| \|cccc\|
-| :math:`A_1^x` & :math:`B_1^x` & :math:`M_1^x` & :math:`N_1^x`
-| :math:`A_2^x` & :math:`B_2^x` & :math:`M_2^x` & :math:`N_2^x`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots`
-| :math:`A_n^x` & :math:`B_n^x` & :math:`M_n^x` & :math:`N_n^x`
+.. figure:: ../images/electrodefile_simpleformat.png
+   :figwidth: 75%
+   :align: center
+   :name: electrodefile_simpleformat
 
 The following are detailed summaries of components of the simple-format
 observations file:
 
-#. Any comments can go here. This line is ignored by
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+   preceding “!”
 
-#. | Only used for IP inversion and not required if only using DC
-     inversion. NOTE: If omitted from IP inversion, the program will
-     choose .
-   | , Type of IP data is apparent chargeability
-   | , Type of IP data is secondary potentials
+#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
+   inversion. NOTE: If omitted from IP inversion, the program will
+   choose :math:`IPTYPE=1`.
+     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   A
+#. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   B
+#. :math:`B^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode B
 
-#. i\ :math:`^{th}` horizontal position along line of potential
-   electrode M
+#. :math:`M^x_j`: j\ :math:`^{th}` horizontal position along line of potential
+   electrode M associated with the i\ :math:`^{th}` current pair
 
-#. i\ :math:`^{th}` horizontal position along line of potential
-   electrode N
+#. :math:`N^x_j`: j\ :math:`^{th}` horizontal position along line of potential
+   electrode N associated with the i\ :math:`^{th}` current pair
 
 Example of simple format
 ````````````````````````
@@ -222,10 +191,7 @@ The following is an example of the simple format. The data are the same
 as given in the surface format example; IP data in units of apparent
 chargeability:
 
-| \|cccc\|
-| 221 & -45 & 50 & 25
-| 221 & -45 & 100 & 50
-| 221 & -45 & 250 & 125
-| 221 & -45 & 300 & 150
-| 221 & -55 & 100 & 150
-| 221 & -55 & 150 & 200
+.. figure:: ../images/electrodefile_simpleformat_example.png
+   :figwidth: 75%
+   :align: center
+   :name: electrodefile_simpleformat_example

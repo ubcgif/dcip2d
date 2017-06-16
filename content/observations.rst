@@ -18,7 +18,7 @@ according to the topography and the :math:`x` location given in the
 observations file. Electrodes will be at :math:`z=0` if topography is
 not given (e.g., set to null). The :math:`z` coordinates should be
 provided in the observations file when the data are located down a
-borehole. Any surface/borehole combination of electrodes is allowed in .
+borehole. Any surface/borehole combination of electrodes is allowed in.
 The observations file can have three different formats: the , , or
 format. Only a single format is allowed in a data file. **The general
 format is the only format that will allow the use of borehole
@@ -63,63 +63,46 @@ location and number of potential electrode locations associated with it.
 Each location has :math:`x` and :math:`z` coordinates. An example of the
 format file structure is as follows:
 
-| \|cccccc\|
-| :math:`A_1^x` & :math:`A_1^z` & :math:`B_1^x` & :math:`B_1^z` &
-  :math:`n_1` &
-| :math:`M_1^x` & :math:`M_1^z` & :math:`N_1^x` & :math:`N_1^z` &
-  :math:`val_1` & :math:`[stn_1]`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots` &
-  :math:`\vdots` & :math:`\vdots`
-| :math:`M_{n_1}^x` & :math:`M_{n_1}^z` & :math:`N_{n_1}^x` &
-  :math:`N_{n_1}^z` & :math:`val_{n_1}` & :math:`[stn_{n_1}]`
-| :math:`A_2^x` & :math:`A_2^z` & :math:`B_2^x` & :math:`B_2^z` &
-  :math:`n_2` &
-| :math:`M_1^x` & :math:`M_1^z` & :math:`N_1^x` & :math:`N_1^z` &
-  :math:`val_1` & :math:`[stn_1]`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots` &
-  :math:`\vdots` & :math:`\vdots`
-| :math:`M_{n_2}^x` & :math:`M_{n_2}^z` & :math:`N_{n_2}^x` &
-  :math:`N_{n_2}^z` & :math:`val_{n_2}` & :math:`[stn_{n_2}]`
-| :math:`A_3^x` & :math:`A_3^z` & :math:`B_3^x` & :math:`B_3^z` &
-  :math:`n_3` &
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots` &
-  :math:`\vdots` & :math:`\vdots`
+.. figure:: ../images/obsfile_generalformat.png
+   :figwidth: 75%
+   :align: center
+   :name: obsfile_generalformat
 
-#. This flag is given prior to to let the code know that it is a general
+#. :math:`\text{COMMON_CURRENT}`: This flag is given prior to to let the code know that it is a general
    format file
 
-#. Any comments can go here. This line is ignored by and must have a
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
    preceding “!”
 
-#. | Only used for IP inversion and not required if only using DC
-     inversion. NOTE: If omitted from IP inversion, the program will
-     choose .
-   | , Type of IP data is apparent chargeability
-   | , Type of IP data is secondary potentials
+#. :math:`\text{'number of sources'}`: integer number giving the totla number of sources in the file.
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   A
+#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
+   inversion. NOTE: If omitted from IP inversion, the program will
+   choose :math:`IPTYPE=1`.
+     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
-#. i\ :math:`^{th}` elevation of current electrode A
+#. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   B
+#. :math:`A^z_i`: i\ :math:`^{th}` elevation of current electrode A
 
-#. i\ :math:`^{th}` elevation of current electrode B
+#. :math:`B^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode B
 
-#. j\ :math:`^{th}` horizontal position along line of potential
+#. :math:`B^z_i`: i\ :math:`^{th}` elevation of current electrode B
+
+#. :math:`M^x_j`: j\ :math:`^{th}` horizontal position along line of potential
    electrode M associated with the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` elevation of potential electrode M associated with
+#. :math:`M^z_j`: j\ :math:`^{th}` elevation of potential electrode M associated with
    the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` horizontal position along line of potential
+#. :math:`N^x_j`: j\ :math:`^{th}` horizontal position along line of potential
    electrode N associated with the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` elevation of potential electrode N associated with
+#. :math:`N^z_j`: j\ :math:`^{th}` elevation of potential electrode N associated with
    the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` observed datum related to the j\ :math:`^{th}`
+#. :math:`val_j`: j\ :math:`^{th}` observed datum related to the j\ :math:`^{th}`
    potential pair and i\ :math:`^{th}` current pair. The potential
    measurements must be measured value in Volts, or a dimensionless real
    number (not percentage) for apparent chargeability (*potential is
@@ -130,7 +113,7 @@ format file structure is as follows:
    used as input for inversion, and resulting models will have
    chargeabilities in the same units.
 
-#. Optional j\ :math:`^{th}` standard deviation associated with the
+#. :math:`stn_j`: Optional j\ :math:`^{th}` standard deviation associated with the
    j\ :math:`^{th}` datum. This is a positive, absolute value (not a
    percentage). If the first datum does not have an error field (or the
    error field is commented out by placing a “!” before it), the default
@@ -141,17 +124,10 @@ Example of general format
 
 The following is an example of DC data (e.g., no IPTYPE):
 
-| \|cccccc\|
-| 221 & -45 & 221 & -45 & 6 &
-| 50 & 250 & 100 & 25 & -2.31552E-01 & 1.16776E-02
-| 100 & 250 & 150 & 50 & -2.64516E-01 & 1.33258E-02
-| 150 & 500 & 200 & 75 & 2.70551E-03 & 2.35276E-04
-| 200 & 75 & 250 & 100 & 2.11746E-01 & 1.06873E-02
-| 250 & 100 & 300 & 125 & 2.37240E-01 & 1.19620E-02
-| 300 & 125 & 350 & 150 & 1.59822E-01 & 8.09110E-03
-| 221 & -45 & 600 & -55 & 2 &
-| 100 & 25 & 150 & 500 & -2.64516E-01 & 1.33258E-02
-| 150 & 500 & 200 & 75.0 & 2.70551E-03 & 2.35276E-04
+.. figure:: ../images/obsfile_generalformat_example.png
+   :figwidth: 75%
+   :align: center
+   :name: obsfile_generalformat_example
 
 In the above example, there are two current electrode locations, the
 first with six potential electrodes and the second with two potential
@@ -173,60 +149,54 @@ consists of a line with the current electrode location and number of
 potential electrode locations associated with it. An example of the
 format file structure is as follows:
 
-| \|cccc\|
-| :math:`A_1^x` & :math:`B_1^x` & :math:`n_1` &
-| :math:`M_1^x` & :math:`N_1^x` & :math:`val_1` & :math:`[stn_1]`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots`
-| :math:`M_{n_1}^x` & :math:`N_{n_1}^x` & :math:`val_{n_1}` &
-  :math:`[stn_{n_1}]`
-| :math:`A_2^x` & :math:`B_2^x` & :math:`n_2` &
-| :math:`M_1^x` & :math:`N_1^x` & :math:`val_1` & :math:`[stn_1]`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots`
-| :math:`M_{n_2}^x` & :math:`N_{n_2}^x` & :math:`val_{n_2}` &
-  :math:`[stn_{n_2}]`
-| :math:`A_3^x` & :math:`B_3^x` & :math:`n_3` &
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots`
+.. figure:: ../images/obsfile_surfaceformat.png
+   :figwidth: 75%
+   :align: center
+   :name: obsfile_surfaceformat
 
 The following are detailed summaries of components of the surface-format
 observations file:
 
-#. This flag is given prior comment line to let the code know that it is
-   a surface format file
+#. :math:`\text{COMMON_CURRENT}`: This flag is given prior to to let the code know that it is a general
+   format file
 
-#. Any comments can go here and should be preceded by “!”
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+   preceding “!”
 
-#. | Only used for IP inversion and not required if only using DC
-     inversion. NOTE: If omitted from IP inversion, the program will
-     choose .
-   | , Type of IP data is apparent chargeability
-   | , Type of IP data is secondary potentials
+#. :math:`\text{'number of sources'}`: integer number giving the totla number of sources in the file.
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   A
+#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
+   inversion. NOTE: If omitted from IP inversion, the program will
+   choose :math:`IPTYPE=1`.
+     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   B
+#. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
-#. j\ :math:`^{th}` horizontal position along line of potential
+#. :math:`B^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode B
+
+#. :math:`M^x_j`: j\ :math:`^{th}` horizontal position along line of potential
    electrode M associated with the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` horizontal position along line of potential
+#. :math:`N^x_j`: j\ :math:`^{th}` horizontal position along line of potential
    electrode N associated with the i\ :math:`^{th}` current pair
 
-#. j\ :math:`^{th}` observed datum related to the j\ :math:`^{th}`
-   potential electrode pair and i\ :math:`{^th}` current electrode pair.
-   The potential measurements must be measured value in Volts, or a
-   dimensionless real number (not percentage) for apparent chargeability
-   (*potential is always normalized to unit current amplitude*). There
-   are four types of IP data generally in use; two gathered in the time
-   domain and two gathered in the frequency domain. For small
-   chargeabilities, as is nearly always the case for earth materials,
-   all data types can be used as input for inversion, and resulting
-   models will have chargeabilities in the same units.
+#. :math:`val_j`: j\ :math:`^{th}` observed datum related to the j\ :math:`^{th}`
+   potential pair and i\ :math:`^{th}` current pair. The potential
+   measurements must be measured value in Volts, or a dimensionless real
+   number (not percentage) for apparent chargeability (*potential is
+   always normalized to unit current amplitude*). There are four types
+   of IP data generally in use; two gathered in the time domain and two
+   gathered in the frequency domain. For small chargeabilities, as is
+   nearly always the case for earth materials, all data types can be
+   used as input for inversion, and resulting models will have
+   chargeabilities in the same units.
 
-#. j\ :math:`^{th}` standard deviation associated with the
+#. :math:`stn_j`: Optional j\ :math:`^{th}` standard deviation associated with the
    j\ :math:`^{th}` datum. This is a positive, absolute value (not a
-   percentage) in units of the data.
+   percentage). If the first datum does not have an error field (or the
+   error field is commented out by placing a “!” before it), the default
+   errors for the entire data set will be calculated from the data.
 
 Example of surface format
 `````````````````````````
@@ -234,15 +204,10 @@ Example of surface format
 The following is an example of IP data in units of apparent
 chargeability:
 
-| \|cccc\|
-| 221 & -45 & 4 &
-| 50 & 25 & -2.31552E-01 & 1.16776E-02
-| 100 & 50 & -2.64516E-01 & 1.33258E-02
-| 250 & 125 & 2.37240E-01 & 1.19620E-02
-| 300 & 150 & 1.59822E-01 & 8.09110E-03
-| 221 & -55 & 2 &
-| 100 & 150 & -2.64516E-01 & 1.33258E-02
-| 150 & 200 & 2.70551E-03 & 2.35276E-04
+.. figure:: ../images/obsfile_surfaceformat_example.png
+   :figwidth: 75%
+   :align: center
+   :name: obsfile_surfaceformat_example
 
 In the above example, there are two current electrode locations, the
 first with four potential electrodes and the second with two potential
@@ -265,53 +230,32 @@ the negative electrode being at infinity. The format consists of a line
 with the current electrode pair location and potential electrode
 location pair. An example of the format file structure is as follows:
 
-| \|cccccc\|
-| :math:`A_1^x` & :math:`B_1^x` & :math:`M_1^x` & :math:`N_1^x` &
-  :math:` val_1` & :math:`[stn_1]`
-| :math:`A_2^x` & :math:`B_2^x` & :math:`M_2^x` & :math:`N_2^x` &
-  :math:` val_2` & :math:`[stn_2]`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots` &
-  :math:`\vdots` & :math:`\vdots`
-| :math:`A_n^x` & :math:`B_n^x` & :math:`M_n^x` & :math:`N_n^x` &
-  :math:` val_n` & :math:`[stn_n]`
+.. figure:: ../images/obsfile_simpleformat.png
+   :figwidth: 75%
+   :align: center
+   :name: obsfile_simpleformat
 
 The following are detailed summaries of components of the simple-format
 observations file:
 
-#. Any comments can go here. This line is ignored by . General comments
-   should be preceded by a “!”
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+   preceding “!”
 
-#. | Only used for IP inversion and not required if only using DC
-     inversion. NOTE: If omitted from IP inversion, the program will
-     choose .
-   | , Type of IP data is apparent chargeability
-   | , Type of IP data is secondary potentials
+#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
+   inversion. NOTE: If omitted from IP inversion, the program will
+   choose :math:`IPTYPE=1`.
+     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   A
+#. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
-#. i\ :math:`^{th}` horizontal position along line of current electrode
-   B
+#. :math:`B^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode B
 
-#. i\ :math:`^{th}` horizontal position along line of potential
-   electrode M
+#. :math:`M^x_j`: j\ :math:`^{th}` horizontal position along line of potential
+   electrode M associated with the i\ :math:`^{th}` current pair
 
-#. i\ :math:`^{th}` horizontal position along line of potential
-   electrode N
-
-#. i\ :math:`^{th}` observed datum. The potential measurements must be
-   measured value in Volts, or a dimensionless real number (not
-   percentage) for apparent chargeability (*potential is always
-   normalized to unit current amplitude*). There are four types of IP
-   data generally in use; two gathered in the time domain and two
-   gathered in the frequency domain. For small chargeabilities, as is
-   nearly always the case for earth materials, all data types can be
-   used as input for inversion, and resulting models will have
-   chargeabilities in the same units.
-
-#. i\ :math:`^{th}` standard deviation associated with the
-   i\ :math:`^{th}` datum. This is a positive, absolute value (not a
-   percentage) in units of the data.
+#. :math:`N^x_j`: j\ :math:`^{th}` horizontal position along line of potential
+   electrode N associated with the i\ :math:`^{th}` current pair
 
 Example of simple format
 ````````````````````````
@@ -320,10 +264,7 @@ The following is an example of the simple format. The data are the same
 as given in the surface format example; IP data in units of apparent
 chargeability:
 
-| \|cccccc\|
-| 221 & -45 & 50 & 25 & -2.31552E-01 & 1.16776E-02
-| 221 & -45 & 100 & 50 & -2.64516E-01 & 1.33258E-02
-| 221 & -45 & 250 & 125 & 2.37240E-01 & 1.19620E-02
-| 221 & -45 & 300 & 150 & 1.59822E-01 & 8.09110E-03
-| 221 & -55 & 100 & 150 & -2.64516E-01 & 1.33258E-02
-| 221 & -55 & 150 & 200 & 2.70551E-03 & 2.35276E-04
+.. figure:: ../images/obsfile_simpleformat_example.png
+   :figwidth: 75%
+   :align: center
+   :name: obsfile_simpleformat_example
