@@ -20,7 +20,7 @@ ground and measuring the potential away from the source. In a
 time-domain system the current has a duty cycle which alternates the
 direction of the current and has off-times between the current pulses at
 which the IP voltages are measured. A typical time-domain signature is
-shown in Figure [fig:basicTime]. In this Figure, :math:`\phi_\sigma` is
+shown in Figure :numref:`basicTime`. In this Figure, :math:`\phi_\sigma` is
 the potential that is measured in the absence of chargeability effects.
 This is the “instantaneous” value of the potential measured when the
 current is turned on. In mathematical terms this potential is related to
@@ -51,7 +51,7 @@ using equation :eq:`dcForward` and the principle of superposition.
 
 When the earth material is chargeable the measured voltage will change
 with time and reach a limit value which is denoted by :math:`\phi_\eta`
-in Figure [fig:basicTime]. There are a multitude of microscopic
+in Figure :numref:`basicTime`. There are a multitude of microscopic
 polarization phenomena, which collaborate so that this final value is
 achieved but all of these effects can be consolidated into a single
 macroscopic parameter called “chargeability”. We denote chargeability by
@@ -59,8 +59,9 @@ the symbol :math:`\eta`. Chargeability is dimensionless, positive, and
 confined to the region [0,1).
 
 .. figure:: ../images/eta.png
-   :alt: Definition of the three potentials associated with DC/IP
-   experiments.
+   :figwidth: 75%
+   :align: center
+   :name: basicTime
 
    Definition of the three potentials associated with DC/IP experiments.
 
