@@ -9,7 +9,7 @@ DCIP2D is a program library for carrying out forward modelling and inversion of 
 
         Package overview <content/overview>
         Theoretical background <content/backgroundtheory>
-        Elements <content/elements>
+        Elements of the program DCIP2D <content/elements>
         Running the programs <content/runningtheprograms>
         Workflow<content/dc2dWorkflow>
         Examples <content/examples>
