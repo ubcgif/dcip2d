@@ -48,7 +48,7 @@ There are six general files which are used in . These are:
         :maxdepth: 1
 
         Observations file<observations>
-        Locations file<locations>
+        Electrodes locations file<locations>
         Mesh2D file<mesh2d>
         Topo2D file<topo2d>
         Model2D file<model2d>
