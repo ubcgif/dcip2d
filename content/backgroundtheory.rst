@@ -443,7 +443,7 @@ where
 is the sensitivity matrix. Our inversion problem is formulated as
 
 .. math::
-   \mbox{minimize } \psi_m &= ||{\boldsymbol{\vec{W}}_m(\eta-\eta_o)||^2 \\ \nonumber
+   \mbox{minimize } \psi_m &= ||\boldsymbol{\vec{W}}_m(\eta-\eta_o)||^2 \\ \nonumber
    \mbox{subject to } \psi_d &=||\boldsymbol{\vec{W}}_d(\boldsymbol{\vec{J}}\eta-\boldsymbol{\vec{d}}^{obs})||^2
    :label: IPphi
 
