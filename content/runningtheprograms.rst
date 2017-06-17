@@ -151,7 +151,7 @@ The files created by DCIPF2D are:
 
 -  *obc_dc.dat* The computed DC potential data.
 
--  *obc_ip.dat*The computed IP data if the option is chosen.
+-  *obc_ip.dat* The computed IP data if the option is chosen.
 
 -  *obc_ipL.dat* The computed IP data if the option is chosen.
 
@@ -409,28 +409,28 @@ inversion.
 Output Files
 ~~~~~~~~~~~~
 
-will create the following files:
+*DCINV2D* will create the following files:
 
-#. The log file containing the minimum information for each iteration,
+#. *dcinv2d.log* The log file containing the minimum information for each iteration,
    summary of the inversion, and standard deviations if assigned by .
 
-#. The developers log file containing the values of the model objective
+#. *dcinv2d.out* The developers log file containing the values of the model objective
    function value(\ :math:`\psi_m`), trade-off parameter
    (:math:`\beta`), and data misfit (:math:`\psi_d`) at each iteration
 
-#. Conductivity model for each iteration ( defines the iteration step)
+#. *dcinv2d_iter.con* Conductivity model for each iteration ( defines the iteration step)
    if is used
 
-#. Predicted data for each iteration ( defines the iteration step) if is
+#. *dcinv2d_iter.pre* Predicted data for each iteration ( defines the iteration step) if is
    used
 
-#. Predicted data file that is updated after each iteration (will also
+#. *dcinv2d.pre* Predicted data file that is updated after each iteration (will also
    be the predicted data)
 
-#. Conductivity model that matches the predicted data file and is
+#. *dcinv2d.con* Conductivity model that matches the predicted data file and is
    updated after each iteration (will also be the recovered model)
 
-#. Model file of average sensitivity values for the mesh
+#. *sensitivity.txt* Model file of average sensitivity values for the mesh
 
 IPINV2D
 -------
@@ -438,15 +438,15 @@ IPINV2D
 This program performs the 2D inversion of induced polarization data.
 Command line usage:
 
-ipinv2d ipinv2d.inp
+*ipinv2d ipinv2d.inp*
 
-for the control file described below. The options can be in any order.
-The minimum keywords needed for an inversion are , , and .
+for the control ipinv2d.inp described below. The options can be in any order. The minimum
+keywords needed for an inversion are MESH, OBS, and COND.
 
 Input Files
 ~~~~~~~~~~~
 
-Keywords for the input file are:
+Keywords for the input file ipinv2d.inp are:
 
 +----------------------------------------------------+----------------------------------------+
 | MESH [DEFAULT \| FILE \| NC\_ASPR n a]             | ! Specify the mesh                     |
@@ -488,9 +488,9 @@ Keywords for the input file are:
 | BOUNDS [VALUE \| FILE\_L \| FILE\_U \| NONE]       | ! specify bounds                       |
 +----------------------------------------------------+----------------------------------------+
 
--  The choices after this keyword are:
+-  *MESH* The choices after this keyword are:
 
-   #. the programs creates a mesh (output ) with 3 cells between
+   #. *DEFAULT* the programs creates a mesh (output ) with 3 cells between
       electrodes and the aspect ratio of the top cells set to 3.
       **NOTE**: This option assumes that the data are collected by
       commonly used arrays and that the topographic relief is moderate.
@@ -500,23 +500,23 @@ Keywords for the input file are:
       the mesh so that it is better suited for the particular needs of
       the data set.
 
-   #. file name of the mesh
+   #. *FILE* file name of the mesh
 
-   #. creates a mesh (output ) that has cells between the electrodes and
-      the aspect ratio of the top cells is set to
+   #. *NC_ASPR n a* creates a mesh (output dcinv2d.msh) that has *n* cells between the electrodes and
+      the aspect ratio of the top cells is set to *a*.
 
--  The observation locations. The choices after this keyword are:
+-  *OBS* The observation locations. The choices after this keyword are:
 
-   #. when giving or locations formats
+   #. *LOC_X* when giving or locations formats
 
-   #. when using the locations format.
+   #. *LOC_XZ* when using the locations format.
 
--  A value follows this keyword representing the number of maximum
+-  *NITER* A value follows this keyword representing the number of maximum
    iterations for the inversion. **NOTE**: The program will terminate
    before the specified maximum number of iterations is reached if the
    expected data misfit is achieved and if the model norm has plateaued.
    However, if the program exits when the maximum iteration is reached,
-   the file should be checked to see if the desired (based on the number
+   the file ipinv2d.out should be checked to see if the desired (based on the number
    of data and chi factor) has been reached and if the model norm is no
    longer changing. If either of these conditions has not been met then
    the program should be restarted. If the desired misfit level is not
@@ -525,45 +525,45 @@ Keywords for the input file are:
    adjust the target misfit to a higher value. Also an investigation as
    to which data are most poorly fit can be informative. It may be that
    the assigned standard deviations to specific data are unrealistically
-   small. The program restarts using the information in and .
+   small. The program restarts using the information in ipinv2d.out and ipinv2d.con.
 
--  The value at which the program reproduced the data. The choices after
+-  *CHIFACT* The value at which the program reproduced the data. The choices after
    this keyword are:
 
-   #. where the program will start with 1e-3 initially and then when the
+   #. *DEFAULT* where the program will start with 1e-3 initially and then when the
       misfit stop decreasing, the chi factor will be changed by 10%
 
-   #. the value to set the chi factor (1 is when the data misfit equals
-      the number of data), or if a value is not there, but is given, the
+   #. *constant* the value to set the chi factor (1 is when the data misfit equals
+      the number of data), or if a value is not there, but *CHIFACT* is given, the
       program will stop when the data misfit reaches the number of data
 
--  The choices after this keyword are:
+-  *TOPO* The choices after this keyword are:
 
-   #. followed by the name of the topography file
+   #. *FILE* followed by the name of the topography file
 
-   #. for flat topography at an elevation of 0.
+   #. *DEFAULT* for flat topography at an elevation of 0.
 
--  The choices for the initial model are:
+-  *INIT_MOD* The choices for the initial model are:
 
-   #. name of the initial chargeability file
+   #. *FILE filename* name of the initial chargeability file
 
-   #. the value for the initial chargeability throughout the mesh
+   #. *VALUE constant* the value for the initial chargeability throughout the mesh
 
-   #. for the initial model to be set to the reference model.
+   #. *DEFAULT* for the initial model to be set to the reference model.
 
--  The choices for the reference model are:
+-  *REF_MOD* The choices for the reference model are:
 
-   #. name of the reference chargeability file
+   #. *FILE filename* name of the reference chargeability file
 
-   #. the value for the reference chargeability throughout the mesh
+   #. *VALUE constant* the value for the reference chargeability throughout the mesh
 
-   #. the reference model is set to zero.
+   #. *DEFAULT* the reference model is equal to 0.
 
--  The choices for the conductivity model (required) are:
+-  *COND* The choices for the conductivity model (required) are:
 
-   #. name of the conductivity file
+   #. *FILE filename* name of the conductivity file
 
-   #. the value for the conductivity throughout the mesh. **NOTE**: The
+   #. *VALUE constant* the value for the conductivity throughout the mesh. **NOTE**: The
       conductivity of a uniform half space for IP inversions should only
       be used for preliminary examination of the data. When there is
       little structure in the background conductivity, the inversion
@@ -578,103 +578,102 @@ Keywords for the input file are:
       based upon the complexity of the apparent resistivity
       pseudo-section.
 
--  is followed by 3 constants: . These are the wave numbers used in the
+-  *WAVE* is followed by 3 constants: *w_min*, *w_max* and *N*. These are the wave numbers used in the
    cosine transform. There will be wave values, log spaced from to in
-   time. The default values (if is not given) is , , and .
+   time. The default values (if *WAVE* is not given) is *w_min = 2.5e-4, w max = 1.0*, and *N= 13*.
 
--  The choices after this keyword are:
+-  *ALPHA* The choices after this keyword are:
 
-   #. where the program will set :math:`\alpha_s` =
+   #. *DEFAULT* where the program will set :math:`\alpha_s` =
       0.001\*(90\ :math:`/`\ max electrode separation)\ :math:`^2` and
       :math:`\alpha_x = \alpha_z = 1`.
 
-   #. the user gives the coefficients for the each model component for
-      the model objective function from equation [eq:intMOF]:
+   #. *VALUE a_s a_y a_z* the user gives the coefficients for the each model component for
+      the model objective function from equation :eq:`intMOF`:
       :math:`\alpha_s` is the smallest model component, :math:`\alpha_x`
       is along line smoothness, and :math:`\alpha_z` is vertical
       smoothness.
 
-   #. the user gives the length scales and the smallest model component
+   #. *LENGTH L_x L_z* the user gives the length scales and the smallest model component
       is calculated accordingly. The conversion from :math:`\alpha`\ ’s
       to length scales can be done by:
 
       .. math:: L_x = \sqrt{\frac{\alpha_x}{\alpha_s}} ; ~L_z = \sqrt{\frac{\alpha_z}{\alpha_s}}
 
-       where length scales are defined in meters. When user-defined, it
+      where length scales are defined in meters. When user-defined, it
       is preferable to have length scales exceed the corresponding cell
       dimensions.
 
--  The weighting for the model objective function allows for three
+-  *WEIGHT* The weighting for the model objective function allows for three
    options:
 
-   #. No weighting is supplied (all values of weights are 1)
+   #. *DEFAULT* No weighting is supplied (all values of weights are 1)
 
-   #. The weighting is supplied as a file with all the weights in one
+   #. *FILE filename* The weighting is supplied as a file with all the weights in one
       file
 
-   #. The weighting is supplied as three separate files with the weight
-      for the smallest model component in , the :math:`x-`\ component
-      written in file and the :math:`z-`\ component written in .
+   #. *FILES fileS fileX fileZ* The weighting is supplied as three separate weight files with
+      the weight for the smallest model component in fileS, the x-component written in file
+      fileX and the z-component written in fileZ.
 
--  There are two choices:
+-  *STORE ALL MODELS* There are two choices:
 
-   #. Write all models and predicted data to disk. Each iteration will
-      have and files where is the iteration (e.g., 01 for the first
-      iteration)
+   #. *TRUE* Write all models and predicted data to disk. Each iteration will have ipinv2d_xx.con
+      and ipinv2d_xx.pre files where xx is the iteration (e.g., 01 for the first iteration)
 
-   #. Only the final model and predicted data file are written. These
-      files are named and for the conductivity and predicted data,
+   #. *FALSE* Only the final model and predicted data file are written. These
+      files are named ipinv2d.con and ipinv2d.pre for the chargeability and predicted data,
       respectively.
 
--  This specifies the way the system is solved:
+-  INVMODE This specifies the way the system is solved:
 
-   #. Solve the system using a subspace method with basis vectors. This
+   #. *SVD* Solve the system using a subspace method with basis vectors. This
       is the solution methodology of the original code and the default
       if not given.
 
-   #. Solve the system using a subspace method with conjugate gradients
+   #. *CG* Solve the system using a subspace method with conjugate gradients
       (CG). This allows additional constraints (i.e., Huber and Ekblom
       norms) to be incorporated into the code.
 
--  is used when the inversion mode is . The keyword is followed by two
-   constants: specifying the maximum number of iterations (default is
-   10), and specifying the solution’s accuracy (default is 0.01)
+-  *CG_PARAMS* is used when the inversion mode is . The keyword is followed by two
+   constants: *maxit* specifying the maximum number of iterations (default is
+   10), and *tol* specifying the solution’s accuracy (default is 0.01)
 
--  The Huber norm is used when evaluating the data misfit. A constant
+-  *HUBER* The Huber norm is used when evaluating the data misfit. A constant
    follows this keyword and this option is only available when using the
-   inversion mode option. The default value is 1e100.
+   CG inversion mode option. The default value is 1e100. The constant *c* is
+   from equation :eq:`Huber\_phid`.
 
--  Use the Ekblom norm. Six (6) values should follow this keyword:
-   representing the constants found in equation [eq:ekblom].
+-  *EKBLOM* Use the Ekblom norm. Six (6) values should follow this keyword:
+   :math:`\rho_s; \rho_x; \rho_z; \varepsilon_s; \varepsilon_x; \varepsilon_z` representing the constants found in equation :eq:ekblom`.
 
--  followed by the file name of the active cell file.
+-  *ACTIVE_CELLS* followed by the file name of the active cell file.
 
--  This option is used to decide if the reference model should be in the
+-  *USE_MREF* This option is used to decide if the reference model should be in the
    spatial terms of the model objective function (equation [eq:intMOF]).
-   There are two options: to include the reference model in the spatial
-   terms or to have the reference model only in the smallest model
+   There are two options: *TRUE* to include the reference model in the spatial
+   terms or *FALSE* to have the reference model only in the smallest model
    component.
 
--  The bounds options are:
+-  *BOUNDS* The bounds options are:
 
-   #. Do not include bounds in the inversion
+   #. *NONE* Do not include bounds in the inversion
 
-   #. Give a constant global lower bound of and upper bound of .
+   #. *VALUE lwr upr* Give a constant global lower bound of *lwr* and upper bound of *upr*.
 
-   #. The lower bound is given in a file and is in the format.
+   #. *FILE_L fileName* The lower bound is given in a file and is in the *model* format.
 
-   #. The upper bound is given in a file and is in the format.
+   #. *FILE_U fileName* The upper bound is given in a file and is in the *model* format.
 
 Example of ipinv2d.inp
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Below is an example of the input file . The code reads mesh from the
-file with topography from . The means the reference and initial models
+Below is an example of the input file ipinv2d.inp. The code reads mesh dcinv2d.msh from the
+file with topography from topography.txt. The means the reference and initial models
 will be set to one another and equal zero. The conductivity model is
 given as the output from . The alpha values have been given for
 :math:`\alpha_s=0.001` and :math:`\alpha_x = \alpha_z = 1`. The model
-objective function will have an :math:`l_2` norm (which would also be
-the same as ). It will start from scratch and stop after 50 iterations
+objective function will have an :math:`l_2` norm (which would also be the same as *EKBLOM* 2 2 2 epsS epsX epsZ). It will start from scratch and stop after 50 iterations
 if the desired misfit (equal to the number of data) is not achieved.
 Conjugate gradients are used to solve the system of equations and the
 bounds are given in two separate files.
@@ -708,25 +707,25 @@ bounds are given in two separate files.
 Output Files
 ~~~~~~~~~~~~
 
-will create the following files:
+*IPINV2D* will create the following files:
 
-#. The log file containing the minimum information for each iteration,
+#. *ipinv2d.log* The log file containing the minimum information for each iteration,
    summary of the inversion, and standard deviations if assigned by .
 
-#. The developers log file containing the values of the model objective
+#. *ipinv2d.out* The developers log file containing the values of the model objective
    function value(\ :math:`\psi_m`), trade-off parameter
    (:math:`\beta`), and data misfit (:math:`\psi_d`) at each iteration
 
-#. Chargeability model for each iteration ( defines the iteration step)
+#. *ipinv2d_iter.chg* Chargeability model for each iteration ( defines the iteration step)
    if is used
 
-#. Predicted data for each iteration ( defines the iteration step) if is
+#. *ipinv2d_iter.pre* Predicted data for each iteration ( defines the iteration step) if is
    used
 
-#. Predicted data file that is updated after each iteration (will also
+#. *ipinv2d.pre* Predicted data file that is updated after each iteration (will also
    be the predicted data)
 
-#. Chargeability model that matches the predicted data file and is
+#. *ipinv2d.chg* Chargeability model that matches the predicted data file and is
    updated after each iteration (will also be the recovered model)
 
-#. Model file of average sensitivity values for the mesh
+#. *sensitivity.txt* Model file of average sensitivity values for the mesh
