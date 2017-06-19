@@ -650,7 +650,7 @@ Keywords for the input file ipinv2d.inp are:
 -  *ACTIVE_CELLS* followed by the file name of the active cell file.
 
 -  *USE_MREF* This option is used to decide if the reference model should be in the
-   spatial terms of the model objective function (equation :eq:`intMOF).
+   spatial terms of the model objective function (equation :eq:`intMOF`).
    There are two options: *TRUE* to include the reference model in the spatial
    terms or *FALSE* to have the reference model only in the smallest model
    component.
@@ -672,7 +672,7 @@ Below is an example of the input file ipinv2d.inp. The code reads mesh dcinv2d.m
 file with topography from topography.txt. The means the reference and initial models
 will be set to one another and equal zero. The conductivity model is
 given as the output from . The alpha values have been given for
-:math:`\alpha_s=0.001` and :math:`\alpha_x = \alpha_z = 1`. The model
+:math:`\alpha_s=0.001` and :math:`\alpha_x = \alpha_z = 1` . The model
 objective function will have an :math:`l_2` norm (which would also be the same as *EKBLOM* 2 2 2 epsS epsX epsZ). It will start from scratch and stop after 50 iterations
 if the desired misfit (equal to the number of data) is not achieved.
 Conjugate gradients are used to solve the system of equations and the

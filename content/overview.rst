@@ -26,8 +26,7 @@ of modifications implemented in :
    in regions if high topography and with non-uniform surveys such as
    Schlumberger.
 
-
--  |**Arbitrary electrode arrays**: All linear surface array data, or
+-  **Arbitrary electrode arrays**: All linear surface array data, or
    combinations thereof, can be inverted. For instance Wenner data and
    pole-dipole data can now be inverted.
 

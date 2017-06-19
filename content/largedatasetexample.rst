@@ -65,10 +65,10 @@ file is provided below:
 | BOUNDS 0.00001 0.02              | ! Global conductivity bounds      |
 +----------------------------------+-----------------------------------+
 
-The inversion converged in 17 iterations (Figure :numref:`synLargeRes` a) and
+The inversion converged in 17 iterations (Figure :numref:`synLargeRec` a)) and
 was able to reconstruct all of the features shallower than 500-m of
 depth. This is consistent with the depth of investigation for this
-survey, based on the sensitivity (Figure :numref:`synLargeRes` b).
+survey, based on the sensitivity (Figure :numref:`synLargeRec` b)).
 
 .. figure:: ../images/synLargeRec.png
    :name: synLargeRec

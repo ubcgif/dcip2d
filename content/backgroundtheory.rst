@@ -15,7 +15,7 @@ understanding of DC resistivity and Induced Polarization field
 experiments, but who is not necessarily versed in the details of inverse
 theory, can use the codes and invert his or her data.
 
-A typical DC/IP experiment involves inputting a current ***I*** to the
+A typical DC/IP experiment involves inputting a current **I** to the
 ground and measuring the potential away from the source. In a
 time-domain system the current has a duty cycle which alternates the
 direction of the current and has off-times between the current pulses at

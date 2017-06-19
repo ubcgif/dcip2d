@@ -96,7 +96,7 @@ size and the total volume. Smaller cells are needed around current or
 potential electrode sites where the fields or sensitivities change
 rapidly. The data define a primary region of investigation but the earth
 model must extend sufficiently far beyond that so the assumed boundary
-conditions are satisfied (see Figure :numref:`fwdMsh` for details). It is
+conditions are satisfied (see Figure :numref:`fwdMesh` for details). It is
 essential to verify the modeling mesh via forward modeling prior to
 inverting the data. A half-space conductivity is forward modeled and the
 predicted data from this forward modeling can be viewed. The apparent
@@ -159,7 +159,7 @@ weighted difference will be very large and this datum will contribute
 disproportionately compared to other data. This arises because of the
 squaring operation in equation :eq:`phid`. In order to handle situations
 where there are outliers, a more robust norm such as a Huber norm can be
-implemented (See :ref:`Background Theory <backgroundtheory>`for details) can be implemented. The Huber norm is
+implemented (See :ref:`Background Theory <backgroundtheory>` for details) can be implemented. The Huber norm is
 calculated according to equation :eq:`Huber`. It has a user-specified
 coefficient and acts like a hybrid between :math:`l_1` and :math:`l_2`
 norms. Essentially normalized misfits with a value less than are
