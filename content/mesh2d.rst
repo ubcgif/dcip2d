@@ -38,7 +38,7 @@ An example of the file structure is as follows:
    are in depth (z+ down). The first line has the top of the mesh
    (west-most coordinate) and the next boundary. From there, each line
    is the boundary for the previous line. NOTE: When topography is
-   given, the top of the mesh (Z:math:`_0`) is set to the in the file.
+   given, the top of the mesh (Z:math:`_0`) is set to *elev0* the in the *Topography* file.
    Therefore, it is encouraged to set Z\ :math:`_0 = 0` in all cases for
    user readability of the thicknesses of cells in the first segment.
 
@@ -79,7 +79,7 @@ might use a finer partitioning in sections where the topographic relief
 changes rapidly. This helps to better approximate the topographic
 surface using the finite difference mesh. In the presence of surface
 topography, the top of the finite difference mesh corresponds to the
-highest point on the surface (see also the description of ). Since the
+highest point on the surface (see also the description of :ref:`Topography <topo2d>`). Since the
 current sources are all on the surface of the earth, the vertical mesh
 has thicknesses which generally increase with depth. The cell thickness
 should be small near the surface and increase slowly in the upper region
