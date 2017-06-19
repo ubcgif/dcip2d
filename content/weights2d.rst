@@ -81,7 +81,7 @@ Note on weight design
 When the weighting is supplied by the user, care should be taken so that
 the final weighting matrix constructed by the program is positive
 definite. This property can be destroyed when the combination of the
-cell weighting coefficients and component coefficients (s, x, z, see
+cell weighting coefficients and component coefficients (see
 the description of special weighting w.dat file) makes the diagonal
 elements too small. Under such circumstances, the program will usually
 print in the log file the indices of the rows which are not diagonally

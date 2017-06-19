@@ -23,7 +23,7 @@ general files.
 General files for  programs
 ---------------------------
 
-There are six general files which are used in . These are:
+There are six general files which are used in **DCIP2D**. These are:
 
 #. **observations file**: specifies the observed measurements and the associated electrode
    locations
