@@ -3,23 +3,23 @@
 DC Inversion of the forward model
 =================================
 
-We use several synthetic examples to illustrate various aspects of . The
+We use several synthetic examples to illustrate various aspects of **DCIP2D**. The
 emphasis of the test examples is to show the newly added features of the
 inversion programs. A synthetic conductivity model is shown in Figure
-:numref:`fwdAR` and resultant synthetic data I shown in Figure
-:numref:`fwdTrueCrop`.
+:numref:`fwdAppRes` and resultant synthetic data I shown in Figure
+:numref:`fwdTrueCropped`.
 
 .. figure:: ../images/fwdMesh.png
+   :name: fwdMesh
+   
 .. figure:: ../images/fwdTrue.png
-.. figure:: ../images/fwdAppRes
-.. figure:: ../images/fwdTrueCropped
+   :name: fwdTrue
 
+.. figure:: ../images/fwdAppRes.png
+   :name: fwdAppRes
 
-(a) The synthetic model consists of two conductors buried in a uniform halfspace overlain
-by an overburden of variable conductivity. A V-shaped valley simulates the surface topography.
-The region of interest is outlined by the white lines, but padding cells are added so that the correct
-boundary conditions can be applied during the forward modelling. (b) The nite-dierence mesh
-used in the modelling.
+.. figure:: ../images/fwdTrueCropped.png
+   :name: fwdTrueCropped
 
 The synthetic model consists of two conductors buried in a uniform half
 space, which is overlain by an overburden of variable conductivity. A
