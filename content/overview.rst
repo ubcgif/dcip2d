@@ -26,8 +26,7 @@ of modifications implemented in :
    in regions if high topography and with non-uniform surveys such as
    Schlumberger.
 
-
--  |**Arbitrary electrode arrays**: All linear surface array data, or
+-  **Arbitrary electrode arrays**: All linear surface array data, or
    combinations thereof, can be inverted. For instance Wenner data and
    pole-dipole data can now be inverted.
 
@@ -173,7 +172,7 @@ discretized volume extends well beyond the data area.
 
    -  **DCINV2D**: inverts 2D DC resistivity data
 
-   -  **IPINV2D: inverts 2D IP resistivity data
+   -  **IPINV2D**: inverts 2D IP resistivity data
 
 #. **Graphical user interfaces** are supplied for the Windows platforms
    *only*. Facilities include:

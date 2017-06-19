@@ -17,7 +17,7 @@ than keep the model as discrete blocks we have attempted to make it more
 geologically realistic by applying a smoothing filter to the model. The
 model is divided into 48 cells in the :math:`x-`\ direction and 27 cells
 in the :math:`z-`\ direction including a total of 1296 cells. The finite
-difference mesh is shown in Figure :numref:f`wdMsh`. In the survey, surface
+difference mesh is shown in Figure :numref:`fwdMesh`. In the survey, surface
 electrodes are located every ten meters in the interval
 :math:`x = (-100, 100)` meters. We compute the potential differences
 from a pole-dipole array with the potential electrodes on the right. Our
@@ -28,9 +28,9 @@ consists of 124 potential difference values. It is our intention to use
 these data as input to an inversion. In order to make them more
 realistic we contaminate each datum by adding Gaussian noise having a
 standard deviation equal to 5% of the true potential. The apparent
-resistivity pseudo-section is shown in Figure :numref:`fwdAR`. That figure
+resistivity pseudo-section is shown in Figure :numref:`fwdAppRes`. That figure
 can be compared with the conductivity model within the region of
-interest in Figure :numref:`fwdTrueCrop`. There is some manifestation of the
+interest in Figure :numref:`fwdTrueCropped`. There is some manifestation of the
 horizontal conductive block, but much of the conducting “pants leg”
 anomaly seen is really the result of the near surface variation of
 conductivity and topography.
