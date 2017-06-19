@@ -14,7 +14,7 @@ simulated data are
 #. Combination of surface and borehole data simulation
 
 The synthetic data were generated using a 2D model (Figure
-[fig:boreholeSyn]) that contains a 25-m thick overburden of 100 Ohm-m
+:numref:`boreholeSyn`) that contains a 25-m thick overburden of 100 Ohm-m
 over a 1000 Ohm-m half space. A 1 Ohm-m prism is located buried so that
 its top is 100 m below the surface. The prism is 100 m :math:`\times`
 100 m. The model was discretized onto a 6869 cell mesh (104 horizontal
@@ -22,7 +22,9 @@ by 66 vertical cells. Smallest cell equals 10 m by 5 m). The locations
 of two boreholes are also shown in the figure.
 
 .. figure:: ../images/boreholeSyn.png
-   :alt: The synthetic model used for the three borehole examples.
+   :figwidth: 75%
+   :align: center
+   :name: boreholeSyn
 
    The synthetic model used for the three borehole examples.
 
@@ -33,7 +35,7 @@ locations were used. The total number of data is 345. The data were
 contaminated with 5% Gaussian noise and inverted with a chi factor of 1
 (see control input file configuration provided below). The inversion has
 converged in 14 iterations. The results of the inversion of surface data
-are presented in Figure [fig:synBsurf].
+are presented in Figure :numref:`bSurf`.
 
 +-------------------------------+-------------------------------+
 | OBS LOC\_XZ dc\_surface.dat   | ! General-formatted DC data   |
@@ -46,8 +48,9 @@ are presented in Figure [fig:synBsurf].
 +-------------------------------+-------------------------------+
 
 .. figure:: ../images/bSurf.png
-   :alt: (a) The recovered model from the inversion of synthetic surface
-   data set and (b) the associated convergence curves.
+   :figwidth: 75%
+   :align: center
+   :name: bSurf
 
    (a) The recovered model from the inversion of synthetic surface data
    set and (b) the associated convergence curves.
@@ -57,24 +60,26 @@ borehole data set for two boreholes located at :math:`x=200` and
 :math:`x=500`. Electrodes were spaced every 25 m down each borehole to a
 maximum depth of 250 m. The transmitter electrodes are located in the
 opposite boreholes in all possible configurations. The schematic diagram
-illustrating this survey configuration is shown in Figure [fig:bSchem].
+illustrating this survey configuration is shown in Figure :numref:`bSchem`.
 This resulted in a total of 121 transmitters. Each transmitter
 configuration is a common-current source for up to 20 receiver dipoles
 in both boreholes. The total number of data is 2200. The simulated data
 set was contaminated by 5% Gaussian noise and inverted using same
 inversion parameters as the surface data set. The results are shown in
-Figure [fig:bCurr].
+Figure :numref:`bCurr`.
 
 .. figure:: ../images/bSchem.png
-   :alt: A schematic of the survey configuration for the synthetic
-   borehole example. Red dots mark the electrode positions.
+   :figwidth: 75%
+   :align: center
+   :name: bSchem
 
    A schematic of the survey configuration for the synthetic borehole
    example. Red dots mark the electrode positions.
 
 .. figure:: ../images/bCurr.png
-   :alt: (a) The recovered model from the inversion of synthetic
-   down-hole data set and (b) the associated convergence curves.
+   :figwidth: 100%
+   :align: center
+   :name: bCurr
 
    (a) The recovered model from the inversion of synthetic down-hole
    data set and (b) the associated convergence curves.
@@ -82,16 +87,16 @@ Figure [fig:bCurr].
 Further, the data sets were combined to accommodate 151 transmitter
 locations and 2545 data. The combined data set was inverted with the
 same parameters as each individual data set with the results shown in
-Figure [fig:bAll]. As it is evident from these three inversions, the
+Figure :numref:`bAll`. As it is evident from these three inversions, the
 surface geometry alone has strong limitations in depth resolution, while
 the borehole configuration has limitations in near-surface recovery and
 it is the combination of the two surveys, which allows better recovery
 of the conductivity.
 
 .. figure:: ../images/bAll.png
-   :alt: (a) The recovered model from the inversion of synthetic
-   down-hole and surface data sets and (b) the associated convergence
-   curves.
+   :figwidth: 75%
+   :align: center
+   :name: bAll
 
    (a) The recovered model from the inversion of synthetic down-hole and
    surface data sets and (b) the associated convergence curves.
@@ -105,7 +110,7 @@ matrix is designed, assuming there is prior knowledge about the
 overburden and defines the latter as a horizontal (laterally smooth)
 structure with abrupt transition in the vertical direction. The control
 file used for this inversion is shown below. The result of the inversion
-is shown in Figure [fig:bAllWght].
+is shown in Figure :numref:`bAllWght`.
 
 +------------------------------+-------------------------------+
 | OBS LOC\_XZ obs\_dc\_n.dat   | ! General-formatted DC data   |
@@ -119,15 +124,15 @@ is shown in Figure [fig:bAllWght].
 | WEIGHT FILE weights.txt      | ! Weight file                 |
 +------------------------------+-------------------------------+
 
-It is evident from Figure [fig:bAllWght], that not only did the
+It is evident from Figure :numref:`bAllWght`, that not only did the
 weighting function assure clean resolution of overburden, but it also
 helped to remove some noise from the background, if compared with Figure
-[fig:bAll].
+:numref:`bAll`.
 
 .. figure:: ../images/bAllWght.png
-   :alt: (a) The recovered model from the inversion of synthetic
-   down-hole and surface data sets with a weighting constraint and (b)
-   the associated convergence curves.
+   :figwidth: 100%
+   :align: center
+   :name: bAllWght
 
    (a) The recovered model from the inversion of synthetic down-hole and
    surface data sets with a weighting constraint and (b) the associated
@@ -135,12 +140,12 @@ helped to remove some noise from the background, if compared with Figure
 
 The next step was to simulate a scenario, when the down-hole
 conductivity data is available. This was done using the inactive cells
-constraint. Figure [fig:bAllAct]a shows the new reference model with
+constraint. Figure :numref:`bAllAct` a) shows the new reference model with
 fixed cells along :math:`x=200` and :math:`x=500` to the depth of 250 m.
 The data were inverted using inactive cells constraint with no ability
-to affect the neighbouring cells (Figure [fig:bAllAct]b), with ability
-to interfere with the neighbours (Figure [fig:bAllAct]c) and in
-combination with the weighting matrix (Figure [fig:bAllAct]d).
+to affect the neighbouring cells (Figure :numref:`bAllAct` b)), with ability
+to interfere with the neighbours (Figure :numref:`bAllAct` c)) and in
+combination with the weighting matrix (Figure :numref:`bAllAct` d)).
 
 +------------------------------+-------------------------------+
 | OBS LOC\_XZ obs\_dc\_n.dat   | ! General-formatted DC data   |
@@ -174,14 +179,12 @@ data under these constraints is presented below:
 +------------------------------+-------------------------------+
 
 The results of the final inversion are presented in Figure
-[fig:bAllWghtAct].
+:numref:`bAllWghtAct`.
 
 .. figure:: ../images/bAllAct.png
-   :alt: (a) The new reference model, accommodating the active cells.
-   The inversion was then carried out such that the inactive cells both
-   (b) influenced and (c) did not influence the neighbouring cells.
-   Lastly, both the active cells and weighting file was combined to
-   recover the model shown in (d).
+   :figwidth: 100%
+   :align: center
+   :name: bAllAct
 
    (a) The new reference model, accommodating the active cells. The
    inversion was then carried out such that the inactive cells both (b)
@@ -190,10 +193,9 @@ The results of the final inversion are presented in Figure
    model shown in (d).
 
 .. figure:: ../images/bAllWghtAct.png
-   :alt: The reference model with an extended region of inactive cells
-   is shown in the top panel. The recovered model from the subsequent
-   inversion using both weighting and inactive cell constraints is
-   presented in the bottom panel.
+   :figwidth: 100%
+   :align: center
+   :name: bAllWghtAct
 
    The reference model with an extended region of inactive cells is
    shown in the top panel. The recovered model from the subsequent

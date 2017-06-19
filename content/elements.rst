@@ -6,13 +6,13 @@ Elements of the program DCIP2D
 Introduction
 ------------
 
-The program library consists of the programs:
+The **DCIP2D v5.0** program library consists of the programs:
 
-#. : performs forward modelling for DC and IP data
+#. **DCIPF2D**: performs forward modelling for DC and IP data
 
-#. : inverts DC potentials to recover a conductivity model
+#. **DCINV2D**: inverts DC potentials to recover a conductivity model
 
-#. : inverts IP data to recover a chargeability model
+#. **IPINV2D**: inverts IP data to recover a chargeability model
 
 Each of the above programs requires input files as well as the
 specification of parameters in order to run. However, some files are
@@ -23,7 +23,7 @@ general files.
 General files for  programs
 ---------------------------
 
-There are six general files which are used in . These are:
+There are six general files which are used in **DCIP2D**. These are:
 
 #. **observations file**: specifies the observed measurements and the associated electrode
    locations

@@ -6,7 +6,7 @@ Observations file
 This file contains the observed measurements and the associated
 electrode locations. Both potential data and apparent chargeability data
 are stored in the same format. This will be the format of all the data
-files that are output from , and are input to and .
+files that are output from **DCIPF2D**, and are input to **DCINV2D** and **IPINV2D**.
 
 It is assumed that the survey is carried out either along a line in the
 :math:`x-`\ direction perpendicular to geologic strike or along a
@@ -19,7 +19,7 @@ observations file. Electrodes will be at :math:`z=0` if topography is
 not given (e.g., set to null). The :math:`z` coordinates should be
 provided in the observations file when the data are located down a
 borehole. Any surface/borehole combination of electrodes is allowed in.
-The observations file can have three different formats: the , , or
+The observations file can have three different formats: the *general*, *surface*, or *simple*
 format. Only a single format is allowed in a data file. **The general
 format is the only format that will allow the use of borehole
 locations**. The type of format chosen to store the data does not make
@@ -27,7 +27,7 @@ any difference to the  program library and is determined only by the
 user’s preference. At the beginning of execution, the programs will
 determine the format and the output files will be written in the same
 format. Standard deviations are optional in each format. The calculation
-of the standard deviation within is given below in the detailed
+of the standard deviation within **DCIP2D** is given below in the detailed
 summaries of components. All standard deviations must either be given or
 not given to be calculated.
 
@@ -45,7 +45,7 @@ chargeabilities in the data set. We stress that the default errors are
 only an initial guess and they facilitate a preliminary inversion of the
 data. The user will want to alter these error estimates for the final
 inversion used for interpretation. The data with the default errors are
-written in using the given format. They can be copied to a file for
+written in *dcinv2d.log* using the given format. They can be copied to a file for
 finer adjustment of the error estimates or the user can supply his or
 her own errors directly.
 
@@ -61,7 +61,7 @@ considered to be a single pole with the negative electrode being at
 infinity. The format consists of a line with the current electrode
 location and number of potential electrode locations associated with it.
 Each location has :math:`x` and :math:`z` coordinates. An example of the
-format file structure is as follows:
+general format file structure is as follows:
 
 .. figure:: ../images/obsfile_generalformat.png
    :figwidth: 50%
@@ -71,7 +71,7 @@ format file structure is as follows:
 #. :math:`\text{COMMON_CURRENT}`: This flag is given prior to to let the code know that it is a general
    format file
 
-#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by dcinv2d and must have a
    preceding “!”
 
 #. :math:`\text{'number of sources'}`: integer number giving the totla number of sources in the file.
@@ -147,7 +147,7 @@ given the identical location, that particular pair is considered to be a
 single pole with the negative electrode being at infinity. The format
 consists of a line with the current electrode location and number of
 potential electrode locations associated with it. An example of the
-format file structure is as follows:
+*surface* format file structure is as follows:
 
 .. figure:: ../images/obsfile_surfaceformat.png
    :figwidth: 50%
@@ -160,7 +160,7 @@ observations file:
 #. :math:`\text{COMMON_CURRENT}`: This flag is given prior to to let the code know that it is a general
    format file
 
-#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by dcinv2d and must have a
    preceding “!”
 
 #. :math:`\text{'number of sources'}`: integer number giving the totla number of sources in the file.
@@ -228,7 +228,7 @@ electrodes, or two potential electrodes, are given the identical
 location, that particular pair is considered to be a single pole with
 the negative electrode being at infinity. The format consists of a line
 with the current electrode pair location and potential electrode
-location pair. An example of the format file structure is as follows:
+location pair. An example of the *simple* format file structure is as follows:
 
 .. figure:: ../images/obsfile_simpleformat.png
    :figwidth: 50%
@@ -238,7 +238,7 @@ location pair. An example of the format file structure is as follows:
 The following are detailed summaries of components of the simple-format
 observations file:
 
-#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by dcinv2d and must have a
    preceding “!”
 
 #. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC

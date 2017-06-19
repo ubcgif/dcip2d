@@ -3,20 +3,20 @@
 Electrodes file
 ===============
 
-This file contains the electrode locations for . The electrodes file
-follows the same formats at the files, but without data and standard
+This file contains the electrode locations for **DCIPF2D**. The electrodes file
+follows the same formats at the *Observations* files, but without data and standard
 deviations. Thus, an electrode file can have three different formats:
-the , , or format. Only a single format is allowed in a data file. **The
+the *general*, *surface*, or *simple* format. Only a single format is allowed in a data file. **The
 general format is the only format that will allow the use of borehole
 locations**. The type of format chosen for forward modelling does not
-make any difference to the and is determined only by the user’s
+make any difference to the *DCIPF2D* and is determined only by the user’s
 preference. At the beginning of execution, the programs will determine
 the format and the output files will be written in the same format.
 
 General format
 --------------
 
-The forward modelling code can handle arbitrary electrode
+The forward modelling code **DCIPF2D** can handle arbitrary electrode
 configurations, and a mixture of different configurations can be present
 in the data file. This is accomplished by specifying the locations of
 four electrodes for each location. Whenever the two current electrodes,
@@ -104,7 +104,7 @@ format file structure is as follows:
 The following are detailed summaries of components of the surface-format
 observations file:
 
-#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by *dcipf2d* and must have a
    preceding “!”
 
 #. :math:`\text{'number of sources'}`: integer number giving the totla number of sources in the file.
@@ -165,7 +165,7 @@ location pair. An example of the format file structure is as follows:
 The following are detailed summaries of components of the simple-format
 observations file:
 
-#. :math:`Comment~line`: Any comments can go here. This line is ignored by and must have a
+#. :math:`Comment~line`: Any comments can go here. This line is ignored by *dcipf2d* and must have a
    preceding “!”
 
 #. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC

@@ -38,21 +38,21 @@ where:
 
 -  :math:`arg_i` is a command line argument, which can be a name of corresponding
    required or optional file. Optional command line arguments are
-   specified by brackets: . **NOTE:** Typing as the control file, serves
+   specified by brackets: . **NOTE:** Typing *-inp* as the control file, serves
    as a help function and returns all of the keyword combinations
    allowed for that program.
 
 Each control file contains a formatted list of arguments, parameters,
 and file names in a combination specific for the executable, which can
 be in any order. Values that are being set by the user are given to each
-program through a specific list of keywords (e.g., to specify the type
+program through a specific list of keywords (e.g. *WEIGHT*, to specify the type
 of weighting). Different control file formats will be explained further
 in the document for each executable. All files are in ASCII text format
 - they can be read with any text editor. Input and control files can
 have any name the user specifies. Details for the format of each file
-can be found in Section [Elements]. When inputting a file, the word
-should be following the keyword (e.g., ). If a value is being used than
-the word will follow a keyword (e.g., ).
+can be found in Section :ref:`Elements <elements>`. When inputting a file, the word 
+FILE should be following the keyword (e.g., *MESH FILE mesh.msh*). If a value is being used than
+the word VALUE will follow a keyword (e.g., *COND VALUE 0.001*).
 
 DCIPF2D
 -------
@@ -62,7 +62,7 @@ usage:
 
 *dcipf2d dcipf2d.inp*
 
-where the input file, , is described below. The options can be in any
+where the input file, *dcipf2d.inp*, is described below. The options can be in any
 order.
 
 Input files
@@ -96,7 +96,7 @@ Keywords for the input file dcipf2d.inp are:
    #. *IPL* for IP forward modelling using product of the sensitivity matrix
       and chargeability.
 
--  *MESH FILE* The 2D mesh file name is followed after these keywords. For example .
+-  *MESH FILE* The 2D mesh file name is followed after these keywords. For example MESH FILE mesh.msh.
 
 -  *LOC* The observation locations. The choices after this keyword are:
 
@@ -151,9 +151,9 @@ The files created by DCIPF2D are:
 
 -  *obc_dc.dat* The computed DC potential data.
 
--  *obc_ip.dat* The computed IP data if the option is chosen.
+-  *obc_ip.dat* The computed IP data if the option *IP* is chosen.
 
--  *obc_ipL.dat* The computed IP data if the option is chosen.
+-  *obc_ipL.dat* The computed IP data if the option *IPL* is chosen.
 
 DCINV2D
 -------
@@ -211,7 +211,7 @@ Keywords for the input file dcinv2d.inp are:
 
 -  *MESH* The choices after this keyword are:
 
-   #. *DEFAULT* the programs creates a mesh (output ) with 3 cells between
+   #. *DEFAULT* the programs creates a mesh (output dcinv2d.msh) with 3 cells between
       electrodes and the aspect ratio of the top cells set to 3.
       **NOTE**: This option assumes that the data are collected by
       commonly used arrays and that the topographic relief is moderate.
@@ -228,9 +228,9 @@ Keywords for the input file dcinv2d.inp are:
 
 -  *OBS* The observation locations. The choices after this keyword are:
 
-   #. *LOC_X* when giving or locations formats
+   #. *LOC_X* when giving simple or surface locations formats
 
-   #. *LOC_XZ* when using the locations format.
+   #. *LOC_XZ* when using the general locations format.
 
 -  *NITER* A value follows this keyword representing the number of maximum
    iterations for the inversion. **NOTE**: The program will terminate
@@ -352,7 +352,7 @@ Keywords for the input file dcinv2d.inp are:
 -  *ACTIVE_CELLS* followed by the file name of the active cell file.
 
 -  *USE_MREF* This option is used to decide if the reference model should be in the
-   spatial terms of the model objective function (equation [eq:intMOF]).
+   spatial terms of the model objective function (equation :eq:`intMOF`).
    There are two options: *TRUE* to include the reference model in the spatial
    terms or *FALSE* to have the reference model only in the smallest model
    component.
@@ -412,23 +412,23 @@ Output Files
 *DCINV2D* will create the following files:
 
 #. *dcinv2d.log* The log file containing the minimum information for each iteration,
-   summary of the inversion, and standard deviations if assigned by .
+   summary of the inversion, and standard deviations if assigned by DCINV2D.
 
 #. *dcinv2d.out* The developers log file containing the values of the model objective
    function value(\ :math:`\psi_m`), trade-off parameter
    (:math:`\beta`), and data misfit (:math:`\psi_d`) at each iteration
 
-#. *dcinv2d_iter.con* Conductivity model for each iteration ( defines the iteration step)
+#. *dcinv2d_iter.con* Conductivity model for each iteration (*iter* defines the iteration step)
    if is used
 
-#. *dcinv2d_iter.pre* Predicted data for each iteration ( defines the iteration step) if is
+#. *dcinv2d_iter.pre* Predicted data for each iteration (*iter* defines the iteration step) if is
    used
 
 #. *dcinv2d.pre* Predicted data file that is updated after each iteration (will also
-   be the predicted data)
+   be the final predicted data)
 
 #. *dcinv2d.con* Conductivity model that matches the predicted data file and is
-   updated after each iteration (will also be the recovered model)
+   updated after each iteration (will also be the final ecovered model)
 
 #. *sensitivity.txt* Model file of average sensitivity values for the mesh
 
@@ -490,7 +490,7 @@ Keywords for the input file ipinv2d.inp are:
 
 -  *MESH* The choices after this keyword are:
 
-   #. *DEFAULT* the programs creates a mesh (output ) with 3 cells between
+   #. *DEFAULT* the programs creates a mesh (output dcinv2d.msh) with 3 cells between
       electrodes and the aspect ratio of the top cells set to 3.
       **NOTE**: This option assumes that the data are collected by
       commonly used arrays and that the topographic relief is moderate.
@@ -507,9 +507,9 @@ Keywords for the input file ipinv2d.inp are:
 
 -  *OBS* The observation locations. The choices after this keyword are:
 
-   #. *LOC_X* when giving or locations formats
+   #. *LOC_X* when giving simple or surface locations formats
 
-   #. *LOC_XZ* when using the locations format.
+   #. *LOC_XZ* when using the general locations format.
 
 -  *NITER* A value follows this keyword representing the number of maximum
    iterations for the inversion. **NOTE**: The program will terminate
@@ -650,7 +650,7 @@ Keywords for the input file ipinv2d.inp are:
 -  *ACTIVE_CELLS* followed by the file name of the active cell file.
 
 -  *USE_MREF* This option is used to decide if the reference model should be in the
-   spatial terms of the model objective function (equation [eq:intMOF]).
+   spatial terms of the model objective function (equation :eq:`intMOF).
    There are two options: *TRUE* to include the reference model in the spatial
    terms or *FALSE* to have the reference model only in the smallest model
    component.
@@ -710,22 +710,22 @@ Output Files
 *IPINV2D* will create the following files:
 
 #. *ipinv2d.log* The log file containing the minimum information for each iteration,
-   summary of the inversion, and standard deviations if assigned by .
+   summary of the inversion, and standard deviations if assigned by IPINV2D.
 
 #. *ipinv2d.out* The developers log file containing the values of the model objective
    function value(\ :math:`\psi_m`), trade-off parameter
    (:math:`\beta`), and data misfit (:math:`\psi_d`) at each iteration
 
-#. *ipinv2d_iter.chg* Chargeability model for each iteration ( defines the iteration step)
+#. *ipinv2d_iter.chg* Chargeability model for each iteration (*iter* defines the iteration step)
    if is used
 
-#. *ipinv2d_iter.pre* Predicted data for each iteration ( defines the iteration step) if is
+#. *ipinv2d_iter.pre* Predicted data for each iteration (*iter* defines the iteration step) if is
    used
 
 #. *ipinv2d.pre* Predicted data file that is updated after each iteration (will also
-   be the predicted data)
+   be the final predicted data)
 
 #. *ipinv2d.chg* Chargeability model that matches the predicted data file and is
-   updated after each iteration (will also be the recovered model)
+   updated after each iteration (will also be the final recovered model)
 
 #. *sensitivity.txt* Model file of average sensitivity values for the mesh

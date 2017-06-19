@@ -4,8 +4,8 @@ Weighting file
 ==============
 
 This is the file used to define the smallness and spatial weights to be
-incorporated into the inversion codes or . These weights are given in
-the model objective function (equation [eq:intMOF]). As with the file,
+incorporated into the inversion codes **DCINV2D** or **IPINV2D**. These weights are given in
+the model objective function (equation [eq:intMOF]). As with the *Model* file,
 the weights are stored in a row format. Weights with the value of 1.0 do
 contribute extra information to model objective function. Deviating from
 1.0 will increase the relative importance (or not) of the cell value or
@@ -20,22 +20,22 @@ An example of the file structure *containing all weights* is as follows:
    :name: weightsfile_format
 
 #. :math:`N_x`: Number of cells in the horizontal direction. This number is the same
-   as found in and files.
+   as found in Model and Mesh files.
 
 #. :math:`N_z`: Number of cells in the vertical direction. This number is the same as
-   found in and files.
+   found in Model and Mesh files.
 
-#. :math:`Ws_{i,k}`: Weight given to the smallest model component. has size of
+#. :math:`Ws_{i,k}`: Weight given to the smallest model component. :math:`W_s` has size of
    :math:`N_x \times N_z`. The values of :math:`i` and :math:`k` count
-   consistent with the format.
+   consistent with the Model format.
 
 #. :math:`Wx_{i,k}`: Weight given across the faces of cells in the :math:`x`-direction.
-   has size of :math:`N_x-1 \times N_z`. The values of :math:`i` and
-   :math:`k` count consistent with the format.
+   :math:`W_x` has size of :math:`N_x-1 \times N_z`. The values of :math:`i` and
+   :math:`k` count consistent with the Model format.
 
 #. :math:`Wy_{i,k}`: Weight given across the faces of cells in the :math:`z`-direction.
-   has size of :math:`N_x \times N_z-1`. The values of :math:`i` and
-   :math:`k` count consistent with the format.
+   :math:`W_y`has size of :math:`N_x \times N_z-1`. The values of :math:`i` and
+   :math:`k` count consistent with the Model format.
 
 An example of a file structure *containing only one weight* is as
 follows:
@@ -81,7 +81,7 @@ Note on weight design
 When the weighting is supplied by the user, care should be taken so that
 the final weighting matrix constructed by the program is positive
 definite. This property can be destroyed when the combination of the
-cell weighting coefficients and component coefficients (s, x, z, see
+cell weighting coefficients and component coefficients (see
 the description of special weighting w.dat file) makes the diagonal
 elements too small. Under such circumstances, the program will usually
 print in the log file the indices of the rows which are not diagonally

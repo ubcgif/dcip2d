@@ -66,7 +66,7 @@ confined to the region [0,1).
    Definition of the three potentials associated with DC/IP experiments.
 
 To carry out forward modelling to compute :math:`\phi_\eta` we adopt the
-formulation of :ref:`Siegel59`, which says that the effect
+formulation of :cite:`seigel1959mathematical`, which says that the effect
 of a chargeable ground is modelled by using the dc resistivity forward
 mapping, :math:`\mathcal{F}_{dc}`, but with the conductivity replaced by
 :math:`\sigma = \sigma(1-\eta)`. Thus:
@@ -123,7 +123,7 @@ Forward modelling
 The forward modelling for the DC potentials and IP apparent
 chargeabilities and secondary potentials is accomplished using a finite
 difference technique to solve equation :eq:`dcForward`. The program which
-performs this calculation is . In Version  we include the option to
+performs this calculation is **DCIPF2D**. In Version  we include the option to
 calculate IP data by multiplying the sensitivity matrix
 :math:`\mathbf{J}` by the chargeability provided by user. That is, we
 forward model with the linear equations that will be used for the
@@ -148,18 +148,18 @@ General inversion methodology
 
 The computing programs outlined in this manual solve two inverse
 problems. In the first we invert the DC potentials :math:`\phi_\sigma`
-to recover the electrical conductivity :math:`\sigma(x,z)`. This is a
+to recover the electrical conductivity :math:`\sigma(x,z)` . This is a
 non-linear inverse problem that requires linearization of the data
 equations and subsequent iteration steps. Next, we invert IP data to
-recover the chargeability :math:`\eta(x,z)`. Because chargeabilities are
+recover the chargeability :math:`\eta(x,z)` . Because chargeabilities are
 usually small quantities :math:`(\eta < 0.3)` it is possible to
-linearize equation :eq:`genApChargeDC and derive a linear system of
+linearize equation :eq:`genApChargeDC` and derive a linear system of
 equations to be solved. Irrespective of which data set is being inverted
 however, we basically use the same methodology to carry out the
 inversions.
 
 To outline our methodology it is convenient to introduce a single
-notation for the and for the . We let
+notation for the data and for the model. We let
 :math:`\boldsymbol{\vec{d}} = (d_1,d_2,\ldots,d_n)^T` denote the data so that
 :math:`d_i` is the i\ :math:`^{th}` potential in a DC resistivity data
 set or the i\ :math:`^{th}` apparent chargeability in an IP survey. Let
@@ -203,7 +203,7 @@ value.
 
 It is common to use an :math:`l_2` norm measure of data fit as shown in
 equation :eq:`phid`. However, the Huber norm
-:ref:`Huber64` has been incorporated to handle outliers
+:cite:`huber1964robust` has been incorporated to handle outliers
 in the data. The general form of the Huber norm is
 
 .. math::
@@ -226,7 +226,7 @@ misfit function then becomes
 
 where :math:`c` is a constant that separates the elements of vector
 :math:`y` into those considered large and those that are considered
-small :ref:`FarquharsonOldenburg98`.
+small :cite:`farquharson1998non`.
 
 Earth conductivity distributions are complex. To allow maximum
 flexibility to produce a model of arbitrary shape it is important that
@@ -305,7 +305,7 @@ distance between the centres of horizontally adjacent cells, and
 cells.
 
 For blockier models, we have incorporated the measure proposed by Ekblom
-(:ref:`Ekblom73,Ekblom87`) that has been found to be
+(:cite:`ekblom1973calculation`) that has been found to be
 useful. The generalized version is given as
 
 .. math::
@@ -326,7 +326,7 @@ chi-factor regularization. The resulting model objective function is
    :label: ekblom
 
 Details of the Eklom norm within the context of geophysical inversion
-can be found in :ref:`FarquharsonOldenburg98`.
+can be found in :cite:`farquharson1998non`.
 
 It should be noted that in equation :eq:`disMOF`, the reference model can
 be removed from the spatial (:math:`x` and :math:`z`) components. The
@@ -347,7 +347,7 @@ and for the Ekblom norm
    &&+ \left[\boldsymbol{\vec{m}}^T(\alpha_x\boldsymbol{\vec{W}}^T_x\boldsymbol{\vec{W}}_x)\boldsymbol{\vec{m}} + \epsilon^2 \right]^{\frac{\rho}{2}} + \left[\boldsymbol{\vec{m}}^T(\alpha_z\boldsymbol{\vec{W}}^T_z\boldsymbol{\vec{W}}_z)\boldsymbol{\vec{m}} + \epsilon^2 \right]^{\frac{\rho}{2}}.
    \end{aligned}
 
-This is a new feature in and gives the user greater flexibility. The
+This is a new feature in **DCIP2D** and gives the user greater flexibility. The
 inverse problem is now properly formulated as an optimization problem:
 
 .. math::
@@ -371,7 +371,7 @@ Inversion of DC data
 --------------------
 
 The inversion of the apparent resistivity data is carried out using the
-program . The inversion of DC resistivity data formulated as the
+program **DCINV2D**. The inversion of DC resistivity data formulated as the
 minimization in equation :eq:`inverseProblem` is nonlinear since the data
 do not depend linearly upon the conductivity model. We tackle this
 problem using a Gauss-Newton approach in which the objective function is
@@ -467,4 +467,4 @@ number (e.g., 0.01). Working with logarithmic values however, puts undue
 emphasis on these small values. An efficient method by which to solve
 the linear inverse problem with positivity constraints is through a
 non-linear mapping of variables. More details of the IP inversion
-algorithm can be found in :ref:`OldenburgLi94`.
+algorithm can be found in :cite:`doug1994`.
