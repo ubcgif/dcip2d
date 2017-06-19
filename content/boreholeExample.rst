@@ -22,6 +22,8 @@ by 66 vertical cells. Smallest cell equals 10 m by 5 m). The locations
 of two boreholes are also shown in the figure.
 
 .. figure:: ../images/boreholeSyn.png
+   :figwidth: 75%
+   :align: center
    :name: boreholeSyn
 
    The synthetic model used for the three borehole examples.
@@ -46,6 +48,8 @@ are presented in Figure :numref:`bSurf`.
 +-------------------------------+-------------------------------+
 
 .. figure:: ../images/bSurf.png
+   :figwidth: 75%
+   :align: center
    :name: bSurf
 
    (a) The recovered model from the inversion of synthetic surface data
@@ -65,12 +69,16 @@ inversion parameters as the surface data set. The results are shown in
 Figure :numref:`bCurr`.
 
 .. figure:: ../images/bSchem.png
+   :figwidth: 75%
+   :align: center
    :name: bSchem
 
    A schematic of the survey configuration for the synthetic borehole
    example. Red dots mark the electrode positions.
 
 .. figure:: ../images/bCurr.png
+   :figwidth: 100%
+   :align: center
    :name: bCurr
 
    (a) The recovered model from the inversion of synthetic down-hole
@@ -86,6 +94,8 @@ it is the combination of the two surveys, which allows better recovery
 of the conductivity.
 
 .. figure:: ../images/bAll.png
+   :figwidth: 75%
+   :align: center
    :name: bAll
 
    (a) The recovered model from the inversion of synthetic down-hole and
@@ -120,6 +130,8 @@ helped to remove some noise from the background, if compared with Figure
 :numref:`bAll`.
 
 .. figure:: ../images/bAllWght.png
+   :figwidth: 100%
+   :align: center
    :name: bAllWght
 
    (a) The recovered model from the inversion of synthetic down-hole and
@@ -128,12 +140,12 @@ helped to remove some noise from the background, if compared with Figure
 
 The next step was to simulate a scenario, when the down-hole
 conductivity data is available. This was done using the inactive cells
-constraint. Figure :numref:`bAllAct`a shows the new reference model with
+constraint. Figure :numref:`bAllAct` a) shows the new reference model with
 fixed cells along :math:`x=200` and :math:`x=500` to the depth of 250 m.
 The data were inverted using inactive cells constraint with no ability
-to affect the neighbouring cells (Figure :numref:`bAllAct`b), with ability
-to interfere with the neighbours (Figure :numref:`bAllAct`c) and in
-combination with the weighting matrix (Figure :numref:`bAllAct`d).
+to affect the neighbouring cells (Figure :numref:`bAllAct` b)), with ability
+to interfere with the neighbours (Figure :numref:`bAllAct` c)) and in
+combination with the weighting matrix (Figure :numref:`bAllAct` d)).
 
 +------------------------------+-------------------------------+
 | OBS LOC\_XZ obs\_dc\_n.dat   | ! General-formatted DC data   |
@@ -170,6 +182,8 @@ The results of the final inversion are presented in Figure
 :numref:`bAllWghtAct`.
 
 .. figure:: ../images/bAllAct.png
+   :figwidth: 100%
+   :align: center
    :name: bAllAct
 
    (a) The new reference model, accommodating the active cells. The
@@ -179,6 +193,8 @@ The results of the final inversion are presented in Figure
    model shown in (d).
 
 .. figure:: ../images/bAllWghtAct.png
+   :figwidth: 100%
+   :align: center
    :name: bAllWghtAct
 
    The reference model with an extended region of inactive cells is
