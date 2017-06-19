@@ -5,19 +5,18 @@ Field example
 
 In the next example the field data set had been collected over the Cluny
 prospect in Mt. Isa area, Queensland, Australia by MIM Exploration Pty,
-Ltd :raw-latex:`\cite[]{Rutley01}`. The data were collected using
+Ltd :ref:`Rutley01`. The data were collected using
 pole-dipole and dipole-pole array configuration. The length of the
 profiles reaches 2000 m in East-West direction. A total of 10 profiles
 of DC and IP data were collected with electrode spacing of 50 m. There
 is topographic disturbance along the profile ranging from 429 to 505
 meters in absolute elevation above the mean sea level. The DC and IP
-data, collected over profile 13700 are shown in (Figure [fig:realData]).
+data, collected over profile 13700 are shown in (Figure :numref:`realData`).
 The data sets were examined for bad data values (outliers) and based on
 this criterion 45 data had to be eliminated from the IP inversion.
 
 .. figure:: ../images/realData.png
-   :alt: The observed (a) DC and (b) IP data measured along profile
-   13700 over the Cluny prospect, Australia.
+   :name: realData
 
    The observed (a) DC and (b) IP data measured along profile 13700 over
    the Cluny prospect, Australia.
@@ -51,23 +50,20 @@ coefficient and maximum number of iterations set to 50.
 | NITER 50                   | ! Max iterations                  |
 +----------------------------+-----------------------------------+
 
-The results of the inversion (Figure [fig:realDataRec]a) are based on
+The results of the inversion (Figure :numref:`realDataRec` a)) are based on
 convergence to assigned misfit in 21 iterations (Figure
-[fig:realDataRec]b). They were compared with the earlier results
-acquired by code :raw-latex:`\cite[]{Rutley01}` and are shown in Figure
-[fig:realDataRec]c. The large conductor on the right hand side is a
+:numref:`realDataRec` b)). They were compared with the earlier results
+acquired by code :ref:`Rutley01` and are shown in Figure
+:numref:`realDataRec` c). The large conductor on the right hand side is a
 black shale unit. The main geologic structure runs north-south and is
 essentially perpendicular to the survey line. It is expected therefore
 that the 2D inversion should produce geologically reasonable results.
 This is substantiated by comparing this cross-section with a similar
 cross-section extracted from the 3D inversion (Figures
-[fig:realDataRec]a and [fig:realDataRec]c).
+:numref:`realDataRec` a) and :numref:`realDataRec` c)).
 
 .. figure:: ../images/realDataRec.png
-   :alt: (a) The recovered model from inverting DC data along profile
-   13700, Cluny prospect, Queensland, Australia and the associated (b)
-   convergence curves. For reference, (c) the results acquired in 2001
-   over the same profile.
+   :name: realDataRec
 
    (a) The recovered model from inverting DC data along profile 13700,
    Cluny prospect, Queensland, Australia and the associated (b)
@@ -77,7 +73,7 @@ cross-section extracted from the 3D inversion (Figures
 The conductivity models recovered from the DC inversion were further
 used to carry out the IP inversion. The IP inversion was carried out
 using the same mesh as for the DC inversion and was further compared to
-the 3D inversion carried out previously :raw-latex:`\cite[]{Rutley01}`.
+the 3D inversion carried out previously :ref:`Rutley01`.
 Below is the control file used for the IP inversion:
 
 +-----------------------------------+------------------------------------+
@@ -105,14 +101,11 @@ Below is the control file used for the IP inversion:
 +-----------------------------------+------------------------------------+
 
 The results of the inversion were once again compared to the
-corresponding 3D IP inversion :raw-latex:`\cite[]{Rutley01}` and are
+corresponding 3D IP inversion :ref:`Rutley01` and are
 shown in Figure reffig:realIPres.
 
 .. figure:: ../images/realIPres.png
-   :alt: (a) The recovered model from inverting IP data along profile
-   13700, Cluny prospect, Queensland, Australia and the associated (b)
-   convergence curves. For reference, (c) the results acquired in 2001
-   over the same profile.
+   :name: realIPres
 
    (a) The recovered model from inverting IP data along profile 13700,
    Cluny prospect, Queensland, Australia and the associated (b)
@@ -120,22 +113,18 @@ shown in Figure reffig:realIPres.
    over the same profile.
 
 The predicted data from the inversions has been verified against the
-measured data and plotted in Figure [fig:realPre1] and Figure
-[fig:realPre2].
+measured data and plotted in Figure :numref:`realPre1` and Figure
+:numref:`realPre2`.
 
 .. figure:: ../images/realPre1.png
-   :alt: (a) The observed DC data along profile 13700 and (b) the
-   predicted data for comparison. The data misfit normalized by standard
-   deviation is presented in (c).
+   :name: realPre1
 
    (a) The observed DC data along profile 13700 and (b) the predicted
    data for comparison. The data misfit normalized by standard deviation
    is presented in (c).
 
 .. figure:: ../images/realPre2.png
-   :alt: (a) The observed IP data along profile 13700 and (b) the
-   predicted data for comparison. The data misfit normalized by standard
-   deviation is presented in (c).
+   :name: realPre2
 
    (a) The observed IP data along profile 13700 and (b) the predicted
    data for comparison. The data misfit normalized by standard deviation
