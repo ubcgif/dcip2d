@@ -3,7 +3,7 @@
 Workflow
 ========
 
-This section describes the standard workflow for running the inversion.
+This section describes the standard workflow for running the **DCIP2D** inversion.
 It is provided in a form of a checklist, where elements are linked to
 other sections of this manual with a more detailed explanation of the
 concepts. Figure :numref:`wkflw` shows the workflow guiding the user
@@ -37,7 +37,7 @@ of the data for the inversion:
 -  Are estimates of the noise on the data available?
 
 The inversion code assumes that the data are measured voltages due to a
-unit current in the transmitter. The formats are described in file
+unit current in the transmitter. The formats are described in :ref:`Observations<observations>` file
 section. For display purposes however, the GUI provided with  will plot
 data as apparent resistivities.
 
