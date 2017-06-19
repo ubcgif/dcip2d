@@ -224,7 +224,7 @@ these terms. Examples of using this new objective function are shown in
 the section :ref:`Examples <examples>` of the manual and additional detail about the numerical
 implementation is provided in section :ref:`Background Theory <backgroundtheory>`. Bounds constraints can be imposed
 on the model using the projected gradient method
-:ref:`CalamaiMore87`. Each cell can be provided with an
+:cite:`calamai1987projected`. Each cell can be provided with an
 upper and lower bound (:math:`m^l` and :math:`m^u`), such that
 :math:`m^L_i\le m_i \le m^u_i`.
 

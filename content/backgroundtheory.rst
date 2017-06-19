@@ -66,7 +66,7 @@ confined to the region [0,1).
    Definition of the three potentials associated with DC/IP experiments.
 
 To carry out forward modelling to compute :math:`\phi_\eta` we adopt the
-formulation of :ref:`Siegel59`, which says that the effect
+formulation of :cite:`seigel1959mathematical`, which says that the effect
 of a chargeable ground is modelled by using the dc resistivity forward
 mapping, :math:`\mathcal{F}_{dc}`, but with the conductivity replaced by
 :math:`\sigma = \sigma(1-\eta)`. Thus:
@@ -148,12 +148,12 @@ General inversion methodology
 
 The computing programs outlined in this manual solve two inverse
 problems. In the first we invert the DC potentials :math:`\phi_\sigma`
-to recover the electrical conductivity :math:`\sigma(x,z)`. This is a
+to recover the electrical conductivity :math:`\sigma(x,z)` . This is a
 non-linear inverse problem that requires linearization of the data
 equations and subsequent iteration steps. Next, we invert IP data to
-recover the chargeability :math:`\eta(x,z)`. Because chargeabilities are
+recover the chargeability :math:`\eta(x,z)` . Because chargeabilities are
 usually small quantities :math:`(\eta < 0.3)` it is possible to
-linearize equation :eq:`genApChargeDC and derive a linear system of
+linearize equation :eq:`genApChargeDC` and derive a linear system of
 equations to be solved. Irrespective of which data set is being inverted
 however, we basically use the same methodology to carry out the
 inversions.
@@ -203,7 +203,7 @@ value.
 
 It is common to use an :math:`l_2` norm measure of data fit as shown in
 equation :eq:`phid`. However, the Huber norm
-:ref:`Huber64` has been incorporated to handle outliers
+:cite:`huber1964robust` has been incorporated to handle outliers
 in the data. The general form of the Huber norm is
 
 .. math::
@@ -226,7 +226,7 @@ misfit function then becomes
 
 where :math:`c` is a constant that separates the elements of vector
 :math:`y` into those considered large and those that are considered
-small :ref:`FarquharsonOldenburg98`.
+small :cite:`farquharson1998non`.
 
 Earth conductivity distributions are complex. To allow maximum
 flexibility to produce a model of arbitrary shape it is important that
@@ -305,7 +305,7 @@ distance between the centres of horizontally adjacent cells, and
 cells.
 
 For blockier models, we have incorporated the measure proposed by Ekblom
-(:ref:`Ekblom73,Ekblom87`) that has been found to be
+(:cite:`ekblom1973calculation`) that has been found to be
 useful. The generalized version is given as
 
 .. math::
@@ -326,7 +326,7 @@ chi-factor regularization. The resulting model objective function is
    :label: ekblom
 
 Details of the Eklom norm within the context of geophysical inversion
-can be found in :ref:`FarquharsonOldenburg98`.
+can be found in :cite:`farquharson1998non`.
 
 It should be noted that in equation :eq:`disMOF`, the reference model can
 be removed from the spatial (:math:`x` and :math:`z`) components. The
@@ -467,4 +467,4 @@ number (e.g., 0.01). Working with logarithmic values however, puts undue
 emphasis on these small values. An efficient method by which to solve
 the linear inverse problem with positivity constraints is through a
 non-linear mapping of variables. More details of the IP inversion
-algorithm can be found in :ref:`OldenburgLi94`.
+algorithm can be found in :cite:`doug1994`.

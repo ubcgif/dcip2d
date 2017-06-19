@@ -5,7 +5,7 @@ Field example
 
 In the next example the field data set had been collected over the Cluny
 prospect in Mt. Isa area, Queensland, Australia by MIM Exploration Pty,
-Ltd :ref:`Rutley01`. The data were collected using
+Ltd :cite:`rutley2001`. The data were collected using
 pole-dipole and dipole-pole array configuration. The length of the
 profiles reaches 2000 m in East-West direction. A total of 10 profiles
 of DC and IP data were collected with electrode spacing of 50 m. There
@@ -53,7 +53,7 @@ coefficient and maximum number of iterations set to 50.
 The results of the inversion (Figure :numref:`realDataRec` a)) are based on
 convergence to assigned misfit in 21 iterations (Figure
 :numref:`realDataRec` b)). They were compared with the earlier results
-acquired by code :ref:`Rutley01` and are shown in Figure
+acquired by code :cite:`rutley2001` and are shown in Figure
 :numref:`realDataRec` c). The large conductor on the right hand side is a
 black shale unit. The main geologic structure runs north-south and is
 essentially perpendicular to the survey line. It is expected therefore
@@ -73,7 +73,7 @@ cross-section extracted from the 3D inversion (Figures
 The conductivity models recovered from the DC inversion were further
 used to carry out the IP inversion. The IP inversion was carried out
 using the same mesh as for the DC inversion and was further compared to
-the 3D inversion carried out previously :ref:`Rutley01`.
+the 3D inversion carried out previously :cite:`rutley2001`.
 Below is the control file used for the IP inversion:
 
 +-----------------------------------+------------------------------------+
@@ -101,7 +101,7 @@ Below is the control file used for the IP inversion:
 +-----------------------------------+------------------------------------+
 
 The results of the inversion were once again compared to the
-corresponding 3D IP inversion :ref:`Rutley01` and are
+corresponding 3D IP inversion :cite:`rutley2001` and are
 shown in Figure reffig:realIPres.
 
 .. figure:: ../images/realIPres.png

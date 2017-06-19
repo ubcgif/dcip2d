@@ -125,7 +125,7 @@ of modifications implemented in :
    extent of the data array is controlled only by the model objective
    function. As such it is best removed for final presentation. The
    useful region of investigation can be estimated using the DOI process
-   :ref:`OldenburgLi99` or by using the cumulative
+   :cite:`oldenburg1999estimating` or by using the cumulative
    sensitivity analysis.
 
 -  **Selecting wave numbers**: Working in 2D requires that Maxwell’s
