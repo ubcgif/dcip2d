@@ -173,7 +173,7 @@ discretized volume extends well beyond the data area.
 
    -  **DCINV2D**: inverts 2D DC resistivity data
 
-   -  **IPINV2D: inverts 2D IP resistivity data
+   -  **IPINV2D**: inverts 2D IP resistivity data
 
 #. **Graphical user interfaces** are supplied for the Windows platforms
    *only*. Facilities include:
