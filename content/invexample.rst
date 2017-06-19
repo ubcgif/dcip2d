@@ -6,8 +6,19 @@ DC Inversion of the forward model
 We use several synthetic examples to illustrate various aspects of . The
 emphasis of the test examples is to show the newly added features of the
 inversion programs. A synthetic conductivity model is shown in Figure
-[fig:fwdAR] and resultant synthetic data I shown in Figure
-[fig:fwdTrueCrop].
+:numref:`fwdAR` and resultant synthetic data I shown in Figure
+:numref:`fwdTrueCrop`.
+
+.. figure:: ../images/fwdMesh.png
+.. figure:: ../images/fwdTrue.png
+.. figure:: ../images/fwdAppRes
+.. figure:: ../images/fwdTrueCropped
+
+(a) The synthetic model consists of two conductors buried in a uniform halfspace overlain
+by an overburden of variable conductivity. A V-shaped valley simulates the surface topography.
+The region of interest is outlined by the white lines, but padding cells are added so that the correct
+boundary conditions can be applied during the forward modelling. (b) The nite-dierence mesh
+used in the modelling.
 
 The synthetic model consists of two conductors buried in a uniform half
 space, which is overlain by an overburden of variable conductivity. A
@@ -43,16 +54,16 @@ First, the synthetic data were inverted using the all-default option:
 
 In this file, the first line indicates that the data file is of format.
 The second line contains the reference to topography file . The third
-line is in reference to the mesh file ]. If there is no topography it is
+line is in reference to the mesh file `. If there is no topography it is
 not necessary to include either the mesh, or the topography file in
 all-default mode.  will construct a mesh in automatic mode and consider
 topography to be zero. In our case we have user-defined topography and
 mesh file is provided. The result of the all-default inversion is shown
-in Figure [fig:alldefault]. The best fitting half space was
+in Figure :numref:`alldefault`. The best fitting half space was
 approximately 120 ohm-m.
 
 .. figure:: ../images/alldefault.png
-   :alt: Inversion of synthetic DC data using all-default mode.
+   :name: alldefault
 
    Inversion of synthetic DC data using all-default mode.
 
@@ -87,34 +98,32 @@ fifth line means that the system solver has been switched from default
 solver (CG). The reference model has been set to 0.001 S/m (or 1000 Ohm
 m). The initial model has been set to the same as reference model. The
 results of applying these control file parameters are shown in the
-inversion model in Figure [fig:synEx2].
+inversion model in Figure :numref:`synEx2`.
 
 .. figure:: ../images/synEx2.png
-   :alt: Inversion of synthetic DC data using user-defined smallness
-   parameter (:math:`\alpha_s`\ s) 1000 Ohm m half space as both:
-   reference and a starting model.
+   :name: synEx2
 
    Inversion of synthetic DC data using user-defined smallness parameter
    (:math:`\alpha_s`\ s) 1000 Ohm m half space as both: reference and a
    starting model.
 
-The basic features of the models in Figure [fig:alldefault] and Figure
-[fig:synEx2] are similar. Both conductors have been located and so has
+The basic features of the models in Figure :numref:`alldefault` and Figure
+:numref:`synEx2` are similar. Both conductors have been located and so has
 the resistive overburden on the left. (Compare with the synthetic model
-in Figure [fig:fwdTrueCrop]). Nevertheless, there are differences.
-Figure [fig:synEx2], which uses a more resistive reference model,
+in Figure :numref:`fwdTrueCrop`). Nevertheless, there are differences.
+Figure :numref:`synEx2`, which uses a more resistive reference model,
 supports the interpretation of closure for the body on the right. There
 is also an odd structure emanating from the left most part of the
-resistive overburden observed in Figure [fig:alldefault] that is not
-observed in Figure [fig:synEx2]. The primary differences between the two
+resistive overburden observed in Figure :numref:`alldefault` that is not
+observed in Figure :numref:`synEx2`. The primary differences between the two
 models can be explained through the use of a DOI (Depth of
-Investigation) plot. For the present we use Figure [fig:synEx2] as a
-reference and Figure [fig:alldefault] as an additional model.
+Investigation) plot. For the present we use Figure :numref:`synEx2` as a
+reference and Figure :numref:`alldefault` as an additional model.
 
 When the inversion volume is cut with respect to the DOI, then
 differences in the images are no longer so apparent. For the remainder
 of the example section we shall use the reference the model described in
-Figure [fig:synEx2] (1000 Ohm m half space) as the model.
+Figure :numref:`synEx2` (1000 Ohm m half space) as the model.
 
 Depth of Investigation (DOI)
 ----------------------------
@@ -128,20 +137,17 @@ models can be compared to identify which regions of the model are most
 significantly affected by the measurements. The results of doing this
 are explained next.
 
-Using , the method is applied within the GUI, using option in the menu.
+Using, the method is applied within the GUI, using option in the menu.
 There must be a second model that was recovered using the same mesh as
 the one being observed. Any two different inversions results can be
 used. Here we use 1000 Ohm-m halfspace as our model and we want blank
 out those sections of the model that are not well controlled by the
 data. A second inversion using a background of 106 Ohm-m (the default
 value from the code) and used that to compute the DOI. In Figure
-[fig:doiInv](a-b) shows the model with cutoffs of 0.1 and 0.4.
+:numref:`doiInv` (a-b) shows the model with cutoffs of 0.1 and 0.4.
 
 .. figure:: ../images/doiInvExample.png
-   :alt: Assessing the depth of investigation (DOI): (a) based on
-   recovered model (cut-off=0.1), (b) based on recovered model (cut-off
-   = 0.4), (c) based on sensitivity (cut-off = 0.5), and (d) based on
-   sensitivity (cut-off = 0.6).
+   :name: doiInv
 
    Assessing the depth of investigation (DOI): (a) based on recovered
    model (cut-off=0.1), (b) based on recovered model (cut-off = 0.4),
@@ -150,24 +156,21 @@ value from the code) and used that to compute the DOI. In Figure
 
 Another option to assess the depth of investigation is through the
 analysis of the sensitivities. In  there is a capability to visualize
-the sensitivities using the GUI (Figure [fig:doiInv]c and Figure
-[fig:doiInv]d). Generally, the lower sensitivities correspond to less
+the sensitivities using the GUI (Figure :numref:`doiInv` c and Figure
+:numref:`doiInv` d). Generally, the lower sensitivities correspond to less
 reliable model parameters (deeper-seated cells); higher sensitivities
 correspond to those model cells, which have most effect on the data
 (usually closer to surface). A good way to assess the DOI is by plotting
 the model on the full mesh extent (including the padding cells, Figure
 19). In this figure we use the DOI evaluated from 1000 and 106 Ohm-m
-half spaces (that is, the same as Figure [fig:doiInv]a and Figure
-[fig:doiInv]b). As the DOI threshold decreases we limit the region of
+half spaces (that is, the same as Figure :numref:`doiInv`a and Figure
+:numref:`doiInv` b). As the DOI threshold decreases we limit the region of
 the model to that which is most controlled by the data. See (Figure
-[fig:doiInvSens]a-c). The final choice of cutoff is selected by the
+:numref:`doiInvSens` a-c). The final choice of cutoff is selected by the
 user.
 
 .. figure:: ../images/doiSensInvExample.png
-   :alt: Assessing the depth of investigation (DOI): (a) based on
-   recovered model (cut-off=0.1), (b) based on recovered model (cut-off
-   = 0.4), (c) based on sensitivity (cut-off = 0.5), and (d) based on
-   sensitivity (cut-off = 0.6).
+   :name: doiInvSens
 
    Assessing the depth of investigation (DOI): (a) based on recovered
    model (cut-off=0.1), (b) based on recovered model (cut-off = 0.4),
@@ -179,7 +182,7 @@ DC Inversion: Non-uniform reference model
 
 The next example is very similar to the previous inversion, with an
 exception that a different reference model is introduced (Figure
-[fig:exRef]). As opposed to the previous example, where the reference
+:numref:`exRef`). As opposed to the previous example, where the reference
 model was set to a 1000 Ohm m half space, the new model includes an
 elongated conductive (10 Ohm m) rectangular block. The elongated block
 has the same value as the conductivity anomaly but the boundaries do not
@@ -188,11 +191,11 @@ In summary, the supplied reference model has captured some aspects of
 the true conductivity but it is not an exact reflection of what is
 there. This example has been contrived to illustrate what happens with
 the options of including, or omitting, the reference model in derivative
-terms in the objective function according to equations [eq:disMOF] and
-[eq:mofNOref].
+terms in the objective function according to equations :eq:`disMOF` and
+:eq:`mofNOref`.
 
 .. figure:: ../images/synRef.png
-   :alt: Reference model applied for the synthetic example illustration.
+   :name: exRef
 
    Reference model applied for the synthetic example illustration.
 
@@ -224,14 +227,14 @@ should be read from a file, rather than assigned a constant value; line
 6 indicates that the reference model should be defined in non-derivative
 terms and line 9 is indicating that the maximum number of iterations for
 this inversion should not exceed 40. The results of this inversion can
-be seen in Figure /reffig:synWithRef.
+be seen in Figure :numref:`synWithRef`.
 
 .. figure:: ../images/synWithRef.png
-   :alt: Reference model applied for the synthetic example illustration.
+   :name: synWithRef
 
    Reference model applied for the synthetic example illustration.
 
-This is a superior model compared to that in Figure [fig:synEx2]. The
+This is a superior model compared to that in Figure :numref:`synEx2`. The
 magnitude of the conductive anomaly is much better recovered, although
 at 7.6 Ohm-m it is slightly less resistive than the true value of 10
 Ohm-m. It has a well-defined elongated shape with steep gradational
@@ -264,7 +267,7 @@ inversion into the default mode (reference model is defined in the
 derivative terms in default mode). This line also could have been
 changed to ).
 
-The result is shown in Figure [fig:synWithRefIn] and it produces a model
+The result is shown in Figure :numref:`synWithRefIn` and it produces a model
 that has boundaries at the same location as the reference block and
 there is even more over-shoot of the conductivity. For this example
 however, putting in the reference model into the derivative terms is
@@ -273,33 +276,30 @@ solution, where the reference model was left out of the derivative terms
 is preferable.
 
 .. figure:: ../images/synWithRefIn.png
-   :alt: Reference model applied for the synthetic example illustration.
+   :name: synWithRefIn
 
    Reference model applied for the synthetic example illustration.
 
 This is not always the case. Consider a situation where the goal is to
 find a body beneath an overburden layer. The model and the reference
-model are shown in Figure [fig:synOverBurdenTrue]. It might be supposed
+model are shown in Figure :numref:`synOverBurdenTrue`. It might be supposed
 that information about the overburden thickness and its resistivity have
 been obtained through drilling. Two inversions are carried out. In the
-first (Figure [fig:synOverBurden]a) the reference model is omitted from
+first (Figure :numref:`synOverBurden` a) the reference model is omitted from
 the derivative term and the overburden boundary is characterized by a
-smooth transition. In the second case (Figure [fig:synOverBurden]b) the
+smooth transition. In the second case (Figure :numref:`synOverBurden` b) the
 reference model is included in the derivative terms and the result is a
 cleaner delineation of the overburden and better definition of the
 sought body.
 
 .. figure:: ../images/synOverBurdenTrue.png
-   :alt: A conductive block underneath the overburden: (a) the true
-   model and (b) the reference model.
+   :name: synOverBurdenTrue
 
    A conductive block underneath the overburden: (a) the true model and
    (b) the reference model.
 
 .. figure:: ../images/synOverBurden.png
-   :alt: Inversion results when (a) the reference model is not included
-   in the derivative terms and when (b) the reference model is defined
-   in derivative terms.
+   :name: synOverBurden
 
    Inversion results when (a) the reference model is not included in the
    derivative terms and when (b) the reference model is defined in
@@ -311,7 +311,7 @@ DC Inversion: Incorporating inactive cells constraint
 In the next example it is illustrated how drilling data can be
 incorporated in the inversion using fixed cells constraint. In this
 example, the reference model has been set to the same elongated
-conductive block model as shown in Figure [fig:synOverBurdenTrue]. The
+conductive block model as shown in Figure :numref:`synOverBurdenTrue`. The
 difference is that in this case additional information has been
 incorporated by fixing some reference model cell values. The values are
 taken from the reference model file () but their values are fixed using
@@ -359,18 +359,17 @@ The format of this file is consistent with the model file, and the
 values equal to 1 define the model cells marked as , while values equal
 to 0 define the model cells marked as (without the capability affect the
 neighbouring cells). The case when inactive cells do not influence their
-neighbours is shown in Figure [fig:synAct].
+neighbours is shown in Figure :numref:`synAct`.
 
-.. figure:: ../images/synAct
-   :alt: Recovered model when the reference model cells are inactive and
-   they do not influence the neighbouring cells.
+.. figure:: ../images/synAct.png
+   :name: synAct
 
    Recovered model when the reference model cells are inactive and they
    do not influence the neighbouring cells.
 
 If it is desired to have the inactive cells influence the values of
 neighboring cells, then their values are set to -1 as in the file below.
-The resultant inversion model is shown in Figure [fig:synAct2]. The
+The resultant inversion model is shown in Figure :numref:`synAct2`. The
 region of high conductivity has been extended away from the reference
 model and the anomaly smoothly transitions to the background.
 
@@ -391,8 +390,7 @@ model and the anomaly smoothly transitions to the background.
 +-----+-----+-----+-----+------+------+------+------+-----+-----+-----+-----+-----+-----+
 
 .. figure:: ../images/synAct2.png
-   :alt: Recovered model when cells are inactive, but their values
-   influence those of the neighbouring cells.
+   :name: synAct2
 
    Recovered model when cells are inactive, but their values influence
    those of the neighbouring cells.
@@ -402,7 +400,7 @@ DC inversion: Using weighting functions
 
 The next example illustrates the situation when prior information is
 incorporated using the function file. The synthetic model for this
-example is the same as illustrated in Figure [fig:synOverBurdenTrue].
+example is the same as illustrated in Figure :numref:`synOverBurdenTrue`.
 Instead of reference model, a file was used. The control file used for
 this inversion is shown below. The reference to the weighting file is
 provided in line 11 ().
@@ -431,19 +429,19 @@ provided in line 11 ().
 | NITER 50                    | ! Max iterations             |
 +-----------------------------+------------------------------+
 
-The recovered model is illustrated in Figure [fig:synOverBurdenWght] and
-is very similar to the model shown in Figure [fig:synOverBurden]b. The
+The recovered model is illustrated in Figure :numref:`synOverBurdenWght` and
+is very similar to the model shown in Figure :numref:`synOverBurden` b. The
 alternative of using a weighting file instead of the reference model
 facilitated the technical implementation of the prior constraints and
 brings an additional degree of freedom in being able to adjust the level
 of certainty in the a priori information by editing the weighting
 coefficients. In our case, the weighting coefficients were edited for
-the :math:`\bvec{W}_z` matrix, where the sixth interface (corresponding
+the :math:`\boldsymbol{\vec{W}}_z` matrix, where the sixth interface (corresponding
 to the bottom of the overburden) was set to 0.1 (as opposed to default
 weights of 1.0).
 
 .. figure:: ../images/synOverBurdenWght.png
-   :alt: Recovered model from the inversion using file
+   :name: synOverBurdenWght
 
    Recovered model from the inversion using file
 
@@ -456,12 +454,11 @@ The data are the same as used in previous examples except that 5 data
 have been severely perturbed. The inversions are carried out with the
 same standard deviation estimates, as used previously, a 1000 ohm-m
 background, and a data file contaminated with bad apparent resistivity
-values. Figure [fig:huberCont] shows the contamination introduced to the
+values. Figure :numref:`huberCont` shows the contamination introduced to the
 apparent resistivity file used for the inversions.
 
 .. figure:: ../images/huberCont.png
-   :alt: The (a) true data and (b) data contaminated with noise that
-   will be inverted.
+   :name: huberCont
 
    The (a) true data and (b) data contaminated with noise that will be
    inverted.
@@ -494,21 +491,19 @@ below:
 | NITER 20                    | ! Max iterations        |
 +-----------------------------+-------------------------+
 
-The results of the inversion are shown in Figure [fig:synHuberInv]. The
+The results of the inversion are shown in Figure :numref:`synHuberInv`. The
 inversion ran for 20 iterations and the target misfit was not achieved
 and there were many artifacts. The reason is that the great effort was
 being made to fit the five erroneous data.
 
 .. figure:: ../images/synHuberInv.png
-   :alt: Recovered model (top) and conversion curves (bottom) from the
-   inversion of the contaminated data. The data misfit utilized an
-   :math:`l_2` norm.
+   :name: synHuberInv
 
    Recovered model (top) and conversion curves (bottom) from the
    inversion of the contaminated data. The data misfit utilized an
    :math:`l_2` norm.
 
-In Figure [fig:synHuberData] we show the observed data and the
+In Figure :numref:`synHuberData` we show the observed data and the
 normalized misfit. Three of the five outliers are distinct and they
 contribute a value of 2067.05 to the final misfit of 9303. By
 recognizing them as outliers, they might be winnowed from further
@@ -518,8 +513,7 @@ quality data, having large misfits. This is characteristic of non-robust
 norms.
 
 .. figure:: ../images/synHuberData.png
-   :alt: Observed data (top) and the normalized difference (bottom) from
-   the inversion using an :math:`l_2` misfit measure.
+   :name: synHuberData
 
    Observed data (top) and the normalized difference (bottom) from the
    inversion using an :math:`l_2` misfit measure.
@@ -553,7 +547,7 @@ shown below:
 
 Line 9 in this control file has been set to so that all normalized data
 misfits with value greater than 0.1 will be evaluated with the
-:math:`l_1` measure. The results are shown in Figure [fig:synInvHuber2]
+:math:`l_1` measure. The results are shown in Figure :numref:`synInvHuber2`
 and they appear much better, than in previous case. Nevertheless, they
 can still be improved by recognizing the existence of the highly
 erroneous data and winnowing them from the inversion. incorrect
@@ -563,8 +557,7 @@ recovery is far from perfect, the main conductor bodies are now shown
 with satisfactory detail, comparing to the :math:`l_2` normalization.
 
 .. figure:: ../images/synHuber2.png
-   :alt: (top) The recovered model from inversion of contaminated data
-   using Huber norm for the data misfit and (b) the convergence curves.
+   :name: synHuber2
 
    (top) The recovered model from inversion of contaminated data using
    Huber norm for the data misfit and (b) the convergence curves.
@@ -628,11 +621,10 @@ On the last line of this control file, there is the reference to the
 conductivity file, an essential input parameter for an IP inversion.
 This file has to come from a corresponding DC inversion, carried out
 prior to the IP inversion. The results of this inversion are shown in
-Figure [fig:synIp1].
+Figure :numref:`synIp1`.
 
 .. figure:: ../images/synIp1.png
-   :alt: Recovered chargeability model for a zero chargeability
-   reference model and 1000 Ohm-m conductivity model.
+   :name: synIp1
 
    Recovered chargeability model for a zero chargeability reference
    model and 1000 Ohm-m conductivity model.
@@ -641,11 +633,10 @@ IP inversion: Non-uniform reference model
 -----------------------------------------
 
 In the next example, similarly to the DC inversions, we have introduced
-a chargeable block into the reference model (Figure [fig:synIPref]).
+a chargeable block into the reference model (Figure :numref:`synIPref`).
 
 .. figure:: ../images/synIPref.png
-   :alt: The reference model applied to the synthetic example for
-   illustration.
+   :name: synIPref
 
    The reference model applied to the synthetic example for
    illustration.
@@ -654,7 +645,7 @@ Further, the new reference model was introduced in the inversion and
 omitted from the derivative terms. The control file for the inversion is
 virtually identical as in case with analogous inversion of the DC data
 and is provided below. The resulting inversion is shown in Figure
-[fig:recSynIPref].
+:numref:`recSynIPref`.
 
 +------------------------------+-------------------------------+
 | OBS LOC\_X obs\_ip.dat       | ! IP data                     |
@@ -677,8 +668,7 @@ and is provided below. The resulting inversion is shown in Figure
 +------------------------------+-------------------------------+
 
 .. figure:: ../images/recSynIPref.png
-   :alt: Recovered model from IP inversion using the non-uniform
-   reference model in the smallness term.
+   :name: recSynIPref
 
    Recovered model from IP inversion using the non-uniform reference
    model in the smallness term.
@@ -690,7 +680,7 @@ In this next example, the geological information is incorporated in the
 model objective function using the :math:`l_1` norm measure rather than
 the default :math:`l_2` norm. This allows recovery of a blocky model.
 The control file for this example is provided below, and the resultant
-inversion model is shown in Figure [fig:synIPblocky].
+inversion model is shown in Figure :numref:`synIPblocky`.
 
 +-------------------------------------+----------------------------+
 | OBS LOC\_X obs\_ip.dat              | ! IP data                  |
@@ -713,8 +703,7 @@ inversion model is shown in Figure [fig:synIPblocky].
 +-------------------------------------+----------------------------+
 
 .. figure:: ../images/synIPblocky.png
-   :alt: Recovered model from IP inversion Using :math:`l_1` measure
-   (Ekblom norm) of model norm to recover a blocky model.
+   :name: synIPblocky
 
    Recovered model from IP inversion Using :math:`l_1` measure (Ekblom
    norm) of model norm to recover a blocky model.
@@ -724,13 +713,12 @@ boundaries than the deep block on the right. This arises because the
 right hand block is located close to the edge of the depth of
 investigation for the survey. To illustrate this we superpose the depth
 of investigation inferred by using the sensitivity function with a
-cutoff of 0.5. This is shown in Figure [fig:synIPblockDOI] to illustrate
+cutoff of 0.5. This is shown in Figure :numref:`synIPblockDOI` to illustrate
 the depth of investigation (DOI) the model has been plotted on a larger
 scale.
 
 .. figure:: ../images/synIPblockDOI.png
-   :alt: The depth of investigation (DOI) for the IP inversion with an
-   :math:`l_1` model norm.
+   :name: synIPblockDOI
 
    The depth of investigation (DOI) for the IP inversion with an
    :math:`l_1` model norm.
@@ -742,12 +730,12 @@ This next example illustrates an inversion with a reference model with
 fixed cells (inactive). In this example, the inactive cells are
 representing a scenario when our constraints are acquired by
 incorporating borehole information. Out synthetic borehole is located on
-the profile at :math:`x=60` (Figure [fig:synIPbore]a). This reference
+the profile at :math:`x=60` (Figure :numref:`synIPbore` a). This reference
 model is now different and involves only the knowledge we have from the
-borehole data (Figure [fig:synIPbore]b). The inversion was carried out
+borehole data (Figure :numref:`synIPbore` b). The inversion was carried out
 in the mode, when the inactive cells may influence their neighbours and
 resulted in the chargeability distribution shown in Figure
-[fig:synIPbore]c. In this mode the inversion extends the chargeability
+:numref:`synIPbore` c. In this mode the inversion extends the chargeability
 of the fixed cells away from the reference block. The case is very
 similar to the analogous example shown in the DC inversion. The control
 file used for this inversion is provided below:
@@ -793,10 +781,7 @@ and with the capability to influence the neighbours (i.e., -1)
 +-----+-----+-----+-----+-----+-----+------+------+-----+-----+-----+-----+-----+-----+
 
 .. figure:: ../images/synIPbore.png
-   :alt: (a) The true chargeability model with the borehole location.
-   (b) The new reference model created from the borehole information.
-   (c) Recovered model with the borehole locations set to inactive with
-   influence (-1) on neighbouring cells.
+   :name: synIPbore
 
    (a) The true chargeability model with the borehole location. (b) The
    new reference model created from the borehole information. (c)
@@ -814,7 +799,7 @@ section on the left, followed by 50 Ohm-m section in the middle,
 followed by 500 Ohm-m section on the right. The background resistive
 media is hosting two rectangular bodies at 150-m depth each. The prism
 on the left side is resistive (10,000 Ohm-m resistivity) and the prism
-on the right side is conductive (50 Ohm-m) (Figure [fig:synLarge]a).
+on the right side is conductive (50 Ohm-m) (Figure :numref:`synLarge` a).
 
 For the Wenner array the following configuration was used: number of
 stations = 400; minimum a-spacing = 80 m; maximum a-spacing 1367 m
@@ -823,23 +808,20 @@ The spreading coefficient in this case is the multiplier used to
 calculate the increased spread distance between the potential electrodes
 for each station, given the minimum separation ) The total number of
 data for Wenner array (considering number of stations and all possible
-separations) was 2610 (Figure [fig:synLarge]b).
+separations) was 2610 (Figure :numref:`synLarge` b).
 
 The pole-dipole synthetic survey used a=75 m and n=1,10. The current
 pole was fixed on the right hand side of the array. This resulted in a
-total number of pole-dipole data of 1005 (Figure [fig:synLarge]c). The
+total number of pole-dipole data of 1005 (Figure :numref:`synLarge` c). The
 combined Wenner and pole-dipole data set contains 3615 data (Figure
-[fig:synLarge]d).
+:numref:`synLarge` d).
 
 This synthetic model was discretized with a mesh, composed of 17918
 cells (including padding), with the smallest cells reaching 30 m
 horizontally and 15 m vertically for the core region (depth to 1 km).
 
 .. figure:: ../images/synLarge.png
-   :alt: (a) The true model create for a large-scale synthetic data set
-   by combining Wenner and Pole-dipole configurations. (b) The synthetic
-   data from the Wenner array and (c) pole-dipole array are combined to
-   get the (d) synthetic data for the entire data set.
+   :name: synLarge
 
    (a) The true model create for a large-scale synthetic data set by
    combining Wenner and Pole-dipole configurations. (b) The synthetic
@@ -871,17 +853,13 @@ file is provided below:
 | BOUNDS 0.00001 0.02              | ! Global conductivity bounds      |
 +----------------------------------+-----------------------------------+
 
-The inversion converged in 17 iterations (Figure [fig:synLargeRes]a) and
+The inversion converged in 17 iterations (Figure :numref:`synLargeRes` a) and
 was able to reconstruct all of the features shallower than 500-m of
 depth. This is consistent with the depth of investigation for this
-survey, based on the sensitivity (Figure [fig:synLargeRes]b).
+survey, based on the sensitivity (Figure :numref:`synLargeRes` b).
 
 .. figure:: ../images/synLargeRec.png
-   :alt: (a) The true model create for a large-scale synthetic data set
-   by combining Wenner and Pole-dipole configurations. (b) The recovered
-   model from inversion of the large synthetic data set with the Ekblom
-   norm showing the DOI based on sensitivity analysis (threshold = 0.4).
-   (c) The convergence curves show how the inversion performed.
+   :name: synLargeRec
 
    (a) The true model create for a large-scale synthetic data set by
    combining Wenner and Pole-dipole configurations. (b) The recovered
@@ -890,13 +868,11 @@ survey, based on the sensitivity (Figure [fig:synLargeRes]b).
    (c) The convergence curves show how the inversion performed.
 
 The observed data were compared with the predicted data. The misfit is
-shown in Figure [fig:synLargeMisfit]. The predicted data error does not
+shown in Figure :numref:`synLargeMisfit`. The predicted data error does not
 exceed 3.9 standard deviations and overall data misfit is 3597.6.
 
 .. figure:: ../images/synLargeMisfit.png
-   :alt: (a) Observed apparent resistivity (mixed Wenner/Pole-dipole
-   data set) and the (b) data misfit, which is normalized by the
-   standard deviation.
+   :name: synLargeMisfit
 
    (a) Observed apparent resistivity (mixed Wenner/Pole-dipole data set)
    and the (b) data misfit, which is normalized by the standard

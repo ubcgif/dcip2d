@@ -10,43 +10,35 @@ coorespond to the values given in the file.
 
 An example of the file structure is as follows:
 
-| \|cccc\|
-| V\ :math:`_{1,1}` & V\ :math:`_{2,1}` & :math:`\hdots` &
-  V\ :math:`_{N_x,1}`
-| V\ :math:`_{1,2}` & V\ :math:`_{2,2}` & :math:`\hdots` &
-  V\ :math:`_{N_x,2}`
-| :math:`\vdots` & :math:`\vdots` & :math:`\vdots` & :math:`\vdots`
-| V\ :math:`_{1,N_z}` & V\ :math:`_{2,N_z}` & :math:`\hdots` &
-  V\ :math:`_{N_x,N_z}`
+.. figure:: ../images/modelfile_format.png
+   :figwidth: 50%
+   :align: center
+   :name: modelfile_format
 
-#. Number of cells in the horizontal direction
+#. :math:`N_x`: Number of cells in the horizontal direction
 
-#. Number of cells in the vertical direction.
+#. :math:`N_z`: Number of cells in the vertical direction.
 
-#. Value of the model at the i\ :math:`^{th}` cell in the horizontal
+#. :math:`V_{i,k}`: Value of the model at the i\ :math:`^{th}` cell in the horizontal
    direction and j\ :math:`^{th}` cell in depth. When :math:`j=1`, the
    cell is at the top of the mesh and :math:`j=N_z` corresponds to the
    bottom of the mesh. In the horizontal direction :math:`i=1`
    corresponds to the beginning of the line (e.g., West) and
    :math:`i=N_x` is at the end of the line (e.g., East).
 
-#. i\ :math:`^{th}` horizontal location
+#. :math:`X_i`: i\ :math:`^{th}` horizontal location
 
-#. i\ :math:`^{th}` elevation
+#. :math:`elev_i`: i\ :math:`^{th}` elevation
 
 Example of a model
 ------------------
 
 The following is an example of a model:
 
-| \|ccccc\|
-| .01 & .23 & .20 & .46 & 0.2
-| .64 & .32 & .54 & &
-| .19 & 1E-5 & & &
-| .01 & .23 & .20 & .46 & 0.2
-| .64 & .33 & .21 & .85 & 0.2
-| .11 & .75 & .25 & .62 & 0.4
-| .25 & .64 & .23 & .15 & 0.4
+.. figure:: ../images/meshfile_format_example.png
+   :figwidth: 50%
+   :align: center
+   :name: meshfile_format_example
 
 In the above example, there are 10 horizontal cells and 3 vertical cell
 associated with the mesh. The first row is broken into the first three

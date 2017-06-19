@@ -17,29 +17,24 @@ fraction of the station spacing (or dipole length of the array).
 
 An example of the file structure is as follows:
 
-| \|ccc\|
-| :math:`X_0` & :math:`X_1` & NX\ :math:`_1`
-| & :math:`X_2` & NX\ :math:`_2`
-| & :math:`\vdots` & :math:`\vdots`
-| & :math:`X_{N_x}` & NX\ :math:`_{N_x}`
-| :math:`Z_0` & :math:`Z_1` & NZ\ :math:`_1`
-| & :math:`Z_2` & NZ\ :math:`_2`
-| & :math:`\vdots` & :math:`\vdots`
-| & :math:`Z_{N_z}` & NZ\ :math:`_{N_z}`
+.. figure:: ../images/meshfile_format.png
+   :figwidth: 50%
+   :align: center
+   :name: meshfile_format
 
-#. Number of segments used to define the horizontal partitioning
+#. :math:`N_x`: Number of segments used to define the horizontal partitioning
 
-#. Boundary of the segment in :math:`x-`\ coordinates. The first line
+#. :math:`X_i`: Boundary of the segment in :math:`x-`\ coordinates. The first line
    has the edged of the mesh (west-most coordinate) and the next
    boundary. From there, each line is the boundary for the previous
    line.
 
-#. Number of cells within the segment. The cell size is determined by
+#. :math:`NX_i`: Number of cells within the segment. The cell size is determined by
    (X:math:`_{i}` - X\ :math:`_i-1`) / NX\ :math:`_i`
 
-#. Number of segments used to define the vertical partitioning.
+#. :math:`N_z`: Number of segments used to define the vertical partitioning.
 
-#. Boundary of the segment in :math:`z-`\ coordinates. These coordinates
+#. :math:`Z_i`: Boundary of the segment in :math:`z-`\ coordinates. These coordinates
    are in depth (z+ down). The first line has the top of the mesh
    (west-most coordinate) and the next boundary. From there, each line
    is the boundary for the previous line. NOTE: When topography is
@@ -47,7 +42,7 @@ An example of the file structure is as follows:
    Therefore, it is encouraged to set Z\ :math:`_0 = 0` in all cases for
    user readability of the thicknesses of cells in the first segment.
 
-#. Number of cells within the segment. The cell size is determined by
+#. :math:`NZ_i`: Number of cells within the segment. The cell size is determined by
    (Z:math:`_{i}` - Z\ :math:`_i-1`) / NZ\ :math:`_i`
 
 Example of general format
@@ -55,30 +50,10 @@ Example of general format
 
 The following is an example of a 2D mesh:
 
-| \|ccc\|
-| -300 & -180 & 1
-| & -130 & 1
-| & -110 & 1
-| & -100 & 1
-| & 100 & 40
-| & 110 & 1
-| & 130 & 1
-| & 180 & 1
-| & 300 & 1
-| 0 & 10 & 5
-| & 22 & 4
-| & 42 & 5
-| & 57 & 3
-| & 63 & 1
-| & 71 & 1
-| & 81 & 1
-| & 95 & 1
-| & 115 & 1
-| & 140 & 1
-| & 170 & 1
-| & 205 & 1
-| & 245 & 1
-| & 300 & 1
+.. figure:: ../images/meshfile_format_example.png
+   :figwidth: 50%
+   :align: center
+   :name: meshfile_format_example
 
 In the above example, the mesh is :math:`(48 \times 27)` covering from
 :math:`x = [-100,100]` and :math:`z=[0,300]` . There are 9 segments in

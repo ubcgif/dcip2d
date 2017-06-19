@@ -34,14 +34,14 @@ An example of the file structure is as follows:
 | X\ :math:`_N`    | elev\ :math:`_N`   |
 +------------------+--------------------+
 
-#. Number of locations defining the topographic profile.
+#. :math:`N`: Number of locations defining the topographic profile.
 
-#. The elevation of the top of the 2D . See the introductory paragraph
+#. :math:`elev0`: The elevation of the top of the 2D . See the introductory paragraph
    in this section for details.
 
-#. i\ :math:`^{th}` horizontal location.
+#. :math:`X_i`: i\ :math:`^{th}` horizontal location.
 
-#. i\ :math:`^{th}` elevation at X\ :math:`_i`.
+#. :math:`elev_i`: i\ :math:`^{th}` elevation at X\ :math:`_i`.
 
 Example of topography
 ---------------------
