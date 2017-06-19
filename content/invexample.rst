@@ -14,6 +14,7 @@ inversion programs. A synthetic conductivity model is shown in Figure
 .. figure:: ../images/fwdAppRes
 .. figure:: ../images/fwdTrueCropped
 
+
 (a) The synthetic model consists of two conductors buried in a uniform halfspace overlain
 by an overburden of variable conductivity. A V-shaped valley simulates the surface topography.
 The region of interest is outlined by the white lines, but padding cells are added so that the correct

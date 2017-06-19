@@ -168,27 +168,27 @@ discretized volume extends well beyond the data area.
    inversion of 2D DC resistivity or induced polarization surveys. The
    DCIP2D library (Windows or Linux platforms) consists of the programs:
 
-   -  : calculates DC resistivity and/or IP data based on a given model
+   -  **DCIPF2D**: calculates DC resistivity and/or IP data based on a given model
       of the earth.
 
-   -  : inverts 2D DC resistivity data
+   -  **DCINV2D**: inverts 2D DC resistivity data
 
-   -  : inverts 2D IP resistivity data
+   -  **IPINV2D: inverts 2D IP resistivity data
 
 #. **Graphical user interfaces** are supplied for the Windows platforms
    *only*. Facilities include:
 
-   -  : a primary interface for setting up the inversion and monitoring
+   -  **DCIP2D-GUI**: a primary interface for setting up the inversion and monitoring
       progress.
 
-   -  : a utility for viewing raw data, error distributions, and for
+   -  **DCIP2D-DATA-VIEWER**: a utility for viewing raw data, error distributions, and for
       comparing observed to predicted data directly or as difference
       maps.
 
-   -  : a utility for displaying resulting 2D models, and graphs of
+   -  **DCIP2D-MODEL-VIEWER**: a utility for displaying resulting 2D models, and graphs of
       convergence behaviour.
 
-   -  : a separate utility for building synthetic 2D models and then
+   -  **DCIP2D-MODEL-MAKER**: a separate utility for building synthetic 2D models and then
       running forward modelling to produce a synthetic data set.
 
 #. **Example data sets and excercises** can be provided upon request.

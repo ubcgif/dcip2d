@@ -123,7 +123,7 @@ Forward modelling
 The forward modelling for the DC potentials and IP apparent
 chargeabilities and secondary potentials is accomplished using a finite
 difference technique to solve equation :eq:`dcForward`. The program which
-performs this calculation is . In Version  we include the option to
+performs this calculation is **DCIPF2D**. In Version  we include the option to
 calculate IP data by multiplying the sensitivity matrix
 :math:`\mathbf{J}` by the chargeability provided by user. That is, we
 forward model with the linear equations that will be used for the
@@ -159,7 +159,7 @@ however, we basically use the same methodology to carry out the
 inversions.
 
 To outline our methodology it is convenient to introduce a single
-notation for the and for the . We let
+notation for the data and for the model. We let
 :math:`\boldsymbol{\vec{d}} = (d_1,d_2,\ldots,d_n)^T` denote the data so that
 :math:`d_i` is the i\ :math:`^{th}` potential in a DC resistivity data
 set or the i\ :math:`^{th}` apparent chargeability in an IP survey. Let
@@ -347,7 +347,7 @@ and for the Ekblom norm
    &&+ \left[\boldsymbol{\vec{m}}^T(\alpha_x\boldsymbol{\vec{W}}^T_x\boldsymbol{\vec{W}}_x)\boldsymbol{\vec{m}} + \epsilon^2 \right]^{\frac{\rho}{2}} + \left[\boldsymbol{\vec{m}}^T(\alpha_z\boldsymbol{\vec{W}}^T_z\boldsymbol{\vec{W}}_z)\boldsymbol{\vec{m}} + \epsilon^2 \right]^{\frac{\rho}{2}}.
    \end{aligned}
 
-This is a new feature in and gives the user greater flexibility. The
+This is a new feature in **DCIP2D** and gives the user greater flexibility. The
 inverse problem is now properly formulated as an optimization problem:
 
 .. math::
@@ -371,7 +371,7 @@ Inversion of DC data
 --------------------
 
 The inversion of the apparent resistivity data is carried out using the
-program . The inversion of DC resistivity data formulated as the
+program **DCINV2D**. The inversion of DC resistivity data formulated as the
 minimization in equation :eq:`inverseProblem` is nonlinear since the data
 do not depend linearly upon the conductivity model. We tackle this
 problem using a Gauss-Newton approach in which the objective function is
