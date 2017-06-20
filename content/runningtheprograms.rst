@@ -70,21 +70,10 @@ Input files
 
 Keywords for the input file dcipf2d.inp are:
 
-+------------------------------------+---------------------------------------+
-| FWD [DC \| IP \| IPL]              | ! Type of data to model               |
-+------------------------------------+---------------------------------------+
-| MESH FILE fileName                 | ! Mesh                                |
-+------------------------------------+---------------------------------------+
-| LOC [LOC\_X \| LOC\_XZ] fileName   | ! Locations file                      |
-+------------------------------------+---------------------------------------+
-| TOPO [FILE fileName \| DEFAULT]    | ! Topography                          |
-+------------------------------------+---------------------------------------+
-| COND [VALUE c \| FILE fileName]    | ! Conductivity value or model file    |
-+------------------------------------+---------------------------------------+
-| CHG [VALUE c \| FILE fileName]     | ! Chargeability value or model file   |
-+------------------------------------+---------------------------------------+
-| WAVE w\_min w\_max N               | ! Optional min/max of N wave values   |
-+------------------------------------+---------------------------------------+
+.. figure:: ../images/InputFile_DCIPF2D.png
+   :figwidth: 75%
+   :align: center
+   :name: InputFile_DCIPF2D
 
 -  *FWD*: The choices after this keyword are:
 
@@ -132,17 +121,10 @@ Example of dcipf2d.inp
 Example of an input file for DCIPF2D to model DC data that are given in general format
 and a with a topography file:
 
-+-------------------------+--------------------------------------+
-| FWD DC                  | ! DC input type                      |
-+-------------------------+--------------------------------------+
-| MESH FILE myMesh.msh    | ! mesh file                          |
-+-------------------------+--------------------------------------+
-| LOC LOC\_XZ obs.loc     | ! general formatted locations file   |
-+-------------------------+--------------------------------------+
-| TOPO FILE myTopo.dat    | ! topography file                    |
-+-------------------------+--------------------------------------+
-| COND FILE myModel.con   | ! conductivity model file            |
-+-------------------------+--------------------------------------+
+.. figure:: ../images/InputFile_DCIPF2D_example.png
+   :figwidth: 75%
+   :align: center
+   :name: InputFile_DCIPF2D_example
 
 Output files
 ~~~~~~~~~~~~
@@ -171,43 +153,10 @@ Input Files
 
 Keywords for the input file dcinv2d.inp are:
 
-+----------------------------------------------------+----------------------------------------+
-| MESH [DEFAULT \| FILE \| NC\_ASPR n a]             | ! Specify the mesh                     |
-+----------------------------------------------------+----------------------------------------+
-| OBS [LOC\_X \| LOC\_XZ] fileName                   | ! Observations file follows            |
-+----------------------------------------------------+----------------------------------------+
-| NITER n                                            | ! Maximum number of iterations         |
-+----------------------------------------------------+----------------------------------------+
-| CHIFACT [c \| DEFAULT]                             | ! Chifact c or default                 |
-+----------------------------------------------------+----------------------------------------+
-| TOPO [FILE \| DEFAULT]                             | ! Topography                           |
-+----------------------------------------------------+----------------------------------------+
-| INIT\_MOD [VALUE \| FILE \| DEFAULT]               | ! Initial conductivity model           |
-+----------------------------------------------------+----------------------------------------+
-| REF\_MOD [VALUE \| FILE \| DEFAULT]                | ! reference conductivity model         |
-+----------------------------------------------------+----------------------------------------+
-| ALPHA [VALUE \| LENGTH \| DEFAULT]                 | ! Alphas or length scales              |
-+----------------------------------------------------+----------------------------------------+
-| WEIGHT [FILE \| FILES \| DEFAULT]                  | ! Alphas or length scales              |
-+----------------------------------------------------+----------------------------------------+
-| WAVE w\_min w\_max N                               | ! min/max of N wave values             |
-+----------------------------------------------------+----------------------------------------+
-| STORE\_ALL\_MODELS [TRUE \| FALSE]                 | ! store all models or write to disk    |
-+----------------------------------------------------+----------------------------------------+
-| INVMODE [CG \| SVD]                                | ! way to solve the system              |
-+----------------------------------------------------+----------------------------------------+
-| CG\_PARAM maxit tol                                | ! parameters for CG system             |
-+----------------------------------------------------+----------------------------------------+
-| HUBER c                                            | ! constant for the Huber norm          |
-+----------------------------------------------------+----------------------------------------+
-| EKBLOM rho\_s rho\_x rho\_z eps\_s eps\_x eps\_z   | ! six constants for the Ekblom norm    |
-+----------------------------------------------------+----------------------------------------+
-| ACTIVE\_CELLS fileName                             | ! specify file for active cells        |
-+----------------------------------------------------+----------------------------------------+
-| USE\_MREF [TRUE \| FALSE]                          | ! ref model throughout spatial terms   |
-+----------------------------------------------------+----------------------------------------+
-| BOUNDS [VALUE \| FILE\_L \| FILE\_U \| NONE]       | ! specify bounds                       |
-+----------------------------------------------------+----------------------------------------+
+.. figure:: ../images/InputFile_DCinv2D.png
+   :figwidth: 75%
+   :align: center
+   :name: InputFile_DCinv2D
 
 -  *MESH* The choices after this keyword are:
 
@@ -382,29 +331,10 @@ the system of equations with a maximum number of CG iterations set at
 800 and a relative accuracy of 1e-5. There are no bounds in this
 inversion.
 
-+-------------------------------------+-----------------------------------------+
-| OBS LOC\_XZ obs\_dc.dat             | ! general formatted data                |
-+-------------------------------------+-----------------------------------------+
-| TOPO FILE topography.txt            | ! topography file                       |
-+-------------------------------------+-----------------------------------------+
-| MESH NC\_ASPR 4 2                   | ! DCINV2D created mesh                  |
-+-------------------------------------+-----------------------------------------+
-| ALPHA LENGTH 5 5                    | ! length scales of 5 m                  |
-+-------------------------------------+-----------------------------------------+
-| CHIFACT 0.9                         | ! data misfit equal to number of data   |
-+-------------------------------------+-----------------------------------------+
-| INIT\_MOD DEFAULT                   | ! initial model is ref model            |
-+-------------------------------------+-----------------------------------------+
-| REF\_MOD VALUE 0.001                | ! ref model                             |
-+-------------------------------------+-----------------------------------------+
-| EKBLOM 1.0 1.0 1.0 1e-5 1e-5 1e-5   | ! Ekblom norm                           |
-+-------------------------------------+-----------------------------------------+
-| NITER 50                            | ! max iterations                        |
-+-------------------------------------+-----------------------------------------+
-| INVMODE CG                          | ! use CG solver                         |
-+-------------------------------------+-----------------------------------------+
-| CG\_PARAM 800 1e-5                  | ! Solver specs                          |
-+-------------------------------------+-----------------------------------------+
+.. figure:: ../images/InputFile_DCinv2D_example.png
+   :figwidth: 75%
+   :align: center
+   :name: InputFile_DCinv2D_example
 
 Output Files
 ~~~~~~~~~~~~
@@ -448,45 +378,10 @@ Input Files
 
 Keywords for the input file ipinv2d.inp are:
 
-+----------------------------------------------------+----------------------------------------+
-| MESH [DEFAULT \| FILE \| NC\_ASPR n a]             | ! Specify the mesh                     |
-+----------------------------------------------------+----------------------------------------+
-| OBS [LOC\_X \| LOC\_XZ] fileName                   | ! Observations file follows            |
-+----------------------------------------------------+----------------------------------------+
-| NITER n                                            | ! Maximum number of iterations         |
-+----------------------------------------------------+----------------------------------------+
-| CHIFACT [c \| DEFAULT]                             | ! Chifact c or default                 |
-+----------------------------------------------------+----------------------------------------+
-| TOPO [FILE \| DEFAULT]                             | ! Topography                           |
-+----------------------------------------------------+----------------------------------------+
-| INIT\_MOD [VALUE \| FILE \| DEFAULT]               | ! Initial chargeability model          |
-+----------------------------------------------------+----------------------------------------+
-| REF\_MOD [VALUE \| FILE \| DEFAULT]                | ! Reference chargeability model        |
-+----------------------------------------------------+----------------------------------------+
-| COND [VALUE \| FILE ]                              | ! Conductivity model                   |
-+----------------------------------------------------+----------------------------------------+
-| ALPHA [VALUE \| LENGTH \| DEFAULT]                 | ! Alphas or length scales              |
-+----------------------------------------------------+----------------------------------------+
-| WEIGHT [FILE \| FILES \| DEFAULT]                  | ! Alphas or length scales              |
-+----------------------------------------------------+----------------------------------------+
-| WAVE w\_min w\_max N                               | ! min/max of N wave values             |
-+----------------------------------------------------+----------------------------------------+
-| STORE\_ALL\_MODELS [TRUE \| FALSE]                 | ! store all models or write to disk    |
-+----------------------------------------------------+----------------------------------------+
-| INVMODE [CG \| SVD]                                | ! way to solve the system              |
-+----------------------------------------------------+----------------------------------------+
-| CG\_PARAM maxit tol                                | ! parameters for CG system             |
-+----------------------------------------------------+----------------------------------------+
-| HUBER c                                            | ! constant for the Huber norm          |
-+----------------------------------------------------+----------------------------------------+
-| EKBLOM rho\_s rho\_x rho\_z eps\_s eps\_x eps\_z   | ! six constants for the Ekblom norm    |
-+----------------------------------------------------+----------------------------------------+
-| ACTIVE\_CELLS fileName                             | ! specify file for active cells        |
-+----------------------------------------------------+----------------------------------------+
-| USE\_MREF [TRUE \| FALSE]                          | ! ref model throughout spatial terms   |
-+----------------------------------------------------+----------------------------------------+
-| BOUNDS [VALUE \| FILE\_L \| FILE\_U \| NONE]       | ! specify bounds                       |
-+----------------------------------------------------+----------------------------------------+
+.. figure:: ../images/InputFile_IPinv2D.png
+   :figwidth: 75%
+   :align: center
+   :name: InputFile_IPinv2D
 
 -  *MESH* The choices after this keyword are:
 
@@ -678,31 +573,10 @@ if the desired misfit (equal to the number of data) is not achieved.
 Conjugate gradients are used to solve the system of equations and the
 bounds are given in two separate files.
 
-+----------------------------+-----------------------------------------+
-| OBS LOC\_XZ obs\_ip.dat    | ! general formatted data                |
-+----------------------------+-----------------------------------------+
-| TOPO FILE topography.txt   | ! topography file                       |
-+----------------------------+-----------------------------------------+
-| MESH FILE mesh2d.msh       | ! mesh                                  |
-+----------------------------+-----------------------------------------+
-| COND FILE dcinv2d.con      | ! conductivity model                    |
-+----------------------------+-----------------------------------------+
-| ALPHA VALUE 0.001 1 1      | ! length scales of 5 m                  |
-+----------------------------+-----------------------------------------+
-| CHIFACT 1.0                | ! data misfit equal to number of data   |
-+----------------------------+-----------------------------------------+
-| INIT\_MOD DEFAULT          | ! initial model is ref model            |
-+----------------------------+-----------------------------------------+
-| REF\_MOD DEFAULT           | ! ref model                             |
-+----------------------------+-----------------------------------------+
-| NITER 50                   | ! max iterations                        |
-+----------------------------+-----------------------------------------+
-| INVMODE CG                 | ! use CG solver                         |
-+----------------------------+-----------------------------------------+
-| BOUNDS FILE\_L lower.bnd   | ! lower bounds                          |
-+----------------------------+-----------------------------------------+
-| BOUNDS FILE\_U upper.bnd   | ! upper bounds                          |
-+----------------------------+-----------------------------------------+
+.. figure:: ../images/InputFile_IPinv2D_example.png
+   :figwidth: 75%
+   :align: center
+   :name: InputFile_IPinv2D_example
 
 Output Files
 ~~~~~~~~~~~~

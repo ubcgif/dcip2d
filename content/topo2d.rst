@@ -22,17 +22,10 @@ interpolation from this file.
 
 An example of the file structure is as follows:
 
-+------------------+--------------------+
-| N                | elev0              |
-+------------------+--------------------+
-| X\ :math:`_1`    | elev\ :math:`_1`   |
-+------------------+--------------------+
-| X\ :math:`_2`    | elev\ :math:`_2`   |
-+------------------+--------------------+
-| :math:`\vdots`   | :math:`\vdots`     |
-+------------------+--------------------+
-| X\ :math:`_N`    | elev\ :math:`_N`   |
-+------------------+--------------------+
+.. figure:: ../images/topofile_format.png
+   :figwidth: 50%
+   :align: center
+   :name: topofile_format
 
 #. :math:`N`: Number of locations defining the topographic profile.
 
@@ -48,29 +41,10 @@ Example of topography
 
 The following is an example of topography:
 
-+--------+------+
-| 10     | 40   |
-+--------+------+
-| -250   | 10   |
-+--------+------+
-| -180   | 20   |
-+--------+------+
-| -130   | 30   |
-+--------+------+
-| -110   | 40   |
-+--------+------+
-| -50    | 50   |
-+--------+------+
-| 50     | 50   |
-+--------+------+
-| 110    | 40   |
-+--------+------+
-| 130    | 30   |
-+--------+------+
-| 180    | 20   |
-+--------+------+
-| 250    | 10   |
-+--------+------+
+.. figure:: ../images/topofile_format_example.png
+   :figwidth: 50%
+   :align: center
+   :name: topofile_format_example
 
 In the above example, there are 10 locations that vary in elevation from
 10 to 50 m. The two locations above 40 m (elev0) will be represented as 40 m
