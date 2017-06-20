@@ -74,7 +74,7 @@ general format file structure is as follows:
 #. :math:`Comment~line`: Any comments can go here. This line is ignored by dcinv2d and must have a
    preceding “!”
 
-#. :math:`\text{'nTx'}`: integer number giving the totla number of sources in the file.
+#. :math:`nTx`: integer number giving the totla number of sources in the file.
 
 #. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
    inversion. NOTE: If omitted from IP inversion, the program will
@@ -163,7 +163,7 @@ observations file:
 #. :math:`Comment~line`: Any comments can go here. This line is ignored by dcinv2d and must have a
    preceding “!”
 
-#. :math:`\text{'nTx'}`: integer number giving the totla number of sources in the file.
+#. :math:`nTx`: integer number giving the totla number of sources in the file.
 
 #. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
    inversion. NOTE: If omitted from IP inversion, the program will
