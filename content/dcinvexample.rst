@@ -84,13 +84,10 @@ DC Inversion: All default
 
 First, the synthetic data were inverted using the all-default option:
 
-+--------------------------+----------------+
-| OBS LOC\_X obs\_dc.dat   | ! DC data      |
-+--------------------------+----------------+
-| TOPO FILE topo.dat       | ! Topography   |
-+--------------------------+----------------+
-| MESH FILE dcinv2d.msh    | ! Mesh         |
-+--------------------------+----------------+
+.. figure:: ../images/dcinv_alldefault.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_alldefault
 
 In this file, the first line indicates that the data file *obs_dc.dat* is of surface format.
 The second line contains the reference to topography file *topo.dat*. The third
@@ -115,21 +112,10 @@ user-defined and changed. In real life this can be done if there is a
 higher level of certainty regarding some starting parameters (prior
 information). The control file for the next example is provided below:
 
-+-----------------------------+---------------------+
-| OBS LOC\_X obs\_dc.dat      | ! DC data           |
-+-----------------------------+---------------------+
-| TOPO FILE topo.dat          | ! Topography        |
-+-----------------------------+---------------------+
-| MESH FILE dcinv2d.msh       | ! Mesh              |
-+-----------------------------+---------------------+
-| ALPHA VALUE 1.e-3 1.0 1.0   | ! Alphas            |
-+-----------------------------+---------------------+
-| INVMODE CG                  | ! Use CG            |
-+-----------------------------+---------------------+
-| REF\_MOD VALUE 1.e-3        | ! Reference model   |
-+-----------------------------+---------------------+
-| INIT\_MOD VALUE 1.e-3       | ! Initial model     |
-+-----------------------------+---------------------+
+.. figure:: ../images/dcinv_refmodel.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_refmodel
 
 In this example, the fourth line indicates that the smallness
 coefficient (:math:`\alpha_s`) is now user-defined (set to 0.001). The
@@ -243,25 +229,10 @@ terms in the objective function according to equations :eq:`disMOF` and
 In the first example (control file provided below) the reference model
 was used in only the smallest model component.
 
-+------------------------------+------------------------------+
-| OBS LOC\_X obs\_dc.dat       | ! DC data                    |
-+------------------------------+------------------------------+
-| TOPO FILE topo.dat           | ! Topography                 |
-+------------------------------+------------------------------+
-| MESH FILE dcinv2d.msh        | ! Mesh                       |
-+------------------------------+------------------------------+
-| ALPHA VALUE 1.e-2 1.0 1.0    | ! Alphas                     |
-+------------------------------+------------------------------+
-| INVMODE CG                   | ! Use CG                     |
-+------------------------------+------------------------------+
-| USE\_MREF FALSE              | ! Ref out of spatial terms   |
-+------------------------------+------------------------------+
-| REF\_MOD FILE new\_ref.con   | ! Reference model            |
-+------------------------------+------------------------------+
-| INIT\_MOD VALUE 1.e-3        | ! Initial model              |
-+------------------------------+------------------------------+
-| NITER 40                     | ! Max iterations             |
-+------------------------------+------------------------------+
+.. figure:: ../images/dcinv_nonsmoothRefModel.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_nonsmoothRefModel
 
 In this control file line 7 now indicates that the reference model
 should be read from a file, rather than assigned a constant value; line
@@ -285,23 +256,10 @@ reference model, then this can be incorporated into the inversion. We
 next carry out an inversion in which the reference model is included in
 the derivative terms. Below is the control file used for this inversion.
 
-+------------------------------+---------------------+
-| OBS LOC\_X obs\_dc.dat       | ! DC data           |
-+------------------------------+---------------------+
-| TOPO FILE topo.dat           | ! Topography        |
-+------------------------------+---------------------+
-| MESH FILE dcinv2d.msh        | ! Mesh              |
-+------------------------------+---------------------+
-| ALPHA VALUE 1.e-2 1.0 1.0    | ! Alphas            |
-+------------------------------+---------------------+
-| INVMODE CG                   | ! Use CG            |
-+------------------------------+---------------------+
-| REF\_MOD FILE new\_ref.con   | ! Reference model   |
-+------------------------------+---------------------+
-| INIT\_MOD VALUE 1.e-3        | ! Initial model     |
-+------------------------------+---------------------+
-| NITER 40                     | ! Max iterations    |
-+------------------------------+---------------------+
+.. figure:: ../images/dcinv_useMref.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_useMref
 
 The line (*USE_MREF_FALSE*) from the previous example has been eliminated, switching the
 inversion into the default mode (reference model is defined in the
@@ -359,42 +317,18 @@ taken from the reference model file (*ref_new.con*) but their values are fixed u
 active cells file (*ACTIVE_CELLS active.txt*), defined in line 6 of the control file provided
 below.
 
-+------------------------------+---------------------+
-| OBS LOC\_X obs\_dc.dat       | ! DC data           |
-+------------------------------+---------------------+
-| TOPO FILE topo.dat           | ! Topography        |
-+------------------------------+---------------------+
-| MESH FILE dcinv2d.msh        | ! Mesh              |
-+------------------------------+---------------------+
-| ALPHA VALUE 1.e-3 1.0 1.0    | ! Alphas            |
-+------------------------------+---------------------+
-| INVMODE CG                   | ! Use CG            |
-+------------------------------+---------------------+
-| REF\_MOD FILE new\_ref.con   | ! Reference model   |
-+------------------------------+---------------------+
-| INIT\_MOD VALUE 1.e-3        | ! Initial model     |
-+------------------------------+---------------------+
-| ACTIVE\_CELLS active.txt     | ! Active cells      |
-+------------------------------+---------------------+
+.. figure:: ../images/dcinv_inactivecells.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_inactivecells
 
 The active file format was previously discussed within the subsection :ref:`Model <model2d>` in the
 section of the manual, however another example is provided below:
 
-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 0   | 0   | 0   | 0   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 0   | 0   | 0   | 0   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 0   | 0   | 0   | 0   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+.. figure:: ../images/dcinv_inactive_example.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_inactive_example
 
 The format of this file is consistent with the model file, and the
 values equal to 1 define the model cells marked as active, while values equal
@@ -414,21 +348,10 @@ The resultant inversion model is shown in Figure :numref:`synAct2`. The
 region of high conductivity has been extended away from the reference
 model and the anomaly smoothly transitions to the background.
 
-+-----+-----+-----+-----+------+------+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1    | 1    | 1    | 1    | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+------+------+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1    | 1    | 1    | 1    | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+------+------+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | -1   | -1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+------+------+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | -1   | -1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+------+------+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | -1   | -1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+------+------+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1    | 1    | 1    | 1    | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+------+------+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1    | 1    | 1    | 1    | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+------+------+------+------+-----+-----+-----+-----+-----+-----+
+.. figure:: ../images/dcinv_inactive_example_2.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_inactive_example_2
 
 .. figure:: ../images/synAct2.png
    :name: synAct2
@@ -446,29 +369,10 @@ Instead of reference model, a weigthing file was used. The control file used for
 this inversion is shown below. The reference to the weighting file is
 provided in line 11 (*WEIGHT W.dat*).
 
-+-----------------------------+------------------------------+
-| OBS LOC\_X obs\_dc.dat      | ! DC data                    |
-+-----------------------------+------------------------------+
-| TOPO FILE topo.dat          | ! Topography                 |
-+-----------------------------+------------------------------+
-| MESH FILE dcinv2d.msh       | ! Mesh                       |
-+-----------------------------+------------------------------+
-| ALPHA VALUE 1.e-3 1.0 1.0   | ! Alphas                     |
-+-----------------------------+------------------------------+
-| INVMODE CG                  | ! Use CG                     |
-+-----------------------------+------------------------------+
-| REF\_MOD FILE 2e-3          | ! Reference model            |
-+-----------------------------+------------------------------+
-| INIT\_MOD VALUE 2e-3        | ! Initial model              |
-+-----------------------------+------------------------------+
-| USE\_MREF FALSE             | ! Ref out of spatial terms   |
-+-----------------------------+------------------------------+
-| WEIGHT w.dat                | ! Weighting file             |
-+-----------------------------+------------------------------+
-| CHIFACT 1                   | ! Chi factor of 1            |
-+-----------------------------+------------------------------+
-| NITER 50                    | ! Max iterations             |
-+-----------------------------+------------------------------+
+.. figure:: ../images/dcinv_weights.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_weights
 
 The recovered model is illustrated in Figure :numref:`synOverBurdenWght` and
 is very similar to the model shown in Figure :numref:`synOverBurden` b. The
@@ -508,29 +412,10 @@ The contaminated data were inverted using a standard :math:`l_2` norm
 for the data misfit. The control file for this inversion is provided
 below:
 
-+-----------------------------+-------------------------+
-| OBS LOC\_X obs\_dc.dat      | ! DC data               |
-+-----------------------------+-------------------------+
-| TOPO FILE topo.dat          | ! Topography            |
-+-----------------------------+-------------------------+
-| MESH FILE dcinv2d.msh       | ! Mesh                  |
-+-----------------------------+-------------------------+
-| ALPHA VALUE 1.e-3 1.0 1.0   | ! Alphas                |
-+-----------------------------+-------------------------+
-| INVMODE CG                  | ! Use CG                |
-+-----------------------------+-------------------------+
-| REF\_MOD FILE 1e-3          | ! Reference model       |
-+-----------------------------+-------------------------+
-| INIT\_MOD VALUE 1e-3        | ! Initial model         |
-+-----------------------------+-------------------------+
-| USE\_MREF TRUE              | ! Ref everywhere        |
-+-----------------------------+-------------------------+
-| WEIGHT w.dat                | ! Weighting file        |
-+-----------------------------+-------------------------+
-| CG\_PARAM 20 1.e-2          | ! CG max iter and tol   |
-+-----------------------------+-------------------------+
-| NITER 20                    | ! Max iterations        |
-+-----------------------------+-------------------------+
+.. figure:: ../images/dcinv_huber.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_huber
 
 The results of the inversion are shown in Figure :numref:`synHuberInv`. The
 inversion ran for 20 iterations and the target misfit was not achieved
@@ -564,27 +449,10 @@ fitting the data using the :math:`l_2` measure, Huber norm was imposed
 on the data fit. The example of the control file with Huber norm is
 shown below:
 
-+-----------------------------+------------------------------+
-| OBS LOC\_X obs\_dc.dat      | ! DC data                    |
-+-----------------------------+------------------------------+
-| TOPO FILE topo.dat          | ! Topography                 |
-+-----------------------------+------------------------------+
-| MESH FILE dcinv2d.msh       | ! Mesh                       |
-+-----------------------------+------------------------------+
-| ALPHA VALUE 1.e-3 1.0 1.0   | ! Alphas                     |
-+-----------------------------+------------------------------+
-| INVMODE CG                  | ! Use CG                     |
-+-----------------------------+------------------------------+
-| REF\_MOD FILE 1e-3          | ! Reference model            |
-+-----------------------------+------------------------------+
-| INIT\_MOD VALUE 1e-3        | ! Initial model              |
-+-----------------------------+------------------------------+
-| USE\_MREF FALSE             | ! Ref out of spatial terms   |
-+-----------------------------+------------------------------+
-| HUBER 0.1                   | ! Huber constant             |
-+-----------------------------+------------------------------+
-| NITER 40                    | ! Max iterations             |
-+-----------------------------+------------------------------+
+.. figure:: ../images/dcinv_huber_2.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_huber_2
 
 Line 9 in this control file has been set to so that all normalized data
 misfits with value greater than 0.1 will be evaluated with the

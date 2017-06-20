@@ -37,23 +37,10 @@ half space and the conductivity model acquired from inverting the dc
 resistivity with 1000 Ohm-m half space reference. The control file for
 this inversion is shown below:
 
-+-----------------------------+----------------------------+
-| OBS LOC\_X obs\_ip.dat      | ! IP data                  |
-+-----------------------------+----------------------------+
-| TOPO FILE topo.dat          | ! Topography               |
-+-----------------------------+----------------------------+
-| MESH FILE dcinv2d.msh       | ! Mesh                     |
-+-----------------------------+----------------------------+
-| ALPHA VALUE 1.e-3 1.0 1.0   | ! Alphas                   |
-+-----------------------------+----------------------------+
-| INVMODE CG                  | ! Use CG                   |
-+-----------------------------+----------------------------+
-| REF\_MOD FILE 1e-3          | ! Reference model          |
-+-----------------------------+----------------------------+
-| INIT\_MOD VALUE 1e-3        | ! Initial model            |
-+-----------------------------+----------------------------+
-| COND FILE dcinv2d.con       | ! Recovered conductivity   |
-+-----------------------------+----------------------------+
+.. figure:: ../images/ipinv_zeromref.png
+   :figwidth: 75%
+   :align: center
+   :name: ipinv_zeromref
 
 On the last line of this control file, there is the reference to the
 conductivity file, an essential input parameter for an IP inversion.
@@ -85,25 +72,10 @@ virtually identical as in case with analogous inversion of the DC data
 and is provided below. The resulting inversion is shown in Figure
 :numref:`recSynIPref`.
 
-+------------------------------+-------------------------------+
-| OBS LOC\_X obs\_ip.dat       | ! IP data                     |
-+------------------------------+-------------------------------+
-| TOPO FILE topo.dat           | ! Topography                  |
-+------------------------------+-------------------------------+
-| MESH FILE dcinv2d.msh        | ! Mesh                        |
-+------------------------------+-------------------------------+
-| ALPHA VALUE 1.e-2 1.0 1.0    | ! Alphas                      |
-+------------------------------+-------------------------------+
-| INVMODE CG                   | ! Use CG                      |
-+------------------------------+-------------------------------+
-| REF\_MOD FILE ref\_new.chg   | ! Reference model             |
-+------------------------------+-------------------------------+
-| INIT\_MOD VALUE 1e-5         | ! Initial model               |
-+------------------------------+-------------------------------+
-| USE\_MREF FALSE              | ! Ref mod only in smallness   |
-+------------------------------+-------------------------------+
-| COND FILE dcinv2d.con        | ! Recovered conductivity      |
-+------------------------------+-------------------------------+
+.. figure:: ../images/ipinv_mref.png
+   :figwidth: 75%
+   :align: center
+   :name: ipinv_mref
 
 .. figure:: ../images/recSynIPref.png
    :name: recSynIPref
@@ -120,25 +92,11 @@ the default :math:`l_2` norm. This allows recovery of a blocky model.
 The control file for this example is provided below, and the resultant
 inversion model is shown in Figure :numref:`synIPblocky`.
 
-+-------------------------------------+----------------------------+
-| OBS LOC\_X obs\_ip.dat              | ! IP data                  |
-+-------------------------------------+----------------------------+
-| TOPO FILE topo.dat                  | ! Topography               |
-+-------------------------------------+----------------------------+
-| MESH FILE dcinv2d.msh               | ! Mesh                     |
-+-------------------------------------+----------------------------+
-| ALPHA VALUE 1.e-3 1.0 1.0           | ! Alphas                   |
-+-------------------------------------+----------------------------+
-| INVMODE CG                          | ! Use CG                   |
-+-------------------------------------+----------------------------+
-| REF\_MOD FILE 1e-5                  | ! Reference model          |
-+-------------------------------------+----------------------------+
-| INIT\_MOD VALUE 1e-5                | ! Initial model            |
-+-------------------------------------+----------------------------+
-| EKBLOM 1. 1. 1. 1.E-3 1.E-3 1.E-3   | ! Ekblom variables         |
-+-------------------------------------+----------------------------+
-| COND FILE dcinv2d.con               | ! Recovered conductivity   |
-+-------------------------------------+----------------------------+
+.. figure:: ../images/ipinv_ekblom.png
+   :figwidth: 75%
+   :align: center
+   :name: ipinv_ekblom
+
 
 .. figure:: ../images/synIPblocky.png
    :name: synIPblocky
@@ -178,45 +136,19 @@ of the fixed cells away from the reference block. The case is very
 similar to the analogous example shown in the DC inversion. The control
 file used for this inversion is provided below:
 
-+------------------------------+----------------------------+
-| OBS LOC\_X obs\_ip.dat       | ! IP data                  |
-+------------------------------+----------------------------+
-| TOPO FILE topo.dat           | ! Topography               |
-+------------------------------+----------------------------+
-| MESH FILE dcinv2d.msh        | ! Mesh                     |
-+------------------------------+----------------------------+
-| ALPHA LENGTH 100 100         | ! Length scales (m)        |
-+------------------------------+----------------------------+
-| INVMODE CG                   | ! Use CG                   |
-+------------------------------+----------------------------+
-| REF\_MOD FILE new\_ref.chg   | ! Reference model          |
-+------------------------------+----------------------------+
-| ACTIVE\_CELLS active.txt     | ! Active cell model        |
-+------------------------------+----------------------------+
-| INIT\_MOD VALUE 1e-5         | ! Initial model            |
-+------------------------------+----------------------------+
-| COND FILE dcinv2d.con        | ! Recovered conductivity   |
-+------------------------------+----------------------------+
+.. figure:: ../images/ipinv_inactive.png
+   :figwidth: 75%
+   :align: center
+   :name: ipinv_inactive
 
 The active file is shown below, the structure has been edited so that two cells
 (one in each direction) around the synthetic borehole are set inactive
 and with the capability to influence the neighbours (i.e., -1)
 
-+-----+-----+-----+-----+-----+-----+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+------+------+-----+-----+-----+-----+-----+-----+
-| 1   | 1   | 1   | 1   | 1   | 1   | -1   | -1   | 1   | 1   | 1   | 1   | 1   | 1   |
-+-----+-----+-----+-----+-----+-----+------+------+-----+-----+-----+-----+-----+-----+
+.. figure:: ../images/ipinv_inactive_example.png
+   :figwidth: 75%
+   :align: center
+   :name: ipinv_inactive_example
 
 .. figure:: ../images/synIPbore.png
    :name: synIPbore

@@ -27,28 +27,12 @@ model (100 Ohm m). A default meshing option was used, resulting in
 16.8-m wide and 8.33-m high cells in the core region. The control file
 used for the inversion is provided below with user-defined smallness
 coefficient and maximum number of iterations set to 50.
+ented below:
 
-+----------------------------+-----------------------------------+
-| OBS LOC\_X 2D\_13700.dat   | ! DC data                         |
-+----------------------------+-----------------------------------+
-| MESH DEFAULT               | ! Created mesh                    |
-+----------------------------+-----------------------------------+
-| TOPO FILE topo.txt         | ! Topography                      |
-+----------------------------+-----------------------------------+
-| INVMODE SVD                | ! Use CG                          |
-+----------------------------+-----------------------------------+
-| REF\_MOD FILE 1e-2         | ! Reference model                 |
-+----------------------------+-----------------------------------+
-| INIT\_MOD VALUE 1e-2       | ! Initial model                   |
-+----------------------------+-----------------------------------+
-| CHIFACT 1                  | ! Data misfit to number of data   |
-+----------------------------+-----------------------------------+
-| STORE\_ALL\_MODELS TRUE    | ! Write out all models            |
-+----------------------------+-----------------------------------+
-| ALPHA VALUE 1E-4 1 1       | ! Alpha values                    |
-+----------------------------+-----------------------------------+
-| NITER 50                   | ! Max iterations                  |
-+----------------------------+-----------------------------------+
+.. figure:: ../images/dcinv_field_example.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_field_example
 
 The results of the inversion (Figure :numref:`realDataRec` a)) are based on
 convergence to assigned misfit in 21 iterations (Figure
@@ -76,29 +60,10 @@ using the same mesh as for the DC inversion and was further compared to
 the 3D inversion carried out previously :cite:`rutley2001`.
 Below is the control file used for the IP inversion:
 
-+-----------------------------------+------------------------------------+
-| OBS LOC\_X L13700\_COMPLETE.dat   | ! IP data                          |
-+-----------------------------------+------------------------------------+
-| MESH FILE dcinv2d.msh             | ! Created mesh from DC inversion   |
-+-----------------------------------+------------------------------------+
-| TOPO FILE topo.txt                | ! Topography                       |
-+-----------------------------------+------------------------------------+
-| INVMODE SVD                       | ! Use CG                           |
-+-----------------------------------+------------------------------------+
-| REF\_MOD FILE 1e-7                | ! Reference model                  |
-+-----------------------------------+------------------------------------+
-| INIT\_MOD VALUE 1e-7              | ! Initial model                    |
-+-----------------------------------+------------------------------------+
-| CHIFACT 1                         | ! Data misfit to number of data    |
-+-----------------------------------+------------------------------------+
-| STORE\_ALL\_MODELS TRUE           | ! Write out all models             |
-+-----------------------------------+------------------------------------+
-| ALPHA VALUE 1E-4 1 1              | ! Alpha values                     |
-+-----------------------------------+------------------------------------+
-| COND dcinv2d.con                  | ! Conductivity model               |
-+-----------------------------------+------------------------------------+
-| NITER 50                          | ! Max iterations                   |
-+-----------------------------------+------------------------------------+
+.. figure:: ../images/ipinv_field_example.png
+   :figwidth: 75%
+   :align: center
+   :name: ipinv_field_example
 
 The results of the inversion were once again compared to the
 corresponding 3D IP inversion :cite:`rutley2001` and are

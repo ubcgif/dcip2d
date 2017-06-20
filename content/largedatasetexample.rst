@@ -45,25 +45,10 @@ inverted using :math:`l_1` measure for model objective function in order
 to accommodate a more blocky inversion result. The inversion control
 file is provided below:
 
-+----------------------------------+-----------------------------------+
-| OBS LOC\_X obs\_dc.dat           | ! DC data                         |
-+----------------------------------+-----------------------------------+
-| MESH FILE mesh2d.msh             | ! Mesh                            |
-+----------------------------------+-----------------------------------+
-| NITER 40                         | ! Max iterations                  |
-+----------------------------------+-----------------------------------+
-| INVMODE CG                       | ! Use CG                          |
-+----------------------------------+-----------------------------------+
-| REF\_MOD FILE 1e-3               | ! Reference model                 |
-+----------------------------------+-----------------------------------+
-| INIT\_MOD VALUE 1e-3             | ! Initial model                   |
-+----------------------------------+-----------------------------------+
-| CHIFACT 1                        | ! data misfit to number of data   |
-+----------------------------------+-----------------------------------+
-| EKBLOM 1. 1. 1. 1e-3 1e-3 1e-3   | ! Ekblom variables                |
-+----------------------------------+-----------------------------------+
-| BOUNDS 0.00001 0.02              | ! Global conductivity bounds      |
-+----------------------------------+-----------------------------------+
+.. figure:: ../images/dcinv_largedata.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_largedata
 
 The inversion converged in 17 iterations (Figure :numref:`synLargeRec` a)) and
 was able to reconstruct all of the features shallower than 500-m of

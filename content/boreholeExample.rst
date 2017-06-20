@@ -37,15 +37,10 @@ contaminated with 5% Gaussian noise and inverted with a chi factor of 1
 converged in 14 iterations. The results of the inversion of surface data
 are presented in Figure :numref:`bSurf`.
 
-+-------------------------------+-------------------------------+
-| OBS LOC\_XZ dc\_surface.dat   | ! General-formatted DC data   |
-+-------------------------------+-------------------------------+
-| MESH FILE mesh2d.msh          | ! Mesh                        |
-+-------------------------------+-------------------------------+
-| INVMODE CG                    | ! Use CG                      |
-+-------------------------------+-------------------------------+
-| REF\_MOD FILE 1e-3            | ! Reference model             |
-+-------------------------------+-------------------------------+
+.. figure:: ../images/dcinv_borehole.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_borehole
 
 .. figure:: ../images/bSurf.png
    :figwidth: 75%
@@ -112,17 +107,10 @@ structure with abrupt transition in the vertical direction. The control
 file used for this inversion is shown below. The result of the inversion
 is shown in Figure :numref:`bAllWght`.
 
-+------------------------------+-------------------------------+
-| OBS LOC\_XZ obs\_dc\_n.dat   | ! General-formatted DC data   |
-+------------------------------+-------------------------------+
-| MESH FILE mesh2d.msh         | ! Mesh                        |
-+------------------------------+-------------------------------+
-| INVMODE CG                   | ! Use CG                      |
-+------------------------------+-------------------------------+
-| REF\_MOD FILE 1e-3           | ! Reference model             |
-+------------------------------+-------------------------------+
-| WEIGHT FILE weights.txt      | ! Weight file                 |
-+------------------------------+-------------------------------+
+.. figure:: ../images/dcinv_borehole_weights.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_borehole_weights
 
 It is evident from Figure :numref:`bAllWght`, that not only did the
 weighting function assure clean resolution of overburden, but it also
@@ -147,36 +135,20 @@ to affect the neighbouring cells (Figure :numref:`bAllAct` b)), with ability
 to interfere with the neighbours (Figure :numref:`bAllAct` c)) and in
 combination with the weighting matrix (Figure :numref:`bAllAct` d)).
 
-+------------------------------+-------------------------------+
-| OBS LOC\_XZ obs\_dc\_n.dat   | ! General-formatted DC data   |
-+------------------------------+-------------------------------+
-| MESH FILE mesh2d.msh         | ! Mesh                        |
-+------------------------------+-------------------------------+
-| INVMODE CG                   | ! Use CG                      |
-+------------------------------+-------------------------------+
-| REF\_MOD FILE 1e-3           | ! Reference model             |
-+------------------------------+-------------------------------+
-| ACTIVE\_CELLS active.txt     | ! Active cell file            |
-+------------------------------+-------------------------------+
+.. figure:: ../images/dcinv_borehole_activecells.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_borehole_activecells
 
 Finally, the area of inactive cells was extended, simulating a scenario,
 when a-priori information suggests that the anomalous conductivity lies
 between the two boreholes. The final control file used for inverting
 data under these constraints is presented below:
 
-+------------------------------+-------------------------------+
-| OBS LOC\_XZ obs\_dc\_n.dat   | ! General-formatted DC data   |
-+------------------------------+-------------------------------+
-| MESH FILE mesh2d.msh         | ! Mesh                        |
-+------------------------------+-------------------------------+
-| INVMODE CG                   | ! Use CG                      |
-+------------------------------+-------------------------------+
-| REF\_MOD FILE 1e-3           | ! Reference model             |
-+------------------------------+-------------------------------+
-| WEIGHT FILE weights.txt      | ! Weight file                 |
-+------------------------------+-------------------------------+
-| ACTIVE\_CELLS active.txt     | ! Active cell file            |
-+------------------------------+-------------------------------+
+.. figure:: ../images/dcinv_borehole_alltogether.png
+   :figwidth: 75%
+   :align: center
+   :name: dcinv_borehole_alltogether
 
 The results of the final inversion are presented in Figure
 :numref:`bAllWghtAct`.
