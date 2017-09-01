@@ -16,6 +16,8 @@ import sys
 import os
 import shlex
 
+sys.path.append(os.path.abspath('./_ext'))
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -32,7 +34,10 @@ import shlex
 # ones.
 extensions = [
     'sphinx.ext.mathjax',
-    'sphinxcontrib.bibtex'
+    'sphinxcontrib.bibtex',
+    'edit_on_github',
+    'purpose',
+    'example',
 ]
 
 # Number figures
@@ -111,7 +116,14 @@ pygments_style = 'sphinx'
 todo_include_todos = False
 
 
-# -- Options for HTML output ----------------------------------------------
+# -- Edit on Github Extension ---------------------------------------------
+
+edit_on_github_project = 'ubcgif/dcip2d'
+edit_on_github_branch = 'master'
+check_meta = False
+
+
+# -- Options for HTML output -----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
