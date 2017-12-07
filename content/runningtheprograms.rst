@@ -131,11 +131,11 @@ Output files
 
 The files created by DCIPF2D are:
 
--  *obc_dc.dat* The computed DC potential data.
+-  *obs_dc.dat* The computed DC potential data.
 
--  *obc_ip.dat* The computed IP data if the option *IP* is chosen.
+-  *obs_ip.dat* The computed IP data if the option *IP* is chosen.
 
--  *obc_ipL.dat* The computed IP data if the option *IPL* is chosen.
+-  *obs_ipL.dat* The computed IP data if the option *IPL* is chosen.
 
 DCINV2D
 -------
