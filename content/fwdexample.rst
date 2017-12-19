@@ -22,16 +22,18 @@ To illustrate the DC resistivity forward modelling algorithm, we generate
 synthetic data that would be acquired over the 2D conductivity structure.  The
 model is divided into 48 cells in the :math:`x-`\ direction and 27 cells in
 the :math:`z-`\ direction including a total of 1296 cells. The finite
-difference mesh is shown in Figure :numref:`fwdMesh`. The model region, shown
-in Figure :numref:`fwdTrueCropped`, consists of a 10 meter thick overburden
-having conductivity of 0.1 mS/m on the left and 2 mS/m on the right. A
-V-shaped valley is cut out to simulate the surface topography. Two conductors
-are buried in the underlying background of 1 mS/m. On the left, a dipping
-conductor having a dip of 135\ :math:`^\circ` and conductivity of 100 mS/m is
-buried at a depth of 20 m to the top. On the right, a 50 meter long, 20 meter
-thick conductive block of 100 mS/m is buried at a depth of 25 meters. Rather
-than keep the model as discrete blocks we have attempted to make it more
-geologically realistic by applying a smoothing filter to the model.
+difference mesh is shown in Figure :numref:`fwdMesh`.
+
+The model region, shown in Figure :numref:`fwdTrueCropped`, consists of a 10
+meter thick overburden having conductivity of 0.1 mS/m on the left and 2 mS/m
+on the right. A V-shaped valley is cut out to simulate the surface topography.
+Two conductors are buried in the underlying background of 1 mS/m. On the left,
+a dipping conductor having a dip of 135\ :math:`^\circ` and conductivity of
+100 mS/m is buried at a depth of 20 m to the top. On the right, a 50 meter
+long, 20 meter thick conductive block of 100 mS/m is buried at a depth of 25
+meters. Rather than keep the model as discrete blocks we have attempted to
+make it more geologically realistic by applying a smoothing filter to the
+model.
 
 
 .. figure:: ../images/fwdAppRes.png
