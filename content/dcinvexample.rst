@@ -3,81 +3,54 @@
 DC Inversion of the forward model
 =================================
 
-We use several synthetic examples to illustrate various aspects of **DCIP2D**. The
-emphasis of the test examples is to show the newly added features of the
-inversion programs. A synthetic conductivity model is shown in Figure
-:numref:`fwdAppRes` and resultant synthetic data I shown in Figure
-:numref:`fwdTrueCropped`.
-   
-.. figure:: ../images/fwdTrue.png
-   :figwidth: 75%
-   :align: center
-   :name: fwdTrue
+The goal of this section is to illustrate the performance of the inversion
+program when different combinations of input parameters are used. We have
+carried out nine DC inversions of the simulated DC data presented in the
+:ref:`Forward section<fwdexample>`.
 
-   The synthetic model consists of two conductors buried in a uniform halfspace overlain
-   by an overburden of variable conductivity. A V-shaped valley simulates the surface topography.
-   The region of interest is outlined by the white lines, but padding cells are added so that the correct
-   boundary conditions can be applied during the forward modelling.
+ - :ref:`Default parameters<invDefault>`
+ - :ref:`CG solver and reference conductivity<invCGref>`
+ - :ref:`Depth of Investigation analysis (DOI) <invDOI>`
+ - :ref:`Geological reference model<invRefModel>`
+ - :ref:`Inactive cells constraint<invInactiveCells>`
+ - :ref:`Cell weights<invWeighted>`
+ - :ref:`Huber norm<invHuberNorm>`
 
-.. figure:: ../images/fwdMesh.png
-   :figwidth: 75%
-   :align: center
-   :name: fwdMesh
+.. We use several synthetic examples to illustrate various aspects of **DCIP2D**. The
+.. emphasis of the test examples is to show the newly added features of the
+.. inversion programs. A synthetic conductivity model is shown in Figure
+.. :numref:`fwdAppRes` and resultant synthetic data I shown in Figure
+.. :numref:`fwdTrueCropped`.
 
-   The finite-diffierence mesh used in the modelling.
+.. .. figure:: ../images/fwdTrue.png
+..    :figwidth: 75%
+..    :align: center
+..    :name: fwdTrue
 
-
-.. figure:: ../images/fwdTrueCropped.png
-   :figwidth: 75%
-   :align: center
-   :name: fwdTrueCropped
-
-   The conductivity model
+..    The synthetic model consists of two conductors buried in a uniform halfspace overlain
+..    by an overburden of variable conductivity. A V-shaped valley simulates the surface topography.
+..    The region of interest is outlined by the white lines, but padding cells are added so that the correct
+..    boundary conditions can be applied during the forward modelling.
 
 
-.. figure:: ../images/fwdAppRes.png
-   :figwidth: 75%
-   :align: center
-   :name: fwdAppRes
-   
-   The apparent resistivity pseudo-section measured using a pole-dipole array with a = 10 m and
-   n = 1; 8. The data have been contaminated by Gaussian noise.
+.. The synthetic model consists of two conductors buried in a uniform half
+.. space, which is overlain by an overburden of variable conductivity. A
+.. V-shaped valley is cut out to simulate the surface topography. The
+.. background has a conductivity of 1 mS/m and the overburden has a
+.. conductivity of 0.1 mS/m on the left and 2 mS/m on the right. The buried
+.. conductor on the left has a dip of 135o and a conductivity of 100 mS/m,
+.. and it is buried at a depth of 20 m to the top. The conductor on the
+.. right is a horizontal and conductive block of 100 mS/m buried at a depth
+.. of 25 m. The forward modelling uses a mesh of 48 cells in the
+.. x-direction and 27 cells in the z-direction so there are 1296 cells. In
+.. the survey, surface electrodes are located every 10 m in the interval
+.. :math:`x=(-100,100)` m. We have simulated pole-dipole data with a=10 m
+.. and n=1, 8. The data have been contaminated with independent Gaussian
+.. noise whose standard deviation is equal to 5% of each accurate datum.
 
 
-.. figure:: ../images/fwdTrueCharge.png
-   :figwidth: 75%
-   :align: center
-   :name: fwdTrueCharge
-   
-   The chargeability model associated with the conductivity model
 
-
-.. figure:: ../images/fwdAppCharge.png
-   :name: fwdAppCharge
-   :figwidth: 75%
-   :align: center
-
-   The apparent chargeability pseudo-section measured using a pole-dipole array with a = 10 m and
-   n = 1; 8. The data have been contaminated by Gaussian noise.
-
-The synthetic model consists of two conductors buried in a uniform half
-space, which is overlain by an overburden of variable conductivity. A
-V-shaped valley is cut out to simulate the surface topography. The
-background has a conductivity of 1 mS/m and the overburden has a
-conductivity of 0.1 mS/m on the left and 2 mS/m on the right. The buried
-conductor on the left has a dip of 135o and a conductivity of 100 mS/m,
-and it is buried at a depth of 20 m to the top. The conductor on the
-right is a horizontal and conductive block of 100 mS/m buried at a depth
-of 25 m. The forward modelling uses a mesh of 48 cells in the
-x-direction and 27 cells in the z-direction so there are 1296 cells. In
-the survey, surface electrodes are located every 10 m in the interval
-:math:`x=(-100,100)` m. We have simulated pole-dipole data with a=10 m
-and n=1, 8. The data have been contaminated with independent Gaussian
-noise whose standard deviation is equal to 5% of each accurate datum.
-
-We have carried out nine DC inversions of the above DC data set. The
-examples were designed to illustrate the performance of the inversion
-program when different combinations of input parameters are used.
+.. _invDefault:
 
 DC Inversion: All default
 -------------------------
@@ -89,9 +62,9 @@ First, the synthetic data were inverted using the all-default option:
    :align: center
    :name: dcinv_alldefault
 
-In this file, the first line indicates that the data file *obs_dc.dat* is of surface format.
-The second line contains the reference to topography file *topo.dat*. The third
-line is in reference to the mesh file *dcinv2d.msh*. If there is no topography it is
+In this file, the first line indicates that the `data file`_ (*obs_Uncert_5pc_0p001V.dc*) is of surface format.
+The second line contains the reference to `topography file`_ (*TOPO.DAT*). The third
+line is in reference to the `mesh file`_ (*dcinv2d.msh*). If there is no topography it is
 not necessary to include either the mesh, or the topography file in
 all-default mode.  will construct a mesh in automatic mode and consider
 topography to be zero. In our case we have user-defined topography and
@@ -99,10 +72,16 @@ mesh file is provided. The result of the all-default inversion is shown
 in Figure :numref:`alldefault`. The best fitting half space was
 approximately 120 ohm-m.
 
+.. _data file: https://github.com/ubcgif/dcip2d/blob/master/example/Inv/obs_Uncert_5pc_0p001V.dc
+.. _topography file: https://github.com/ubcgif/dcip2d/blob/master/example/TOPO.DAT
+.. _mesh file: https://github.com/ubcgif/dcip2d/blob/master/example/FDMESH.DAT
+
 .. figure:: ../images/alldefault.png
    :name: alldefault
 
    Inversion of synthetic DC data using all-default mode.
+
+.. _invCGref:
 
 DC Inversion: CG solution using a constant reference model
 ----------------------------------------------------------
@@ -151,6 +130,8 @@ differences in the images are no longer so apparent. For the remainder
 of the example section we shall use the reference the model described in
 Figure :numref:`synEx2` (1000 Ohm m half space) as the default model.
 
+.. _invDOI:
+
 Depth of Investigation (DOI)
 ----------------------------
 
@@ -163,7 +144,7 @@ models can be compared to identify which regions of the model are most
 significantly affected by the measurements. The results of doing this
 are explained next.
 
-Using **DCIP2D**, the method is applied within the DCIP2D-MODEL-VIEWER GUI, 
+Using **DCIP2D**, the method is applied within the DCIP2D-MODEL-VIEWER GUI,
 using *Depth of investigation* option in the menu.
 There must be a second model that was recovered using the same mesh as
 the one being observed. Any two different inversions results can be
@@ -203,6 +184,8 @@ user.
    model (cut-off=0.1), (b) based on recovered model (cut-off = 0.4),
    (c) based on sensitivity (cut-off = 0.5), and (d) based on
    sensitivity (cut-off = 0.6).
+
+.. _invRefModel:
 
 DC Inversion: Non-uniform reference model
 -----------------------------------------
@@ -304,6 +287,8 @@ sought body.
    derivative terms and when (b) the reference model is defined in
    derivative terms.
 
+.. _invInactiveCells:
+
 DC Inversion: Incorporating inactive cells constraint
 -----------------------------------------------------
 
@@ -359,6 +344,8 @@ model and the anomaly smoothly transitions to the background.
    Recovered model when cells are inactive, but their values influence
    those of the neighbouring cells.
 
+.. _invWeighted:
+
 DC inversion: Using weighting functions
 ---------------------------------------
 
@@ -389,6 +376,8 @@ weights of 1.0).
    :name: synOverBurdenWght
 
    Recovered model from the inversion using weighting file
+
+.. _invHuberNorm:
 
 DC Inversion: Using the Huber norm for data misfit
 --------------------------------------------------
