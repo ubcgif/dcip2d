@@ -1,0 +1,171 @@
+\subsubsection{Electrodes file}
+This file contains the electrode locations for \codeName{DCIPF2D}. The electrodes file follows the same formats at the \fileName{Observations} files, but without data and standard deviations. Thus, an electrode file can have three different formats: the \codeName{general}, \codeName{surface}, or \codeName{simple} format. Only a single format is allowed in a data file. \textbf{The general format is the only format that will allow the use of borehole locations}. The type of format chosen for forward modelling does not make any difference to the \codeName{DCIPF2D} and is determined only by the user's preference. At the beginning of execution, the programs will determine the format and the output files will be written in the same format. 
+
+\subsubsection*{General format}
+The forward modelling code can handle arbitrary electrode configurations, and a mixture of different configurations can be present in the data file. This is accomplished by specifying the locations of four electrodes for each location. Whenever the two current electrodes, or two potential electrodes, are given the identical location, that particular pair is considered to be a single pole with the negative electrode being at infinity. The format consists of a line with the current electrode location and number of potential electrode locations associated with it. Each location has $x$ and $z$ coordinates. An example of the \fileName{general} format file structure is as follows:
+
+\begin{fileExample}
+\begin{tabular}{|ccccc|}
+\hline
+\multicolumn{5}{|l|}{Comment line} \\
+\multicolumn{5}{|l|}{COMMON\_CURRENT} \\
+\multicolumn{5}{|l|}{[IPTYPE= 1 | 2]} \\
+$A_1^x$ & $A_1^z$ & $B_1^x$ & $B_1^z$ & $n_1$ \\
+$M_1^x$ &  $M_1^z$ & $N_1^x$  & $N_1^z$ &  \\
+$\vdots$ &  $\vdots$ & $\vdots$  & $\vdots$ &\\
+$M_{n_1}^x$ & $M_{n_1}^z$ & $N_{n_1}^x$ &  $N_{n_1}^z$ &\\ 
+$A_2^x$ &  $A_2^z$ & $B_2^x$ & $B_2^z$ & $n_2$ \\
+$M_1^x$ &  $M_1^z$ & $N_1^x$ & $N_1^z$ & \\
+$\vdots$ &  $\vdots$ & $\vdots$ & $\vdots$ & \\
+$M_{n_2}^x$  & $M_{n_2}^z$ & $N_{n_2}^x$ &  $N_{n_2}^z$ &\\ 
+$A_3^x$ &  $A_3^z$ & $B_3^x$ & $B_3^z$ & $n_3$\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &\\
+\hline
+\end{tabular}
+\end{fileExample}
+
+\begin{enumerate}
+\item[\codeName{Comment Line}] Any comments can go here. This line is ignored by \codeName{dcinv2d}
+\item[\codeName{COMMON\_CURRENT}] This flag must go prior to \codeName{IPTYPE} in order to let the code know the file is of general format
+\item[\codeName{IPTYPE}] Only used for IP inversion and not required if only using DC inversion. NOTE: If omitted from IP inversion, the program will choose \codeName{IPTYPE=1}. \\
+     \codeName{=1}, Type of IP data is apparent chargeability \\
+		 \codeName{=2}, Type of IP data is secondary potentials
+%
+\item[\codeName{A$_i^x$}] i$^{th}$ horizontal position along line of current electrode A
+\item[\codeName{A$_i^z$}] i$^{th}$ elevation of current electrode A
+\item[\codeName{B$_i^x$}] i$^{th}$ horizontal position along line of current electrode B
+\item[\codeName{B$_i^z$}] i$^{th}$ elevation of current electrode B
+\item[\codeName{M$_j^x$}] j$^{th}$ horizontal position along line of potential electrode M associated with the i$^{th}$ current pair
+\item[\codeName{M$_j^z$}] j$^{th}$ elevation of potential electrode M associated with the i$^{th}$ current pair
+\item[\codeName{N$_j^x$}] j$^{th}$ horizontal position along line of potential electrode N associated with the i$^{th}$ current pair
+\item[\codeName{N$_j^z$}] j$^{th}$ elevation of potential electrode N associated with the i$^{th}$ current pair
+\end{enumerate}
+
+\paragraph{Example of general format} 
+
+The following is an example of locations for DC data (e.g., no IPTYPE):
+
+\begin{fileExample}
+\begin{tabular}{|ccccc|}
+\hline
+\multicolumn{5}{|l|}{! dc data} \\
+\multicolumn{5}{|l|}{COMMON\_CURRENT} \\
+221 & -45 &  221  & -45  &  6 \\
+50 &  250 &  100  & 25  &   \\
+100 & 250  & 150  & 50 &   \\
+150 & 500  & 200 & 75  &     \\
+200 & 75 &  250  &  100 & \\
+250 & 100 &  300 & 125 &    \\
+300 & 125 &  350 & 150  &    \\
+221 & -45 &  600 & -55 &  2  \\
+100 &  25 &  150 &  500  &  \\
+150 &  500  & 200 &  75.0 &   \\
+\hline
+\end{tabular}
+\end{fileExample}
+%
+In the above example, there are two current electrode locations, the first with six potential electrodes and the second with two potential electrode data. The line ``IPTYPE=2'' would be added if this file were IP data of second potentials. 
+
+\subsubsection*{Surface format}
+The surface format is similar to the general format with difference that the elevation data is not given. Instead, the program places the electrodes on top of the discretized topographic surface. Accordingly, this format \textbf{cannot be used with borehole data} and if no topography is given, assumes the data are on top of the mesh at an elevation of 0. Whenever the two current electrodes, or two potential electrodes, are given the identical location, that particular pair is considered to be a single pole with the negative electrode being at infinity. The format consists of a line with the current electrode location and number of potential electrode locations associated with it. An example of the \fileName{surface} format file structure is as follows:
+
+\begin{fileExample}
+\begin{tabular}{|ccc|}
+\hline
+\multicolumn{3}{|l|}{Comment line} \\
+\multicolumn{3}{|l|}{[IPTYPE= 1 | 2]} \\
+$A_1^x$ & $B_1^x$ &  $n_1$ \\
+$M_1^x$ & $N_1^x$ &   \\
+$\vdots$ & $\vdots$ & \\
+$M_{n_1}^x$ & $N_{n_1}^x$ &  \\ 
+$A_2^x$ & $B_2^x$ & $n_2$ \\
+$M_1^x$ & $N_1^x$  &  \\
+$\vdots$ & $\vdots$ & \\
+$M_{n_2}^x$ & $N_{n_2}^x$ & \\ 
+$A_3^x$ & $B_3^x$ & $n_3$  \\
+$\vdots$ & $\vdots$ & \\
+\hline
+\end{tabular}
+\end{fileExample}
+
+The following are detailed summaries of components of the surface-format observations file:
+\begin{enumerate}
+\item[\codeName{Comment Line}] Any comments can go here. This line is ignored by \codeName{dcinv2d}
+\item[\codeName{IPTYPE}] Only used for IP inversion and not required if only using DC inversion. NOTE: If omitted from IP inversion, the program will choose \codeName{IPTYPE=1}. \\
+     \codeName{=1}, Type of IP data is apparent chargeability \\
+		 \codeName{=2}, Type of IP data is secondary potentials
+%
+\item[\codeName{A$_i^x$}] i$^{th}$ horizontal position along line of current electrode A
+\item[\codeName{B$_i^x$}] i$^{th}$ horizontal position along line of current electrode B
+\item[\codeName{M$_j^x$}] j$^{th}$ horizontal position along line of potential electrode M associated with the i$^{th}$ current pair
+\item[\codeName{N$_j^x$}] j$^{th}$ horizontal position along line of potential electrode N associated with the i$^{th}$ current pair
+\end{enumerate}
+
+\paragraph{Example of surface format} 
+
+The following is an example of IP data in units of apparent chargeability:
+
+\begin{fileExample}
+\begin{tabular}{|ccc|}
+\hline
+\multicolumn{3}{|l|}{IPTYPE=1} \\
+221 & -45  &  4 \\
+50 &   25  &  \\
+100 &   50 &  \\
+250 &  125 &  \\
+300 &  150  &  \\
+221 &  -55 &  2 \\
+100 &  150 &  \\
+150 &  200 & \\
+\hline
+\end{tabular}
+\end{fileExample}
+%
+In the above example, there are two current electrode locations, the first with four potential electrodes and the second with two potential electrode data. The line ``IPTYPE=1'' would be absent if this file were DC data. 
+
+\subsubsection*{Simple format}
+The simple format is the most straightforward, but also most restrictive of the three formats. The elevations are not given similar to the surface format with difference that the elevation data is not given. Instead, the program places the electrodes on top of the discretized topographic surface. Accordingly, this format \textbf{cannot be used with borehole data} and if no topography is given, assumes the locations are on top of the mesh at an elevation of 0. Whenever the two current electrodes, or two potential electrodes, are given the identical location, that particular pair is considered to be a single pole with the negative electrode being at infinity. The format consists of a line with the current electrode pair location and potential electrode location pair. An example of the \fileName{surface} format file structure is as follows:
+
+\begin{fileExample}
+\begin{tabular}{|cccc|}
+\hline
+\multicolumn{4}{|l|}{Comment line} \\
+\multicolumn{4}{|l|}{[IPTYPE= 1 | 2]} \\
+$A_1^x$ & $B_1^x$ &  $M_1^x$ & $N_1^x$  \\
+$A_2^x$ & $B_2^x$ &  $M_2^x$ & $N_2^x$\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+$A_n^x$ & $B_n^x$ &  $M_n^x$ & $N_n^x$ \\
+\hline
+\end{tabular}
+\end{fileExample}
+
+The following are detailed summaries of components of the simple-format observations file:
+\begin{enumerate}
+\item[\codeName{Comment Line}] Any comments can go here. This line is ignored by \codeName{dcinv2d}
+\item[\codeName{IPTYPE}] Only used for IP inversion and not required if only using DC inversion. NOTE: If omitted from IP inversion, the program will choose \codeName{IPTYPE=1}. \\
+     \codeName{=1}, Type of IP data is apparent chargeability \\
+		 \codeName{=2}, Type of IP data is secondary potentials
+%
+\item[\codeName{A$_i^x$}] i$^{th}$ horizontal position along line of current electrode A
+\item[\codeName{B$_i^x$}] i$^{th}$ horizontal position along line of current electrode B
+\item[\codeName{M$_j^x$}] i$^{th}$ horizontal position along line of potential electrode M
+\item[\codeName{N$_j^x$}] i$^{th}$ horizontal position along line of potential electrode N
+\end{enumerate}
+
+\paragraph{Example of simple format}
+
+The following is an example of the simple format. The data are the same as given in the surface format example; IP data in units of apparent chargeability:
+
+\begin{fileExample}
+\begin{tabular}{|cccc|}
+\hline
+\multicolumn{4}{|l|}{IPTYPE=1} \\
+221 & -45 &  50 &  25 \\
+221 & -45 & 100 &  50 \\
+221 & -45 & 250 & 125  \\
+221 & -45 & 300 & 150 \\
+221 & -55 & 100 & 150\\
+221 & -55 & 150 & 200  \\
+\hline
+\end{tabular}
+\end{fileExample}

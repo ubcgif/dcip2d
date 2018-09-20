@@ -1,0 +1,53 @@
+\subsubsection{Model file}
+
+This is the file used to define any model given to \codeName{DCIP2D}. Each file contains the cell values within the model. The number of cells in the $x-$ and $z-$directions are specified in this file and should coorespond to the values given in the \fileName{Mesh} file.
+
+An example of the \fileName{model} file structure is as follows:
+
+\begin{fileExample}
+\begin{tabular}{|cccc|}
+\hline
+\multicolumn{4}{|l|}{N$_x$ N$_z$} \\
+V$_{1,1}$ & V$_{2,1}$ & $\hdots$ & V$_{N_x,1}$ \\
+V$_{1,2}$ & V$_{2,2}$ & $\hdots$ & V$_{N_x,2}$ \\
+$\vdots$ &  $\vdots$ &  $\vdots$ &  $\vdots$ \\
+V$_{1,N_z}$ & V$_{2,N_z}$ & $\hdots$ & V$_{N_x,N_z}$ \\
+\hline
+\end{tabular}
+\end{fileExample}
+
+\begin{enumerate}
+\item[\codeName{N$_x$}] Number of cells in the horizontal direction
+\item[\codeName{N$_z$}] Number of cells in the vertical direction. 
+\item[\codeName{V$_{i,k}$ }] Value of the model at the i$^{th}$ cell in the horizontal direction and j$^{th}$ cell in depth. When $j=1$, the cell is at the top of the mesh and $j=N_z$ corresponds to the bottom of the mesh. In the horizontal direction $i=1$ corresponds to the beginning of the line (e.g., West) and $i=N_x$ is at the end of the line (e.g., East). 
+\item[\codeName{X$_i$}] i$^{th}$ horizontal location 
+\item[\codeName{elev$_i$}] i$^{th}$ elevation
+\end{enumerate}
+
+\paragraph{Example of a model} 
+
+The following is an example of a model:
+
+\begin{fileExample}
+\begin{tabular}{|ccccc|}
+\hline
+\multicolumn{5}{|l|}{3 10} \\
+.01 & .23 & .20 & .46 & 0.2 \\
+.64 & .32 & .54 &  & \\
+.19 & 1E-5 & & &\\
+.01 & .23 & .20 & .46 & 0.2 \\
+.64 & .33 & .21 & .85 & 0.2 \\
+.11 & .75 & .25 & .62 & 0.4 \\
+.25 & .64 & .23 & .15 & 0.4 \\
+\hline
+\end{tabular}
+\end{fileExample}
+
+In the above example, there are 10 horizontal cells and 3 vertical cell associated with the mesh. The first row is broken into the first three lines of the file. The second row of the model is given on lines 2-4. The third row of the model is given on lines 5 and 6. \codeName{DCIP2D} would also read the same model with three rows of ten values. 
+
+\paragraph{Notes on the 2D model} The model is stored in a row format with V$_{1,1}$ being the top left cell. As shown above, each row of the model, V$_{1,k}$ $ \hdots\ $ V$_{N_x,k}$, can be broken down into more than a single line in the file, however, each model row must start on a new line.
+
+In the presence of topography, the cells above the surface specified by topo.dat represent the air and, therefore, are not part of the model. For simplicity, however, the files model.con and model.chg must include those cells as defined by the \fileName{Mesh} file. These cells in the model file will be ignored when the model is input to a program. To distinguish these cells, the user can assign a special value to them, for instance, a very small value (say 10$^{-10}$) for conductivity and a negative value for the chargeability model. These cells in the output model files from the inversion programs have a conductivity value equal to 10$^{-8}$ times the mean conductivity value immediately beneath the surface and a chargeability value of -10$^{30}$.
+
+\subsubsection*{Active model file}
+The active cell model file is a specific type of model that has the same format, but only contains values of -1, 0, or 1. Default (\codeName{null} option) active cells models place all cells in the model as active, meaning they can be changed during the inversion and influence the model objective function and data misfit. Cells that are inactive (not allowed to change) and \textit{do not} influence the model objective function should be set to 0. Cells that are inactive, but can influence the values of neighbouring cells through the model objective function should have a value of -1.

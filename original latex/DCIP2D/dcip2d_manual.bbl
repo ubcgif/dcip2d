@@ -1,0 +1,44 @@
+\begin{thebibliography}{}
+\itemsep0pt
+
+\bibitem[Calamai and Mor\'e, 1987]{CalamaiMore87}
+Calamai, P.~H., and J.~J. Mor\'e,  1987, Projected gradient methods for
+  linearly constrained problems: Mathematical programming, {\bf 39}, 96--116.
+
+\bibitem[Ekblom, 1973]{Ekblom73}
+Ekblom, H.,  1973, Calculation of linear best $l_p$-approximation: BIT, {\bf
+  13}, 292--300.
+
+\bibitem[Ekblom, 1987]{Ekblom87}
+--------, 1987, The $l_1$-estimate as limiting case of an $l_p$- or
+  {H}uber-estimate, {\it in} {Statistical Data Anlysis Based on the $L_1$-Norm
+  and Related Methods}: Elsevier,  109--116.
+
+\bibitem[Farquharson and Oldenburg, 1998]{FarquharsonOldenburg98}
+Farquharson, C.~G., and D.~W. Oldenburg,  1998, Non-linear inversion using
+  general measures of data misfit and model structure: Geophysical Journal
+  International, {\bf 134}, 213--227.
+
+\bibitem[Huber, 1964]{Huber64}
+Huber, P.~J.,  1964, Robust estimation of a location parameter: The {A}nnals of
+  {M}athematical {S}tatistics, {\bf 35}, 73--101.
+
+\bibitem[Oldenburg and Li, 1994]{OldenburgLi94}
+Oldenburg, D.~W., and Y. Li,  1994, Inversion of induced polarization data:
+  Geophysics, {\bf 59}, 1327--1341.
+
+\bibitem[Oldenburg and Li, 1999]{OldenburgLi99}
+--------, 1999, Estimating depth of investigation in dc resistivity and ip
+  surveys: Geophysics, {\bf 64}, 403--614.
+
+\bibitem[Rutley et~al., 2001]{Rutley01}
+Rutley, A., D.~W. Oldenburg, and R. Shekhtman,  2001, 2-d and 3-d
+  \uppercase{IP/R}esistivity inversion or the interpretation of
+  \uppercase{I}sa-style targets: Presented at the Expanded abstract, ASEG 15th
+  Geophysical Conference and Exhibition, Brisbane, Australia.
+
+\bibitem[Siegel, 1959]{Siegel59}
+Siegel, H.~O.,  1959, Mathematical formulation and type curves for induced
+  polarization: Geophysics, {\bf 24}, 547--565.
+
+\end{thebibliography}

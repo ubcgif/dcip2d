@@ -1,0 +1,72 @@
+\contentsline {section}{\numberline {1}Package overview}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Background}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}\uppercase {dcip2d}\ v5.0\nobreakspace {}capabilities and limitations}{3}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Array types}{3}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}The Earth model}{3}{subsubsection.1.2.2}
+\contentsline {subsection}{\numberline {1.3}\uppercase {dcip2d}\nobreakspace {}program library content}{3}{subsection.1.3}
+\contentsline {section}{\numberline {2}Background theory}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Introduction}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Forward modelling}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}General inversion methodology}{7}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Inversion of DC data}{10}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Inversion of IP data}{10}{subsection.2.5}
+\contentsline {section}{\numberline {3}Elements of the program DCIP2D}{13}{section.3}
+\contentsline {subsection}{\numberline {3.1}Introduction}{13}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}General files for \uppercase {dcip2d}\ v5.0\nobreakspace {}programs}{13}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Observations file}{13}{subsubsection.3.2.1}
+\contentsline {paragraph}{Calculation of default standard deviations}{14}{section*.3}
+\contentsline {paragraph}{Example of general format}{16}{section*.5}
+\contentsline {paragraph}{Example of surface format}{18}{section*.7}
+\contentsline {paragraph}{Example of simple format}{19}{section*.9}
+\contentsline {subsubsection}{\numberline {3.2.2}Electrodes file}{19}{subsubsection.3.2.2}
+\contentsline {paragraph}{Example of general format}{21}{section*.11}
+\contentsline {paragraph}{Example of surface format}{22}{section*.13}
+\contentsline {paragraph}{Example of simple format}{23}{section*.15}
+\contentsline {subsubsection}{\numberline {3.2.3}Mesh file}{23}{subsubsection.3.2.3}
+\contentsline {paragraph}{Example of general format}{24}{section*.16}
+\contentsline {paragraph}{Notes on the 2D mesh}{25}{section*.17}
+\contentsline {subsubsection}{\numberline {3.2.4}Topography file}{26}{subsubsection.3.2.4}
+\contentsline {paragraph}{Example of topography}{27}{section*.18}
+\contentsline {subsubsection}{\numberline {3.2.5}Model file}{27}{subsubsection.3.2.5}
+\contentsline {paragraph}{Example of a model}{28}{section*.19}
+\contentsline {paragraph}{Notes on the 2D model}{28}{section*.20}
+\contentsline {subsubsection}{\numberline {3.2.6}Weighting file}{29}{subsubsection.3.2.6}
+\contentsline {paragraph}{Example of a weight file}{30}{section*.22}
+\contentsline {paragraph}{Note on weight design}{30}{section*.23}
+\contentsline {section}{\numberline {4}Running the programs}{31}{section.4}
+\contentsline {subsection}{\numberline {4.1}Introduction}{31}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Execution on a single computer}{31}{subsubsection.4.1.1}
+\contentsline {subsection}{\numberline {4.2}DCIPF2D}{32}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Input files}{32}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Output files}{33}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}DCINV2D}{33}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Input Files}{33}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Output Files}{37}{subsubsection.4.3.2}
+\contentsline {subsection}{\numberline {4.4}IPINV2D}{38}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Input Files}{38}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}Output Files}{42}{subsubsection.4.4.2}
+\contentsline {section}{\numberline {5}Workflow}{43}{section.5}
+\contentsline {subsection}{\numberline {5.1}Understanding the data}{43}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Accumulating prior information; building a reference model}{44}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Discretizing the Earth}{44}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Assigning uncertainties}{45}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Selection of model objective function}{46}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}Evaluation of the results}{47}{subsection.5.6}
+\contentsline {section}{\numberline {6}Examples}{51}{section.6}
+\contentsline {subsection}{\numberline {6.1}Forward modelling}{51}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}DC Inversion of the forward model}{51}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}DC Inversion: All default}{54}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}DC Inversion: CG solution using a constant reference model}{54}{subsubsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.3}DC Inversion: Non-uniform reference model}{56}{subsubsection.6.2.3}
+\contentsline {subsubsection}{\numberline {6.2.4}DC Inversion: Incorporating inactive cells constraint}{59}{subsubsection.6.2.4}
+\contentsline {subsubsection}{\numberline {6.2.5}DC inversion: Using weighting functions}{62}{subsubsection.6.2.5}
+\contentsline {subsubsection}{\numberline {6.2.6}DC Inversion: Using the Huber norm for data misfit}{63}{subsubsection.6.2.6}
+\contentsline {subsection}{\numberline {6.3}IP Inversion of the forward model}{65}{subsection.6.3}
+\contentsline {subsubsection}{\numberline {6.3.1}IP inversion: Zero-chargeability reference model}{66}{subsubsection.6.3.1}
+\contentsline {subsubsection}{\numberline {6.3.2}IP inversion: Non-uniform reference model}{67}{subsubsection.6.3.2}
+\contentsline {subsubsection}{\numberline {6.3.3}IP inversion: Using Ekblom measure to recover a blocky model}{68}{subsubsection.6.3.3}
+\contentsline {subsubsection}{\numberline {6.3.4}IP inversion: Reference model with inactive cells}{69}{subsubsection.6.3.4}
+\contentsline {subsection}{\numberline {6.4}Large data set example}{71}{subsection.6.4}
+\contentsline {subsection}{\numberline {6.5}Borehole examples}{73}{subsection.6.5}
+\contentsline {subsection}{\numberline {6.6}Field example}{77}{subsection.6.6}
+\contentsline {section}{\numberline {7}References}{83}{section.7}

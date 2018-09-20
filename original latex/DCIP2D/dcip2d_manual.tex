@@ -1,0 +1,43 @@
+% Main template to create GIF software manuals. Use the input command to create the different sections of the manual.
+\documentclass{GIFmanual}
+\newcommand{\bvec}[1]{\ensuremath{\mathbf{#1}}}
+\usepackage{amsmath}
+% 
+% ---- Required variables: -----
+\programDescription{A Program Library for Forward Modelling and Inversion of DC/IP Data over 2D Structures}
+% Set the following variables:
+\setprogramName{dcip2d}
+\setpreV{4.0}
+\setversion{5.0}
+\releaseDate{July 2013}
+%\consortium{cooperative inversion of geophysical and geological data}
+\graphicspath{{Figures/}}
+
+% ---- Beginning of document: No need to touch: ----
+\begin{document}
+\maketitle
+\tableofcontents
+% --------------------------------------------------
+
+% Introduction
+\input overview.tex
+
+% Background Theory
+\input backgroundtheory.tex
+
+% Elements
+\input elements.tex
+
+%% How to run the programs
+\input runningtheprograms.tex
+%
+%% Workflow
+\input dc2dWorkflow.tex
+%% Examples
+\input examples.tex
+
+% References
+\bibliography{reference}
+
+\end{document}
+

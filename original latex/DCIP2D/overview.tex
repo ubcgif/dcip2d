@@ -1,0 +1,153 @@
+\section{Package overview}
+\subsection{Background}
+\prog~is a program library for carrying out forward modelling and inversion of DC resistivity and induced polarization data in two dimensions. Version 1.0 of the code was first developed in 1992. That code, or a modified subsequent version, has been extensively used in mining and geotechnical communities and it has also been valuable as instructional software for learning about practical inverse theory. Improvements to the code however, have not kept pace with advances in optimization theory, scientific computing and computer architecture such as the prevalence of multi-core machines. To incorporate these advances, and renew \prog~to a state-of-the-art inversion code, we are releasing Version \version, which has been modified and fully parallelized using OpenMP to be used on computers with hyper-threading capabilities. The following is a list of modifications implemented in \programName:
+
+\begin{itemize}
+\item \textbf{Electrodes can be located anywhere in the mesh}: Previous versions of the code required electrodes to be on mesh nodes. While convenient for simple arrays and few data, this added complications for working in regions if high topography and with non-uniform surveys such as Schlumberger. 
+
+\item \textbf{Arbitrary electrode arrays}: All linear surface array data, or combinations thereof, can be inverted. For instance Wenner data and pole-dipole data can now be inverted. 
+
+\item \textbf{Borehole data can be inverted}: In the new version of DCIP2D we have added the capability to incorporate borehole data. These can be inverted individually or in conjunction with surface array data.
+
+\item \textbf{Parallelization using OpenMP}: When many transmitters are used the computations can be distributed over multiple processors. The parallelization is invoked whenever a forward modeling is carried out or when \textbf{J}, the sensitivity matrix, is multiplied onto a vector which is required in the Conjugate Gradient (CG) solution.
+
+\item \textbf{Handling spatially large data sets}: Solution of the numerical optimization problem in the previous codes was carried out using a subspace technique. This worked well for typical exploration surveys. In some cases where the number of transmitters was very large, the subspace method had difficulties. In Version \version we overcome this by solving the Gauss-Newton equations using a Conjugate Gradient (CG) method. The CG formulation is the suggested method of solution but we have left the original subspace solution methodology in the code. This will allow users to reproduce results obtained with the older codes. Many of the new features of the codes, for example the Huber and Ekblom norms, bound constraints, active and inactive cells work only with the CG approach.
+
+\item \textbf{Huber norm for data misfit}: Outliers in the data will negatively impact the performance of the inversion algorithm. This can be ameliorated by working with robust norms for data misfit. The Huber norm, which can range from $l_1$ to $l_2$ has been implemented here.
+
+\item \textbf{Incorporation of geologic information via bound constraints}: A priori knowledge about the background conductivity or chargeability can be incorporated via bound constraints. That is, each cell is restricted to have a model value $m_j^{\mbox{low}} < m_j < m_j^{\mbox{high}}$, where the bounds $m_j^{\mbox{low}}$ and $m_j^{\mbox{high}}$ are prescribed by the user. The CG solution implements this through projected gradient techniques. This is faster than the interior point methodology used in the subspace method.
+
+\item \textbf{Incorporation of geologic information using the derivative terms in the model objective function}: The derivative terms in the model objective function can take the form: \\
+\begin{align}
+%\begin{eqnarray}
+\label{eq:phimxx0Summary}
+\psi_x &= \int \limits_\Gamma \left|\frac{\partial(m-m_o)}{\partial x}\right|^2 dv \\
+\label{eq:phimxSummary}
+\psi_x &= \int \limits_\Gamma \left|\frac{\partial m}{\partial x}\right|^2 dv
+%\end{eqnarray}
+\end{align}
+%
+Similar equations can be written for the $z$ derivatives. The difference is subtle but it has an important consequence in the inversion output. Consider a case where the a priori knowledge that a conductive overburden exists and a corresponding reference model has been generated. If the thickness of the overburden is known then the objective function with equation \ref{eq:phimxx0Summary} should be used. The resultant model will have a boundary at the designated location. If the thickness is not known then equation \ref{eq:phimxSummary} should be used. When this is done the reference model will appear only in the smallest model component $\psi_s$ and the final model may show the discontinuity at a location different from that in the reference model. The capability of using the reference model in the derivative terms in these two ways is incorporated into Version \version. The choice of which objective function to use also arises with reference models generated from borehole information.
+
+\item \textbf{Incorporation of a priori information using active and inactive cells}: Considerable flexibility in constructing different types of solutions is afforded by being able to have certain cells ``inactive.'' This can reduce the size of the inverse problem and also be used to incorporate a priori knowledge about the model. Inactive cells are used in the forward modeling but they are held fixed in the inversion. Again, there are choices to be made regarding whether the values of the inactive cells should, or should not, affect the neighboring cells. Different models are obtained from the two options.
+
+\item \textbf{Mesh builder}: The forward modelling requires that an underlying mesh be built and evaluated. An updated GUI is provided to help accomplish this job. The validity of the mesh is evaluated by computing the apparent resistivity for a homogenous halfspace.
+
+\item \textbf{Sensitivity Matrix}: A cumulative sensitivity matrix is generated. This is insightful for survey design and also it can be used as proxy for depth of investigation.
+
+\item \textbf{Depth of investigation}: The forward problem is numerically solved on a large domain but the data are only sensitive to a portion of that volume. Structure appearing at depth and outside the lateral extent of the data array is controlled only by the model objective function. As such it is best removed for final presentation. The useful region of investigation can be estimated using the DOI process \cite[]{OldenburgLi99} or by using the cumulative sensitivity analysis.
+
+\item \textbf{Selecting wave numbers}: Working in 2D requires that Maxwell's equations are solved in the wave number domain and a cosine transform is applied to obtain data in space. In previous codes the number and value of wave numbers were hardwired into the code. Default values are still generated but for highly unusual data sets there may be a reason to explore the dependence of solution accuracy with wave number selection.
+
+\end{itemize}
+
+\subsection{\prog~capabilities and limitations}
+The package that can be licensed includes the following components: 
+\subsubsection{Array types}
+All linear survey surface-array types, including non-standard or un-even arrays, as well as their combinations can be inverted. The GUI is mainly designed to handle the most commonly used array types and therefore it works well with dipole-dipole, pole-dipole, pole-pole and Wenner or RealSection arrays. Borehole data can be inverted but the user interface does not yet support borehole array types. 
+
+\subsubsection{The Earth model}
+Inversion for a 2D model of the earth implies that data were gathered along a survey line at the surface. \prog~considers the subsurface in terms of a mesh of rectangular cells. Numerical accuracy in increased by using smaller cells but this also increases the size of the problem. here are usually at least three cells between electrode positions and the discretized volume extends well beyond the data area. 
+
+
+\subsection{\programName ~program library content}
+
+\begin{enumerate}
+\item \textbf{Executable programs} for performing forward modelling and inversion of 2D DC resistivity or induced polarization surveys. The DCIP2D library (Windows or Linux platforms) consists of the programs: 
+  \begin{itemize}
+  \item \codeName{DCIPF2D}: calculates DC resistivity and/or IP data based on a given model of the earth.
+  \item \codeName{DCINV2D}: inverts 2D DC resistivity data
+  \item \codeName{IPINV2D}: inverts 2D IP resistivity data
+  \end{itemize}
+\item \textbf{Graphical user interfaces} are supplied for the Windows platforms \textit{only}. Facilities include: 
+  \begin{itemize}
+  \item \codeName{DCIP2D-GUI}: a primary interface for setting up the inversion and monitoring progress.
+  \item \codeName{DCIP2D-DATA-VIEWER}: a utility for viewing raw data, error distributions, and for comparing observed to predicted data directly or as difference maps.
+  \item \codeName{DCIP2D-MODEL-VIEWER}: a utility for displaying resulting 2D models, and graphs of convergence behaviour.
+  \item \codeName{DCIP2D-MODEL-MAKER}: a separate utility for building synthetic 2D models and then running forward modelling to produce a synthetic data set. 
+  \end{itemize}
+\item \textbf{Example data sets and excercises} can be provided upon request.
+\end{enumerate}
+
+%
+%The initial research underlying this program library was funded principally by the mineral industry consortium ``Joint and Cooperative Inversion of Geophysical and Geological Data'' (1991 - 1997) which was sponsored by NSERC (\NSERC) and the following 11 companies: BHP Minerals, CRA Exploration, Cominco Exploration, Falconbridge, Hudson Bay Exploration and Development, INCO Exploration \& Technical Services, Kennecott Exploration Company, Newmont Gold Company, Noranda Exploration, Placer Dome, and WMC.
+%
+%The current improvements have been funded by the consortium ``Potential fields and software for advanced inversion'' sponsored by Newmont, Teck, Xstrata, Vale, Computational Geoscience Inc, Cameco, Barrick, Rio Tinto, and Anglo American.
+
+%\subsection{\programName ~program library content}
+%
+%\begin{enumerate}
+%\item \textbf{Executable programs}. For performing 3D forward modelling and inversion of magnetic surveys. The MAG3D library (Windows or Linux platforms) consists of the programs: \begin{itemize}
+%\item \codeName{MAGFOR3D}: performs forward modelling
+%\item \codeName{PFWEIGHT}: calculates the depth/distance weighting function
+%\item \codeName{MAGSEN3D}: calculates the sensitivity matrix
+%\item \codeName{MAGPRE3D}: multiplies the sensitivity file by the model to get the predicted data
+%\item \codeName{MAGINV3D}: performs 3D magnetic inversion.
+%\end{itemize}
+%
+%\item \textbf{Graphical user interfaces}. GUI-based utilities for these codes include respective viewers for the data and models. They are only available on Windows platforms and can be freely downloaded through the UBC-GIF website:
+%\begin{itemize}
+%\item \codeName{GM-DATA-VIEWER}: a utility for viewing raw surface or airborne data (not borehole data), error distributions, and for comparing observed to predicted data directly or as difference maps.
+%\item \codeName{MESHTOOLS3D}: a utility for displaying resulting 3D models as volume renderings. Susceptibility volumes can be sliced in any direction, or isosurface renderings can be generated.
+%\end{itemize}
+%
+%\item \textbf{Documentation} is provided for \prog.
+%
+%\item \textbf{Example} data sets are provided in the ``Examples'' directory within the compressed folder. One of those examples is shown at the end of this manual.
+%\end{enumerate}
+
+%\subsection{Licensing}
+%
+%A \textbf{constrained educational version} of the program is available with the \href{http://www.flintbox.com/public/project/1605/}{IAG} package (please visit \href{http://gif.eos.ubc.ca}{UBC-GIF website} for details). The educational version is fully functional so that users can learn how to carry out effective and efficient 3D inversions of magnetic data. \textbf{However, RESEARCH OR COMMERCIAL USE IS NOT POSSIBLE because the educational version only allows a limited number of data and model cells}.
+%
+%Licensing for an unconstrained academic version is available - see the \href{http://gif.eos.ubc.ca/software/licensing}{Licensing policy document}.
+%
+%\textbf{NOTE:} All academic licenses will be \textbf{time-limited to one year}. You can re-apply after that time. This ensures that everyone is using the most recent versions of codes.
+%
+%Licensing for commercial use is managed by third party distributors. Details are in the \href{http://gif.eos.ubc.ca/software/licensing}{Licensing policy document}.
+%
+%\subsection{Installing \prog}
+%
+%There is no automatic installer currently available for the \prog. Please follow the following steps in order to use the software:
+%
+%\begin{enumerate}
+%\item Extract all files provided from the given zip-based archive and place them all together in a new folder such as \codeName{C:\textbackslash ubcgif\textbackslash mag3d\textbackslash bin}
+%\item Add this directory as new path to your environment variables.
+%\end{enumerate}
+%Two additional notes about installation:
+%\begin{itemize}
+%\item Do not store anything in the ``bin'' directory other than executable applications and Graphical User Interface applications (GUIs).
+%\item A Message Pass Interface (MPI) version is available for Linux upon and the installation instructions will accompany the code.
+%\end{itemize}
+
+%\subsection{\prog: Highlights of changes from version \preV}
+%
+%The principal upgrades, described below, allow the new code to take advantage of current multi-core computers and also provide greater flexibility to incorporate the geological information.
+%
+%Improvements since version \preV:
+%
+%\begin{enumerate}
+%\item A new projected gradient algorithm is used to implement hard constraints.
+%\item Fully parallelized computational capability (for both sensitivity matrix calculations and inversion calculations).
+%\item A facility to have active and inactive (i.e. fixed) cells.
+%\item Bounds are be specified through two separate files, rather than one two-column file.
+%\item Additional flexibility for incorporating the reference model in the model objective function facilitates the generation of smooth models when borehole constraints are incorporated.
+%\item The \texttt{maginv3d.log} file has been simplified and detailed information on the inversion can be found in the \texttt{maginv3d.out} file.
+%\item An alternative version of the software compatible with Message Pass Interface (MPI) is available for Linux.
+%\item Backward compatibility: The new version has changed the input file format and the bounds file. Data, mesh, model, and topographic file formats have not changed.
+%\end{enumerate}
+%
+%\subsection{Notes on computation speed}
+%\begin{itemize}
+%\item For large problems, \prog~is significantly faster than the previous single processor inversion because of the parallelization for computing the sensitivity matrix computation and inversion calculations. Using multiple threads for running the parallelized version resulted in sensitivity matrix calculation speedup proportional to the number of threads. The increase in speed for the inversion was less pronounced, but still substantial.
+%\item It is strongly recommended to use multi-core processors for running the \codeName{magsen3d} and \codeName{mag3d}. The calculation of the sensitivity matrix (\textbf{G}) is directly proportional to the number of data. The parallelized calculation of the $n$ rows of $\mathbf{G}$ is split between $p$ processors. By default, all available processors are used. There is a feature to limit $p$ to a user-defined number of processors.
+%\item In the parallelized inversion calculation, $\mathbf{G}^T \mathbf{G}$ is multiplied by a vector, therefore each parallel process uses only a sub-matrix of $\mathbf{G}$ and then the calculations are summed. Since there is significant communication between the CPUs, the speedup is less than a direct proportionality to the number of processors. However when running the same inversion under MPI environment on multiple computers the advantage is that a single computer does not have to store the entire sensitivity matrix.
+%\item For incorporating bound information, the implementation of the ``projected gradient'' algorithm in version \version~is primarily that the projected gradient results in a significantly faster solution than the logarithmic barrier technique used in earlier versions. 
+%\end{itemize}
+
+%\begin{figure}[!ht]
+%\center
+%\includegraphics[width=10cm]{speed}
+%\caption{CPU time on 3.20 GHz 6 core i7 Intel processor with 16 Gb of RAM installed. Twelve parallel OpenMP threads were used for the calculations in version \version. The time for the sensitivity calculation decreased from 255 to 32 sec. The inversion time decreased from 60 to 18 sec. }
+%\label{fig:Speed}
+%\end{figure}

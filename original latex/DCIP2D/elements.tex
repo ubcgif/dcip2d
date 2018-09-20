@@ -1,0 +1,45 @@
+\section{Elements of the program DCIP2D}
+\label{Elements}
+
+\subsection{Introduction}
+
+The \codeName{\prog} program library consists of the programs:
+\begin{enumerate}
+\item \codeName{DCIPF2D}: performs forward modelling for DC and IP data 
+\item \codeName{DCINV2D}: inverts DC potentials to recover a conductivity model 
+\item \codeName{IPINV2D}: inverts IP data to recover a chargeability model 
+\end{enumerate}
+
+Each of the above programs requires input files as well as the specification of parameters in order to run. However, some files are used by a number of programs. Before detailing the run procedures for each of the above programs we first present information about these general files. 
+
+\subsection{General files for \prog~programs}
+
+There are six general files which are used in \prog. These are: 
+
+\begin{enumerate}
+\item \fileName{observation}: specifies the observed measurements and the associated electrode locations
+\item \fileName{electrodes}: contains the electrode locations for forward modelling
+\item \fileName{mesh}: contains the finite difference mesh for the 2D modelling and inversions 
+\item \fileName{topography}: contains the topographic data 
+\item \fileName{model}: structure to hold cell values for models: conductivity, chargeability or active
+\item \fileName{weighting}: file that contains special weightings which alter the type of model produced in the inversions
+\item \fileName{active}: a special type of model file specifying the active cells
+\end{enumerate}
+
+% Observation file description
+\input observations.tex
+
+% Electrode locations file description
+\input locations.tex
+
+% 2D mesh file description
+\input mesh2d.tex
+
+% 2D topography file description
+\input topo2d.tex
+
+% 2D model file description
+\input model2d.tex
+
+% 2D weights file description
+\input weights2d.tex

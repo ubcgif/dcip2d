@@ -1,0 +1,73 @@
+\subsubsection{Weighting file}
+
+This is the file used to define the smallness and spatial weights to be incorporated into the inversion codes \codeName{DCINV2D} or \codeName{IPINV2D}. These weights are given in the model objective function (equation \ref{eq:intMOF}). As with the \fileName{Model} file, the weights are stored in a row format. Weights with the value of 1.0 do contribute extra information to model objective function. Deviating from 1.0 will increase the relative importance (or not) of the cell value or interface. One has the choice of a single file containing all the weights or a file for each weight.
+
+An example of the \fileName{Weighting} file structure \textit{containing all weights} is as follows:
+
+\begin{fileExample}
+\begin{tabular}{|cccc|}
+\hline
+\multicolumn{4}{|l|}{N$_x$ N$_z$} \\
+Ws$_{1,1}$ & Ws$_{2,1}$ & $\hdots$ & Ws$_{N_x,1}$ \\
+$\vdots$ &  $\vdots$ &  $\vdots$ &  $\vdots$ \\
+Ws$_{1,N_z}$ & Ws$_{2,N_z}$ & $\hdots$ & Ws$_{N_x,N_z}$ \\
+Wx$_{1,1}$ & Wx$_{2,1}$ & $\hdots$ & Wx$_{N_x-1,1}$ \\
+$\vdots$ &  $\vdots$ &  $\vdots$ &  $\vdots$ \\
+Wx$_{1,N_z}$ & Wx$_{2,N_z}$ & $\hdots$ & Wx$_{N_x-1,N_z}$ \\
+Wz$_{1,1}$ & Wx$_{2,1}$ & $\hdots$ & Wx$_{N_x,1}$ \\
+$\vdots$ &  $\vdots$ &  $\vdots$ &  $\vdots$ \\
+Wz$_{1,N_z-1}$ & Wz$_{2,N_z-1}$ & $\hdots$ & Wz$_{N_x,N_z-1}$ \\
+\hline
+\end{tabular}
+\end{fileExample}
+
+\begin{enumerate}
+\item[\codeName{N$_x$}] Number of cells in the horizontal direction. This number is the same as found in \fileName{Model} and\fileName{Mesh} files.
+\item[\codeName{N$_z$}] Number of cells in the vertical direction. This number is the same as found in \fileName{Model} and\fileName{Mesh} files.
+\item[\codeName{Ws$_{i,k}$ }] Weight given to the smallest model component. \codeName{Ws} has size of $N_x \times N_z$. The values of $i$ and $k$ count consistent with the \fileName{Model} format.
+\item[\codeName{Wx$_{i,k}$ }] Weight given across the faces of cells in the $x$-direction. \codeName{Wx} has size of $N_x-1 \times N_z$. The values of $i$ and $k$ count consistent with the \fileName{Model} format.
+\item[\codeName{Wz$_{i,k}$ }] Weight given across the faces of cells in the $z$-direction. \codeName{Wz} has size of $N_x \times N_z-1$. The values of $i$ and $k$ count consistent with the \fileName{Model} format.
+\end{enumerate}
+
+An example of a \fileName{Weighting} file structure \textit{containing only one weight} is as follows:
+
+\begin{fileExample}
+\begin{tabular}{|cccc|}
+\hline
+\multicolumn{4}{|l|}{N$^W_x$ N$^W_z$} \\
+W$_{1,1}$ & W$_{2,1}$ & $\hdots$ & W$_{N^W_x,1}$ \\
+$\vdots$ &  $\vdots$ &  $\vdots$ &  $\vdots$ \\
+W$_{1,N^W_z}$ & W$_{2,N^W_z}$ & $\hdots$ & W$_{N^W_x,N^W_z}$ \\
+\hline
+\end{tabular}
+\end{fileExample}
+
+\begin{enumerate}
+\item[\codeName{N$^W_x$}] Number of cells in the horizontal direction for that weight ($N_x$ for W$_s$ and W$_z$ and $N_x-1$ for W$_x$).
+\item[\codeName{N$^W_z$}] Number of cells in the vertical direction for that weight ($N_z$ for W$_s$ and W$_x$ and $N_z-1$ for W$_z$).
+\item[\codeName{W$_{i,k}$ }] Weight value
+\end{enumerate}
+
+\paragraph{Example of a weight file} 
+
+The following is an example of a weight file \textit{with all of the weights}:
+
+\begin{fileExample}
+\begin{tabular}{|ccccc|}
+\hline
+\multicolumn{5}{|l|}{5 4} \\
+1 & 1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 & 1 \\
+1 & 100 & 100 & 1 & \\
+1 & 100 & 100 & 1 & \\
+1 & 100 & 100 & 1 & \\
+1 & 0.01 & 0.01 & 0.01 & 1 \\
+1 & 0.01 & 0.01 & 0.01 & 1 \\
+\hline
+\end{tabular}
+\end{fileExample}
+
+In the above example, there are 5 horizontal cells and 3 vertical cell associated with the mesh. Therefore, W$_s$ is $5 \times 3$, W$_x$ is $4 \times 3$, and W$_z$ is $5 \times 2$. The is no additional emphasis placed on the smallest model component. Large emphasis on minimizing the derivatives has been place on two cell faces in the $x-$direction in all three vertical rows. Small values have been placed at two vertical faces to allow for large jumps. This weighting file would be analogous to driving the model toward a vertical dyke.
+
+\paragraph{Note on weight design} When the weighting is supplied by the user, care should be taken so that the final weighting matrix constructed by the program is positive definite. This property can be destroyed when the combination of the cell weighting coefficients and component coefficients (s, x, z, see the description of special weighting w.dat file) makes the diagonal elements too small. Under such circumstances, the program will usually print in the log file the indices of the rows which are not diagonally dominant. In the most severe situation, the program will output an error message indicating that the matrix may not be positive definite. When these messages appear, the user should stop the program execution and redesign the special weighting by increasing the value of  s or decreasing the dynamic range of WS . 

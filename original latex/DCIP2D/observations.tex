@@ -1,0 +1,186 @@
+\subsubsection{Observations file}
+
+This file contains the observed measurements and the associated electrode locations. Both potential data and apparent chargeability data are stored in the same format. This will be the format of all the data files that are output from \codeName{DCIPF2D}, and are input to \codeName{DCINV2D} and \codeName{IPINV2D}.
+
+It is assumed that the survey is carried out either along a line in the $x-$direction perpendicular to geologic strike or along a borehole. In the presence of topography, it is assumed that all current and potential electrodes are located along the line and are placed on the topography at each $x$ location. In other words, the programs in the \prog~package will automatically place the electrodes on the surface according to the topography and the $x$ location given in the observations file. Electrodes will be at $z=0$ if topography is not given (e.g., set to null). The $z$ coordinates should be provided in the observations file when the data are located down a borehole. Any surface/borehole combination of electrodes is allowed in \programName. The observations file can have three different formats: the \codeName{general}, \codeName{surface}, or \codeName{simple} format. Only a single format is allowed in a data file. \textbf{The general format is the only format that will allow the use of borehole locations}. The type of format chosen to store the data does not make any difference to the \prog~program library and is determined only by the user's preference. At the beginning of execution, the programs will determine the format and the output files will be written in the same format. Standard deviations are optional in each format. The calculation of the standard deviation within \codeName{DCIP2D} is given below in the detailed summaries of components. All standard deviations must either be given or not given to be calculated. 
+
+\paragraph{Calculation of default standard deviations} The default standard deviation is calculated from the DC data using the following rules: stn$_i = 0.05 \times |\phi_i| + \phi_{max}$, where $\phi_{max}$ is the potential at the maximum electrode separation averaged over five (5) adjacent stations. The default standard deviation is calculated for IP data by: stn$_i = 0.05 \times |\eta_i| + \eta_{min}$, where $\eta_{min}$ is calculated standard deviation of all apparent chargeabilities in the data set. We stress that the default errors are only an initial guess and they facilitate a preliminary inversion of the data. The user will want to alter these error estimates for the final inversion used for interpretation. The data with the default errors are written in \fileName{dcinv2d.log} using the given format. They can be copied to a file for finer adjustment of the error estimates or the user can supply his or her own errors directly. 
+
+\subsubsection*{General format}
+The \prog~library can handle arbitrary electrode configurations, and a mixture of different configurations can be present in the data file. This is accomplished by specifying the locations of four electrodes for each datum. Whenever the two current electrodes, or two potential electrodes, are given the identical location, that particular pair is considered to be a single pole with the negative electrode being at infinity. The format consists of a line with the current electrode location and number of potential electrode locations associated with it. Each location has $x$ and $z$ coordinates. An example of the \fileName{general} format file structure is as follows:
+
+\begin{fileExample}
+\begin{tabular}{|cccccc|}
+\hline
+\multicolumn{6}{|l|}{COMMON\_CURRENT} \\
+\multicolumn{6}{|l|}{! Comment line} \\
+\multicolumn{6}{|l|}{[IPTYPE= 1 | 2]} \\
+$A_1^x$ & $A_1^z$ & $B_1^x$ & $B_1^z$ & $n_1$ & \\
+$M_1^x$ &  $M_1^z$ & $N_1^x$  & $N_1^z$ & $val_1$ & $[stn_1]$ \\
+$\vdots$ &  $\vdots$ & $\vdots$  & $\vdots$ & $\vdots$ & $\vdots$\\
+$M_{n_1}^x$ & $M_{n_1}^z$ & $N_{n_1}^x$ &  $N_{n_1}^z$ & $val_{n_1}$ & $[stn_{n_1}]$ \\ 
+$A_2^x$ &  $A_2^z$ & $B_2^x$ & $B_2^z$ & $n_2$ & \\
+$M_1^x$ &  $M_1^z$ & $N_1^x$ & $N_1^z$ & $val_1$ & $[stn_1]$ \\
+$\vdots$ &  $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+$M_{n_2}^x$  & $M_{n_2}^z$ & $N_{n_2}^x$ &  $N_{n_2}^z$ & $val_{n_2}$ & $[stn_{n_2}]$ \\ 
+$A_3^x$ &  $A_3^z$ & $B_3^x$ & $B_3^z$ & $n_3$ & \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+\hline
+\end{tabular}
+\end{fileExample}
+
+\begin{enumerate}
+\item[\codeName{COMMON\_CURRENT}] This flag is given prior to \codeName{IPTYPE} to let the code know that it is a general format file
+\item[\codeName{! Comment Line}] Any comments can go here. This line is ignored by \codeName{dcinv2d} and must have a preceding ``!''
+\item[\codeName{IPTYPE}] Only used for IP inversion and not required if only using DC inversion. NOTE: If omitted from IP inversion, the program will choose \codeName{IPTYPE=1}. \\
+     \codeName{=1}, Type of IP data is apparent chargeability \\
+		 \codeName{=2}, Type of IP data is secondary potentials
+%
+\item[\codeName{A$_i^x$}] i$^{th}$ horizontal position along line of current electrode A
+\item[\codeName{A$_i^z$}] i$^{th}$ elevation of current electrode A
+\item[\codeName{B$_i^x$}] i$^{th}$ horizontal position along line of current electrode B
+\item[\codeName{B$_i^z$}] i$^{th}$ elevation of current electrode B
+\item[\codeName{M$_j^x$}] j$^{th}$ horizontal position along line of potential electrode M associated with the i$^{th}$ current pair
+\item[\codeName{M$_j^z$}] j$^{th}$ elevation of potential electrode M associated with the i$^{th}$ current pair
+\item[\codeName{N$_j^x$}] j$^{th}$ horizontal position along line of potential electrode N associated with the i$^{th}$ current pair
+\item[\codeName{N$_j^z$}] j$^{th}$ elevation of potential electrode N associated with the i$^{th}$ current pair
+\item[\codeName{val$_j$}] j$^{th}$ observed datum related to the j$^{th}$ potential pair and i$^{th}$ current pair. The potential measurements must be measured value in Volts, or a dimensionless real number (not percentage) for apparent chargeability (\textit{potential is always normalized to unit current amplitude}). There are four types of IP data generally in use; two gathered in the time domain and two gathered in the frequency domain. For small chargeabilities, as is nearly always the case for earth materials, all data types can be used as input for inversion, and resulting models will have chargeabilities in the same units.
+\item[\codeName{stn$_j$}] Optional j$^{th}$ standard deviation associated with the j$^{th}$ datum. This is a positive, absolute value (not a percentage). If the first datum does not have an error field (or the error field is commented out by placing a "!" before it), the default errors for the entire data set will be calculated from the data.
+\end{enumerate}
+
+\paragraph{Example of general format} 
+
+The following is an example of DC data (e.g., no IPTYPE):
+
+\begin{fileExample}
+\begin{tabular}{|cccccc|}
+\hline
+\multicolumn{6}{|l|}{COMMON\_CURRENT} \\
+\multicolumn{6}{|l|}{! dc data (general format) } \\
+221 & -45 &  221  & -45  &  6 & \\
+50 &  250 &  100  & 25  & -2.31552E-01 &  1.16776E-02 \\
+100 & 250  & 150  & 50 &  -2.64516E-01 &  1.33258E-02 \\
+150 & 500  & 200 & 75  &  2.70551E-03 &  2.35276E-04 \\
+200 & 75 &  250  &  100 & 2.11746E-01 & 1.06873E-02 \\
+250 & 100 &  300 & 125 &  2.37240E-01 &  1.19620E-02 \\
+300 & 125 &  350 & 150  &  1.59822E-01 &  8.09110E-03 \\
+221 & -45 &  600 & -55 &  2 & \\
+100 &  25 &  150 &  500  & -2.64516E-01 & 1.33258E-02 \\
+150 &  500  & 200 &  75.0 &  2.70551E-03 & 2.35276E-04 \\
+\hline
+\end{tabular}
+\end{fileExample}
+%
+In the above example, there are two current electrode locations, the first with six potential electrodes and the second with two potential electrode data. The line ``IPTYPE=2'' would be added if this file were IP data of second potentials. 
+
+\subsubsection*{Surface format}
+The surface format is similar to the general format with difference that the elevation data is not given. Instead, the program places the electrodes on top of the discretized topographic surface. Accordingly, this format \textbf{cannot be used with borehole data} and if no topography is given, assumes the data are on top of the mesh at an elevation of 0. Whenever the two current electrodes, or two potential electrodes, are given the identical location, that particular pair is considered to be a single pole with the negative electrode being at infinity. The format consists of a line with the current electrode location and number of potential electrode locations associated with it. An example of the \fileName{surface} format file structure is as follows:
+
+\begin{fileExample}
+\begin{tabular}{|cccc|}
+\hline
+\multicolumn{4}{|l|}{COMMON\_CURRENT} \\
+\multicolumn{4}{|l|}{! Comment line} \\
+\multicolumn{4}{|l|}{[IPTYPE= 1 | 2]} \\
+$A_1^x$ & $B_1^x$ &  $n_1$ & \\
+$M_1^x$ & $N_1^x$ &  $val_1$ & $[stn_1]$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+$M_{n_1}^x$ & $N_{n_1}^x$ & $val_{n_1}$ & $[stn_{n_1}]$ \\ 
+$A_2^x$ & $B_2^x$ & $n_2$ & \\
+$M_1^x$ & $N_1^x$  & $val_1$ & $[stn_1]$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+$M_{n_2}^x$ & $N_{n_2}^x$ & $val_{n_2}$ & $[stn_{n_2}]$ \\ 
+$A_3^x$ & $B_3^x$ & $n_3$ & \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+\hline
+\end{tabular}
+\end{fileExample}
+
+The following are detailed summaries of components of the surface-format observations file:
+\begin{enumerate}
+\item[\codeName{COMMON\_CURRENT}] This flag is given prior comment line to let the code know that it is a surface format file
+\item[\codeName{! Comment Line}] Any comments can go here and should be preceded by ``!''
+\item[\codeName{IPTYPE}] Only used for IP inversion and not required if only using DC inversion. NOTE: If omitted from IP inversion, the program will choose \codeName{IPTYPE=1}. \\
+     \codeName{=1}, Type of IP data is apparent chargeability \\
+		 \codeName{=2}, Type of IP data is secondary potentials
+%
+\item[\codeName{A$_i^x$}] i$^{th}$ horizontal position along line of current electrode A
+\item[\codeName{B$_i^x$}] i$^{th}$ horizontal position along line of current electrode B
+\item[\codeName{M$_j^x$}] j$^{th}$ horizontal position along line of potential electrode M associated with the i$^{th}$ current pair
+\item[\codeName{N$_j^x$}] j$^{th}$ horizontal position along line of potential electrode N associated with the i$^{th}$ current pair
+\item[\codeName{val$_j$}] j$^{th}$  observed datum related to the j$^{th}$ potential electrode pair and i${^th}$ current electrode pair.  The potential measurements must be measured value in Volts, or a dimensionless real number (not percentage) for apparent chargeability (\textit{potential is always normalized to unit current amplitude}). There are four types of IP data generally in use; two gathered in the time domain and two gathered in the frequency domain. For small chargeabilities, as is nearly always the case for earth materials, all data types can be used as input for inversion, and resulting models will have chargeabilities in the same units.
+\item[\codeName{stn$_j$}] j$^{th}$ standard deviation associated with the j$^{th}$ datum. This is a positive, absolute value (not a percentage) in units of the data.
+\end{enumerate}
+
+\paragraph{Example of surface format} 
+
+The following is an example of IP data in units of apparent chargeability:
+
+\begin{fileExample}
+\begin{tabular}{|cccc|}
+\hline
+\multicolumn{4}{|l|}{COMMON\_CURRENT} \\
+\multicolumn{4}{|l|}{! IP surface example} \\
+\multicolumn{4}{|l|}{IPTYPE=1} \\
+221 & -45  &  4 & \\
+50 &   25  & -2.31552E-01 &  1.16776E-02 \\
+100 &   50 &  -2.64516E-01 &  1.33258E-02 \\
+250 &  125 &  2.37240E-01 &  1.19620E-02 \\
+300 &  150  &  1.59822E-01 &  8.09110E-03 \\
+221 &  -55 &  2 & \\
+100 &  150 & -2.64516E-01 & 1.33258E-02 \\
+150 &  200 &  2.70551E-03 & 2.35276E-04 \\
+\hline
+\end{tabular}
+\end{fileExample}
+%
+In the above example, there are two current electrode locations, the first with four potential electrodes and the second with two potential electrode data. The line ``IPTYPE=1'' would be absent if this file were DC data. 
+
+\subsubsection*{Simple format}
+The simple format is the most straightforward, but also most restrictive of the three formats. The elevations are not given similar to the surface format with difference that the elevation data is not given. Instead, the program places the electrodes on top of the discretized topographic surface. Accordingly, this format \textbf{cannot be used with borehole data} and if no topography is given, assumes the data are on top of the mesh at an elevation of 0. Whenever the two current electrodes, or two potential electrodes, are given the identical location, that particular pair is considered to be a single pole with the negative electrode being at infinity. The format consists of a line with the current electrode pair location and potential electrode location pair. An example of the \fileName{surface} format file structure is as follows:
+
+\begin{fileExample}
+\begin{tabular}{|cccccc|}
+\hline
+\multicolumn{6}{|l|}{! Comment line} \\
+\multicolumn{6}{|l|}{[IPTYPE= 1 | 2]} \\
+$A_1^x$ & $B_1^x$ &  $M_1^x$ & $N_1^x$ & $ val_1$ & $[stn_1]$ \\
+$A_2^x$ & $B_2^x$ &  $M_2^x$ & $N_2^x$ & $ val_2$ & $[stn_2]$\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+$A_n^x$ & $B_n^x$ &  $M_n^x$ & $N_n^x$ & $ val_n$ & $[stn_n]$\\
+\hline
+\end{tabular}
+\end{fileExample}
+
+The following are detailed summaries of components of the simple-format observations file:
+\begin{enumerate}
+\item[\codeName{! Comment Line}] Any comments can go here. This line is ignored by \codeName{dcinv2d}. General comments should be preceded by a ``!''
+\item[\codeName{IPTYPE}] Only used for IP inversion and not required if only using DC inversion. NOTE: If omitted from IP inversion, the program will choose \codeName{IPTYPE=1}. \\
+     \codeName{=1}, Type of IP data is apparent chargeability \\
+		 \codeName{=2}, Type of IP data is secondary potentials
+%
+\item[\codeName{A$_i^x$}] i$^{th}$ horizontal position along line of current electrode A
+\item[\codeName{B$_i^x$}] i$^{th}$ horizontal position along line of current electrode B
+\item[\codeName{M$_j^x$}] i$^{th}$ horizontal position along line of potential electrode M
+\item[\codeName{N$_j^x$}] i$^{th}$ horizontal position along line of potential electrode N
+\item[\codeName{val$_i$}] i$^{th}$ observed datum. The potential measurements must be measured value in Volts, or a dimensionless real number (not percentage) for apparent chargeability (\textit{potential is always normalized to unit current amplitude}). There are four types of IP data generally in use; two gathered in the time domain and two gathered in the frequency domain. For small chargeabilities, as is nearly always the case for earth materials, all data types can be used as input for inversion, and resulting models will have chargeabilities in the same units.
+\item[\codeName{stn$_j$}] i$^{th}$ standard deviation associated with the i$^{th}$ datum. This is a positive, absolute value (not a percentage) in units of the data.
+\end{enumerate}
+
+\paragraph{Example of simple format}
+
+The following is an example of the simple format. The data are the same as given in the surface format example; IP data in units of apparent chargeability:
+
+\begin{fileExample}
+\begin{tabular}{|cccccc|}
+\hline
+\multicolumn{6}{|l|}{IPTYPE=1} \\
+221 & -45 &  50 &  25 & -2.31552E-01 & 1.16776E-02 \\
+221 & -45 & 100 &  50 & -2.64516E-01 & 1.33258E-02 \\
+221 & -45 & 250 & 125 &  2.37240E-01 & 1.19620E-02 \\
+221 & -45 & 300 & 150 &  1.59822E-01 & 8.09110E-03 \\
+221 & -55 & 100 & 150 & -2.64516E-01 & 1.33258E-02 \\
+221 & -55 & 150 & 200 &  2.70551E-03 & 2.35276E-04 \\
+\hline
+\end{tabular}
+\end{fileExample}
