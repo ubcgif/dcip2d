@@ -323,7 +323,7 @@ chi-factor regularization. The resulting model objective function is
 .. math::
    \psi_m &&= \left[(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o)^T\alpha_s\boldsymbol{\vec{W}}^T_s\boldsymbol{\vec{W}}_s(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o) + \epsilon^2\right]^{\frac{\rho}{2}} + \left[(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o)^T\alpha_x\boldsymbol{\vec{W}}^T_x\boldsymbol{\vec{W}}_x(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o) + \epsilon^2 \right]^{\frac{\rho}{2}} \nonumber \\
    &&+ \left[(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o)^T\alpha_z\boldsymbol{\vec{W}}^T_z\boldsymbol{\vec{W}}_z(\boldsymbol{\vec{m}} - \boldsymbol{\vec{m}}_o) + \epsilon^2 \right]^{\frac{\rho}{2}}\\
-   :label: ekblom
+   :label: ekblom_2
 
 Details of the Eklom norm within the context of geophysical inversion
 can be found in :cite:`farquharson1998non`.

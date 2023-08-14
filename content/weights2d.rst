@@ -45,13 +45,9 @@ follows:
    :align: center
    :name: weightsfile_OneWeightformat
 
-#. :math:`N^W_x`: Number of cells in the horizontal direction for that weight
-   (:math:`N_x` for W\ :math:`_s` and W\ :math:`_z` and :math:`N_x-1`
-   for W\ :math:`_x`).
+#. :math:`N^W_x`: Number of cells in the horizontal direction for that weight (:math:`N_x` for W\ :math:`_s` and W\ :math:`_z` and :math:`N_x-1` for W\ :math:`_x`).
 
-#. :math:N^W_z`: Number of cells in the vertical direction for that weight
-   (:math:`N_z` for W\ :math:`_s` and W\ :math:`_x` and :math:`N_z-1`
-   for W\ :math:`_z`).
+#. :math:N^W_z`: Number of cells in the vertical direction for that weight (:math:`N_z` for W\ :math:`_s` and W\ :math:`_x` and :math:`N_z-1` for W\ :math:`_z`).
 
 #. :math:`W_{i,k}`: Weight value
 

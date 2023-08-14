@@ -25,21 +25,17 @@ General files for  programs
 
 There are six general files which are used in **DCIP2D**. These are:
 
-#. **observations file**: specifies the observed measurements and the associated electrode
-   locations
+#. **observations file**: specifies the observed measurements and the associated electrode locations
 
 #. **electrodes file**: contains the electrode locations for forward modelling
 
-#. **mesh2D file**: contains the finite difference mesh for the 2D modelling and
-   inversions. A special type of model file specifies the active cells.
+#. **mesh2D file**: contains the finite difference mesh for the 2D modelling and inversions. A special type of model file specifies the active cells.
 
 #. **topo2D file**: contains the topographic data
 
-#. **model2D file**: structure to hold cell values for models: conductivity,
-   chargeability or active
+#. **model2D file**: structure to hold cell values for models: conductivity, chargeability or active
 
-#. **weights2D file**: file that contains special weightings which alter the type of model
-   produced in the inversions
+#. **weights2D file**: file that contains special weightings which alter the type of model produced in the inversions
 
 .. toctree::
         :maxdepth: 1

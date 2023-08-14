@@ -43,8 +43,9 @@ coordinates. An example of the format file structure is as follows:
 #. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
    inversion. NOTE: If omitted from IP inversion, the program will
    choose :math:`IPTYPE=1`.
-     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
-     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
+
+     - :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+     - :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
 #. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
@@ -112,8 +113,9 @@ observations file:
 #. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
    inversion. NOTE: If omitted from IP inversion, the program will
    choose :math:`IPTYPE=1`.
-     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
-     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
+
+     - :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+     - :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
 #. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
@@ -171,8 +173,9 @@ observations file:
 #. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
    inversion. NOTE: If omitted from IP inversion, the program will
    choose :math:`IPTYPE=1`.
-     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
-     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
+
+     - :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+     - :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
 #. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 

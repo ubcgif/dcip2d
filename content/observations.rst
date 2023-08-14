@@ -76,11 +76,10 @@ general format file structure is as follows:
 
 #. :math:`nTx`: integer number giving the totla number of sources in the file.
 
-#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
-   inversion. NOTE: If omitted from IP inversion, the program will
-   choose :math:`IPTYPE=1`.
-     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
-     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
+#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC inversion. NOTE: If omitted from IP inversion, the program will choose :math:`IPTYPE=1`.
+
+   - :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+   - :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
 #. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
@@ -165,11 +164,10 @@ observations file:
 
 #. :math:`nTx`: integer number giving the totla number of sources in the file.
 
-#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
-   inversion. NOTE: If omitted from IP inversion, the program will
-   choose :math:`IPTYPE=1`.
-     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
-     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
+#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC inversion. NOTE: If omitted from IP inversion, the program will choose :math:`IPTYPE=1`.
+
+  - :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+  - :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
 #. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
@@ -241,11 +239,10 @@ observations file:
 #. :math:`Comment~line`: Any comments can go here. This line is ignored by dcinv2d and must have a
    preceding “!”
 
-#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC
-   inversion. NOTE: If omitted from IP inversion, the program will
-   choose :math:`IPTYPE=1`.
-     | :math:`IPTYPE=1`, Type of IP data is apparent chargeability
-     | :math:`IPTYPE=2`, Type of IP data is secondary potentials
+#. :math:`IPTYPE`: Only used for IP inversion and not required if only using DC inversion. NOTE: If omitted from IP inversion, the program will choose :math:`IPTYPE=1`.
+
+  - :math:`IPTYPE=1`, Type of IP data is apparent chargeability
+  - :math:`IPTYPE=2`, Type of IP data is secondary potentials
 
 #. :math:`A^x_i`: i\ :math:`^{th}` horizontal position along line of current electrode A
 
